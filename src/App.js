@@ -20,7 +20,10 @@ function App() {
             <Route path="customer-list" element={<CustomerList />}></Route>
             <Route path="add-customer" element={<AddCustomer />}></Route>
           </Route>
-          <Route path="order-history" element={<OrderHistory />}></Route>
+          <Route path="order-history" element={<OrderHistory />}>
+            <Route path="order-details"></Route>
+            <Route path="order-bills"></Route>
+          </Route>
           <Route path="my-commission" element={<MyCommission />}></Route>
         </Route>
       </Routes>

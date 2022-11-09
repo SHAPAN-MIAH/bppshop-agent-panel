@@ -164,12 +164,7 @@ const MyCommission = () => {
                 <td>{listData.withDrawAmount}</td>
                 <td>{listData.purchaseAgainstCommission}</td>
                 <td>{listData.remainingBalance}</td>
-                {/* <td>
-                  <button>See Order</button>
-                </td>
-                <td>
-                  <i class="bi bi-folder"></i>
-                </td> */}
+                
               </tr>
             ))}
             <tr>
