@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import AgentPanelHome from "./Components/AgentPanelHome/AgentPanelHome";
+import MyCommission from "./Components/MyCommission/MyCommission";
+import OrderHistory from "./Components/OrderHistory/OrderHistory";
+import CustomerList from "./Components/Customer/CustomerList/CustomerList";
+import AddCustomer from "./Components/Customer/AddCustomer/AddCustomer";
+import Customer from "./Components/Customer/Customer";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<AgentPanelHome />}></Route>
+        <Route path="/dashboard" element={<AgentPanelHome />}>
+          <Route index element={<Dashboard />}></Route>
+          <Route path="customer" element={<Customer />}>
+            <Route path="customer-list" element={<CustomerList />}></Route>
+            <Route path="add-customer" element={<AddCustomer />}></Route>
+          </Route>
+          <Route path="order-history" element={<OrderHistory />}></Route>
+          <Route path="my-commission" element={<MyCommission />}></Route>
+        </Route>
+      </Routes>
     </div>
   );
 }

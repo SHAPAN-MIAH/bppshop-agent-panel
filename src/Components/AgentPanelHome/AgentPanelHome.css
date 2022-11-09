@@ -1,0 +1,62 @@
+.agent-panel-home-section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin: 0px;
+  padding: 0px;
+}
+.dashboard-sidebar {
+  grid-column: 1 / 3;
+}
+.dashboard-content-outlet-container {
+  grid-column: 3 / 13;
+  grid-row: 1/2;
+}
+.dashboard-navbar {
+  height: 95px;
+  background: #011627f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  padding: 0px 50px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  margin: 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.user-tab {
+  display: flex;
+  font-size: 20px;
+}
+.user-tab input {
+  width: 300px;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 5px;
+  font-size: 15px;
+  border: none;
+  padding: 0px 20px;
+  background: #ffffff02;
+
+  color: #ffffff;
+  outline: none;
+  border: .5px solid rgb(148, 148, 148);
+}
+.user-tab i {
+  position: absolute;
+  margin-top: 19px;
+  margin-left: 265px;
+  font-size: 16px;
+  color: #a1a1a1;
+}
+.user-tab small {
+  margin: 17px;
+}
+.user-profile {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  overflow: hidden;
+  border: 1px solid gainsboro;
+}

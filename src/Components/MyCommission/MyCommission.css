@@ -1,0 +1,103 @@
+.commission-history-section{
+    margin: 40px;
+    font-family: "Montserrat", sans-serif;
+}
+.commission-history-header{
+    display: flex;
+    justify-content: space-between;
+}
+.commission-history-header button{
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #16A0DA;
+    color: #ffff;
+    padding: 10px 20px;
+    margin-right: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+
+}
+.commission-history-header button:hover{
+    background: #011627f1;
+
+}
+.commission-history-header input{
+    font-family: "Montserrat", sans-serif;
+    width: 250px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    color: rgb(41, 41, 41);
+    padding: 10px 20px;
+    font-size: 14px;
+}
+.commission-history-contact-print{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+.commission-history-contact-print p{
+    font-weight: 600;
+    color: #3f3f3ff1;
+}
+.commission-history-contact-print p span{
+    font-weight: 400;
+    color: #6d6d6df1;
+    margin-left: 12px;
+}
+.commission-history-contact-print button{
+    border: none;
+    border-radius: 5px;
+    background: #011627f1;
+    color: #ffff;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #cfcfcf;
+    text-align: center;
+    padding: 12px 10px;
+  }
+  td {
+    text-align: center;
+  }
+  td button{
+    border: none;
+    border-radius: 5px;
+    background: #01162727;
+    color: rgb(36, 36, 36);
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+  td i{
+    font-size: 24px;
+    margin-left: 12px;
+    color: #16A0DA;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #2bbefd11;
+  }
+
+
+  .select-customer-btn-container {
+    text-align: right;
+    padding: 20px 0px;
+  }
+  .select-customer-btn-container button{
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background: #16A0DA;
+    color: #ffff;
+  }
+  .select-customer-btn-container button:hover{
+    background: #011627f1;
+  }

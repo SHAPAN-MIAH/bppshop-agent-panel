@@ -1,0 +1,58 @@
+.dashboard-section {
+  margin: 20px 40px;
+}
+.dashboard-info-card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+.info-card-container {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 25px 30px;
+  background: #ffff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.info-card-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  /* border: 2px solid #929292; */
+  background: #169fda3b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info-card-icon i {
+  font-size: 30px;
+  color: #16A0DA;
+}
+.info-card-content {
+  text-align: right;
+  width: 70%;
+}
+.info-card-content h4{
+  font-weight: 600;
+  color: #6b6b6b;
+}
+.info-card-content h6{
+  color: #727272;
+  
+}
+
+.chart-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+    /* margin: 40px; */
+}
+.sales-chart-container, .commission-chart-container{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin: 40px 0px;
+    padding: 30px;
+    border-radius: 10px;
+}
+.sales-chart-container Bar, .commission-chart-container Bar{
+    width: 50%;
+}

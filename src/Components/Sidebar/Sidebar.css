@@ -1,0 +1,117 @@
+#sidebarMenu {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 320px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background: #011627f1;
+    /* background: #011627; */
+    transition: transform 250ms ease-in-out;
+  }
+  
+  .sidebarIconToggle {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    z-index: 20;
+    top: 30px;
+    left: 67px;
+    cursor: pointer;
+  }
+  
+  .dashboard-logo {
+    width: 100%;
+    display: flex;
+    margin-left: 40px;
+    padding: 20px 0px;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+  }
+  .dashboard-logo img {
+    width: 53px;
+    margin-right: 12px;
+  }
+  .dashboard-profile-show-container {
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgb(148, 148, 148),
+      rgba(0, 0, 0, 0)
+    );
+    border-top: 2px solid saddlebrown;
+  }
+  .Dashboard-profileImg {
+    justify-content: center;
+    display: flex;
+    
+  }
+  .Dashboard-profileImg img {
+    width: 120px;
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 2px 5px -1px,
+      rgba(255, 255, 255, 0.3) 0px 1px 3px -1px;
+  }
+
+  .profileName-shopQuantity {
+    margin: 20px 0px;
+    text-align: center;
+  }
+  
+  .menuList{
+      padding: 0px !important;
+  }
+  .menu-item {
+    list-style: none;
+    text-decoration: none;
+    margin: 20px;
+    background: none;
+    padding: 5px 20px;
+    font-size: 17px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    border-radius: 5px;
+    z-index: 3;
+    transition: 0.5s;
+  }
+  .menu-item i {
+    font-size: 22px;
+    margin-right: 7px;
+  }
+  a{
+    text-decoration: none;
+  }
+  .menu-item:hover {
+    color: #16A0DA;
+  }
+
+  .active {
+    color: #fc9d29;
+    transition: 0.5s;
+  }
+
+  .projectMenu span i{
+    float: right;
+    font-size: 15px;
+    margin-top: 7px;
+  }
+  
+  .arowToggle{
+    transform: rotateX(180deg);
+  }
+  .projectSubmenu{
+    display: none;
+  }
+  .projectSubmenuActive{
+    display: block;
+  }
+  .projectSubmenu li{
+    list-style: none;
+    margin: 10px 30px;
+    font-size: 14px;
+  }

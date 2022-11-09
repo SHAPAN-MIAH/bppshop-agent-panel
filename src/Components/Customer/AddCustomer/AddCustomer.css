@@ -1,0 +1,41 @@
+.add-customer-section{
+    margin: 40px;
+    font-family: "Montserrat", sans-serif;
+}
+.add-customer-form-container{
+    margin: 40px 0px;
+    background: #ffff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.add-customer-form-container form{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 25px 20px;
+}
+.add-customer-form-container form input, .add-customer-form-container form textarea{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    background: none;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+}
+.add-customer-form-container form textarea{
+   height: 140px;
+}
+.add-customer-form-container button{
+    width: 250px;
+    border: none;
+    border-radius: 5px;
+    background: #16A0DA;
+    padding: 10px ;
+    color: #ffff;
+    margin-top: 25px;
+}
+.add-customer-form-container button:hover{
+    background: #011627f1;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
