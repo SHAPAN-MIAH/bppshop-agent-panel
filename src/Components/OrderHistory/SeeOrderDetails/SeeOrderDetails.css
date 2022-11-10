@@ -1,0 +1,127 @@
+.cash-memo-container{
+    border: .5px solid gainsboro;
+    padding: 0px 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.modal-header {
+  display: inline;
+  text-align: center;
+  font-size: 13px;
+}
+.modal-header h5{
+ margin-top: -12px;
+}
+
+.bbpShop-cash-memo {
+  margin-top: -30px !important;
+}
+
+.bbpShop-cash-memo strong {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.bbpShop-cash-memo small {
+  font-size: 12px;
+}
+
+.SLArticle-DescriptionUM-QuantityUnit-PriceVatDiscountTotal {
+  border: 0.4px solid gainsboro;
+  margin-top: 10px;
+  padding: 5px;
+}
+.SLArticle-DescriptionUM-QuantityUnit-PriceVatDiscountTotal2 {
+  margin-top: 5px;
+  padding: 5px;
+}
+.SLArticle-DescriptionUM-QuantityUnit-PriceVatDiscountTotal small,
+.SLArticle-DescriptionUM-QuantityUnit-PriceVatDiscountTotal2 small {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+  font-size: 10px;
+  text-align: left;
+}
+.SLArticle-DescriptionUM-QuantityUnit-PriceVatDiscountTotal small strong {
+  font-weight: 500 !important;
+  text-align: left;
+}
+.SLArticle-DescriptionUM-QuantityUnit-PriceVatDiscountTotal2 small span {
+  font-size: 10px;
+}
+
+.billSummary {
+  line-height: 12px;
+}
+.billSummary-header {
+  border-bottom: 2px solid gray;
+  margin-top: 5px;
+}
+
+.billSummary-header strong {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 5px;
+}
+.billSummary-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 10px;
+}
+
+.net-payable-amount {
+  border-top: 2px solid gray;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.net-payable-amount strong {
+  font-size: 12px;
+}
+
+.payment-details {
+  border-bottom: 2px solid gray;
+}
+.payment-details strong {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 5px;
+}
+.cash-paid {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+  border-bottom: 2px solid gray;
+}
+.cash-paid small {
+  font-size: 12px;
+  font-weight: 600;
+}
+.change-amount{
+    display: flex;
+  justify-content: space-between;
+}
+.change-amount strong{
+    font-weight: 600;
+    font-size: 12px;
+}
+.callForHomeDelivery{
+    background: rgba(220, 220, 220, 0.623);
+    /* padding: 2px; */
+}
+
+
+.recycle-offer strong{
+    display: flex;
+    justify-content:left;
+}
+.recycle-offer li{
+    font-size: 11px;
+}
+.memo-fotter {
+    text-align: center;
+    margin-top: 10px;
+}

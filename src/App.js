@@ -8,6 +8,9 @@ import OrderHistory from "./Components/OrderHistory/OrderHistory";
 import CustomerList from "./Components/Customer/CustomerList/CustomerList";
 import AddCustomer from "./Components/Customer/AddCustomer/AddCustomer";
 import Customer from "./Components/Customer/Customer";
+import SeeOrderDetails from "./Components/OrderHistory/SeeOrderDetails/SeeOrderDetails";
+import OrderBills from "./Components/OrderHistory/OrderBills/OrderBills";
+import OrderHistoryHome from "./Components/OrderHistory/OrderHistoryHome/OrderHistoryHome";
 
 function App() {
   return (
@@ -21,8 +24,9 @@ function App() {
             <Route path="add-customer" element={<AddCustomer />}></Route>
           </Route>
           <Route path="order-history" element={<OrderHistory />}>
-            <Route path="order-details"></Route>
-            <Route path="order-bills"></Route>
+            <Route index element={<OrderHistoryHome />}></Route>
+            <Route path="order-details" element={<SeeOrderDetails />}></Route>
+            <Route path="order-bills" element={<OrderBills />}></Route>
           </Route>
           <Route path="my-commission" element={<MyCommission />}></Route>
         </Route>

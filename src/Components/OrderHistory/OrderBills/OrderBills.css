@@ -1,0 +1,25 @@
+.order-bills-folder-container{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 20px;
+    text-align: center;
+    margin-top: 20px;
+    
+}
+.order-bill-folder{
+    border-radius: 7px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.order-bills-folder-container i{
+    font-size: 80px;
+    color: #011627f1;
+}
+.order-bills-folder-container small{
+    font-size: 12px;
+}
+
+.order-bills-folder-download{
+    display: none;
+}

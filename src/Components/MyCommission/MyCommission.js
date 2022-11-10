@@ -160,10 +160,10 @@ const MyCommission = () => {
                 <td>{listData.customerName}</td>
                 <td>#{listData.orderId}</td>
                 <td>{listData.paymentDescription}</td>
-                <td>{listData.SalesCommission}</td>
-                <td>{listData.withDrawAmount}</td>
-                <td>{listData.purchaseAgainstCommission}</td>
-                <td>{listData.remainingBalance}</td>
+                <td>৳ {listData.SalesCommission}</td>
+                <td>৳ {listData.withDrawAmount}</td>
+                <td>৳ {listData.purchaseAgainstCommission}</td>
+                <td>৳ {listData.remainingBalance}</td>
                 
               </tr>
             ))}
@@ -173,10 +173,10 @@ const MyCommission = () => {
               <th></th>
               <th></th>
               <th></th>
-              <th>Total: 34535636</th>
-              <th>Total: 994599</th>
-              <th>Total: 897896</th>
-              <th>Total: 345334</th>
+              <th>Total: ৳ 34535636</th>
+              <th>Total: ৳ 994599</th>
+              <th>Total: ৳ 897896</th>
+              <th>Total: ৳ 345334</th>
             </tr>
           </table>
         </div>

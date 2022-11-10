@@ -115,3 +115,226 @@
     margin: 10px 30px;
     font-size: 14px;
   }
+
+
+  @media screen and (max-width: 1600px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 270px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+  }
+  @media screen and (max-width: 1570px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 265px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+     .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1550px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 260px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1520px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 255px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1500px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 250px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1470px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 245px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1455px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 245px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1430px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 240px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1420px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 238px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 1400px) {
+    #sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 233px;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #011627f1;
+      /* background: #011627; */
+      transition: transform 250ms ease-in-out;
+    }
+
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+  }
