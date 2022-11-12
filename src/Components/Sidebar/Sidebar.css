@@ -1,4 +1,4 @@
-#sidebarMenu {
+.sidebarMenu {
     height: 100%;
     position: fixed;
     left: 0;
@@ -21,7 +21,7 @@
   }
   
   .dashboard-logo {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     margin-left: 40px;
     padding: 20px 0px;
@@ -118,7 +118,7 @@
 
 
   @media screen and (max-width: 1600px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -131,7 +131,7 @@
     }
   }
   @media screen and (max-width: 1570px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -154,7 +154,7 @@
     }
   }
   @media screen and (max-width: 1550px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -177,7 +177,7 @@
     }
   }
   @media screen and (max-width: 1520px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -200,7 +200,7 @@
     }
   }
   @media screen and (max-width: 1500px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -223,7 +223,7 @@
     }
   }
   @media screen and (max-width: 1470px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -246,7 +246,7 @@
     }
   }
   @media screen and (max-width: 1455px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -269,7 +269,7 @@
     }
   }
   @media screen and (max-width: 1430px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -292,7 +292,7 @@
     }
   }
   @media screen and (max-width: 1420px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
@@ -315,12 +315,12 @@
     }
   }
   @media screen and (max-width: 1400px) {
-    #sidebarMenu {
+    .sidebarMenu {
       height: 100%;
       position: fixed;
       left: 0;
       top: 0;
-      width: 233px;
+      width: 234px;
       box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
       background: #011627f1;
       /* background: #011627; */
@@ -336,5 +336,71 @@
     .projectSubmenu li{
       margin: 10px;
       font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .sidebarMenu {
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 234px;
+      transition:  250ms ease-in-out;
+      margin-left: -300px;
+    }
+    .sidebarMenuToggle {
+      margin-left: 0px;
+      /* transition: all 1s; */
+    }
+
+    .menu-item {
+      font-size: 14px;
+    }
+    .menu-item i {
+      font-size: 18px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 14px;
+    }
+
+    .menu-bar-icon{
+      position: absolute;
+      margin-left: 450px;
+      
+    }
+  }
+  @media screen and (max-width: 360px) {
+    .sidebarMenu {
+      width: 220px;
+      transition:  250ms ease-in-out;
+      margin-left: -300px;
+    }
+    .sidebarMenuToggle {
+      margin-left: 0px;
+      /* transition: all 1s; */
+    }
+
+    .menu-item {
+      font-size: 13px;
+    }
+    .menu-item i {
+      font-size: 15px;
+    }
+    .projectSubmenu li{
+      margin: 10px;
+      font-size: 13px;
+    }
+
+    .dashboard-logo {
+      display: flex;
+      margin-left: 20px;
+      padding: 20px 0px;
+      font-size: 15px;
+      color: rgb(255, 255, 255);
+    }
+    .dashboard-logo img {
+      width: 45px;
+      margin-right: 12px;
     }
   }

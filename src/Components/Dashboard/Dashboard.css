@@ -26,33 +26,511 @@
 }
 .info-card-icon i {
   font-size: 30px;
-  color: #16A0DA;
+  color: #16a0da;
 }
 .info-card-content {
   text-align: right;
   width: 70%;
 }
-.info-card-content h4{
+.info-card-content h4 {
   font-weight: 600;
   color: #6b6b6b;
 }
-.info-card-content h6{
+.info-card-content h6 {
   color: #727272;
-  
 }
 
-.chart-container{
+.chart-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+  /* margin: 40px; */
+}
+.sales-chart-container,
+.commission-chart-container {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin: 40px 0px;
+  padding: 30px;
+  border-radius: 10px;
+}
+.sales-chart-container Bar,
+.commission-chart-container Bar {
+  width: 50%;
+}
+
+@media screen and (max-width: 1400px) {
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 30px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 70%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 30px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 70%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 40px;
-    /* margin: 40px; */
-}
-.sales-chart-container, .commission-chart-container{
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    grid-gap: 20px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container,
+  .commission-chart-container {
     margin: 40px 0px;
-    padding: 30px;
-    border-radius: 10px;
-}
-.sales-chart-container Bar, .commission-chart-container Bar{
+  }
+  .commission-chart-container {
+    margin: 0px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
     width: 50%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container,
+  .commission-chart-container {
+    margin: 40px 0px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container,
+  .commission-chart-container {
+    margin: 40px 0px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px 0px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    /* width: 90vw; */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container {
+    margin: 30px 0px;
+    width: 400px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+    width: 400px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 430px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px 0px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    /* width: 90vw; */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container {
+    margin: 30px 0px;
+    width: 375px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+    width: 375px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px 0px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    /* width: 90vw; */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container {
+    margin: 30px 0px;
+    width: 355px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+    width: 355px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 385px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px 0px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    /* width: 90vw; */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container {
+    margin: 30px 0px;
+    width: 334px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+    width: 334px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px 0px;
+  }
+  .info-card-container {
+    padding: 20px 30px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    /* width: 90vw; */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container {
+    margin: 30px 0px;
+    width: 315px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+    width: 315px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .dashboard-section {
+    margin: 20px 10px;
+  }
+  .dashboard-info-card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px 0px;
+  }
+  .info-card-container {
+    padding: 20px;
+  }
+  .info-card-icon i {
+    font-size: 25px;
+    color: #16a0da;
+  }
+  .info-card-content {
+    text-align: right;
+    width: 80%;
+  }
+  .info-card-content h4 {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .info-card-content h6 {
+    font-size: 14px;
+  }
+
+  .chart-container {
+    /* width: 90vw; */
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
+  }
+
+  .sales-chart-container {
+    margin: 30px 0px;
+    width: 315px;
+  }
+  .commission-chart-container {
+    margin: 0px;
+    width: 315px;
+  }
+  .sales-chart-container Bar,
+  .commission-chart-container Bar {
+    width: 50%;
+  }
 }

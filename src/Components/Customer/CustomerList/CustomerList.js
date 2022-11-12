@@ -84,7 +84,7 @@ const CustomerList = () => {
       <div className="container-fluid">
         <div className="customer-list-header">
           <h2>Customer List</h2>
-          <div>
+          <div className="customer-list-input-btn">
             <button type="">
               Add New Customer <i class="bi bi-person-plus-fill"></i>
             </button>
@@ -100,7 +100,7 @@ const CustomerList = () => {
           </p>
         </div>
 
-        <div>
+        <div className="table-container">
           <table>
             <tr>
               <th>Customer Id</th>
@@ -121,7 +121,7 @@ const CustomerList = () => {
                 <td>{listData.email}</td>
                 <td>{listData.mobileNumber}</td>
                 <td>{listData.customerAddress}</td>
-                <td>
+                <td className="d-flex">
                   <button>Select Customer</button>{" "}
                   <i class="bi bi-pencil-square"></i>
                 </td>

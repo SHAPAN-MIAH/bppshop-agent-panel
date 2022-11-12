@@ -60,7 +60,13 @@
   overflow: hidden;
   border: 1px solid gainsboro;
 }
-
+.user-profile img{
+  width: 63px;
+}
+.closeBar-icon, .bar-icon{
+  display: none;
+  transition:  300ms ease-in-out;
+}
 
 @media screen and (max-width: 1400px) {
   .agent-panel-home-section {
@@ -69,10 +75,12 @@
     margin: 0px;
     padding: 0px;
   }
+
   .dashboard-sidebar {
     grid-column: 1 / 3;
     grid-row: 1/2;
   }
+
   .dashboard-content-outlet-container {
     grid-column: 3 / 13;
     grid-row: 1/2;
@@ -91,11 +99,163 @@
     outline: none;
     border: .5px solid rgb(148, 148, 148);
   }
+
   .user-tab i {
     position: absolute;
     margin-top: 19px;
     margin-left: 215px;
     font-size: 16px;
     color: #a1a1a1;
+  }
+}
+@media screen and (max-width: 768px) {
+  .dashboard-navbar {
+    height: 80px;
+    padding: 0px 20px;
+  }
+  .agent-panel-home-section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .dashboard-sidebar {
+    grid-column: 0 / 0;
+    grid-row: 1/2;
+  }
+
+  .dashboard-content-outlet-container {
+    grid-column: 1 / 13;
+    grid-row: 1/2;
+  }
+
+  .user-tab input {
+    width: 200px;
+    height: 45px;
+    border-radius: 30px;
+    margin-top: 5px;
+    font-size: 14px;
+    border: none;
+    padding: 0px 20px;
+    background: #ffffff02;
+    color: #ffffff;
+    outline: none;
+    border: .5px solid rgb(148, 148, 148);
+  }
+
+  .user-tab i {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 170px;
+    font-size: 16px;
+    color: #a1a1a1;
+  }
+  .bar-icon{
+    display: block;
+    font-size: 30px;
+  }
+  .contentTitle .closeBar-icon{
+    transition:  250ms ease-in-out;
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .dashboard-navbar {
+    height: 80px;
+    padding: 0px 20px;
+    font-size: 25px;
+  }
+  .agent-panel-home-section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .dashboard-sidebar {
+    grid-column: 0 / 0;
+    grid-row: 1/2;
+  }
+
+  .dashboard-content-outlet-container {
+    grid-column: 1 / 13;
+    grid-row: 1/2;
+  }
+
+  .user-tab input {
+    display: none;
+  }
+
+  .user-tab i {
+    display: none;
+  }
+  .bar-icon{
+    display: block;
+    font-size: 30px;
+  }
+  .contentTitle .closeBar-icon{
+    transition:  250ms ease-in-out;
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .dashboard-navbar {
+    height: 80px;
+    padding: 0px 20px;
+    font-size: 25px;
+  }
+  .agent-panel-home-section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .dashboard-sidebar {
+    grid-column: 0 / 0;
+    grid-row: 1/2;
+  }
+
+  .dashboard-content-outlet-container {
+    grid-column: 1 / 13;
+    grid-row: 1/2;
+  }
+
+  .user-tab input {
+    display: none;
+  }
+
+  .user-tab i {
+    display: none;
+  }
+  .bar-icon{
+    display: block;
+    font-size: 30px;
+  }
+  .contentTitle .closeBar-icon{
+    transition:  250ms ease-in-out;
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .dashboard-navbar {
+    height: 80px;
+    padding: 0px 20px;
+    font-size: 25px;
+  }
+  .user-tab small{
+    display: none;
+  }
+  .user-profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1px solid gainsboro;
+  }
+  .user-profile img{
+    margin-left: -2px;
+    width: 53px;
   }
 }
