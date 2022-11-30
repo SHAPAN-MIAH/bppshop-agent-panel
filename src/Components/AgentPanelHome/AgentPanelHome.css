@@ -68,6 +68,18 @@
   transition:  300ms ease-in-out;
 }
 
+.profile_dropdown{
+  width: 200px;
+  padding: 10px 0px;
+  overflow: hidden;
+}
+.profile_dropdown li{
+  list-style: none;
+  margin-left: -32px;
+  cursor: pointer;
+}
+
+
 @media screen and (max-width: 1400px) {
   .agent-panel-home-section {
     display: grid;

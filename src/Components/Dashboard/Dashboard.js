@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Dashboard.css";
 import InfoDetails from "./InfoDetails/InfoDetails";
 import {
@@ -12,6 +12,10 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import faker from "faker";
+import axios from "axios";
+import { baseURL } from "./../../BaseUrl/BaseUrl";
+import profileImg from "../../assets/image/images (1).jpg";
+import { Link } from 'react-router-dom';
 
 ChartJS.register(
   CategoryScale,
@@ -53,53 +57,107 @@ export const data = {
   ],
 };
 
-const DashboardInfo = [
-  {
-    qty: 14,
-    title: "Total Customer",
-  },
-  {
-    qty: 16500,
-    title: "Total Sale Amount",
-  },
-  {
-    qty: 5000,
-    title: "Total Commission",
-  },
-  {
-    qty: 14000,
-    title: "Total Withdrawal Commission Amount",
-  },
-  {
-    qty: 10,
-    title: "No of Order Return",
-  },
-  {
-    qty: 14,
-    title: "Return Order Value",
-  },
-];
 const Dashboard = () => {
-  const [dashboardInfo, setDashboardInfo] = useState(DashboardInfo);
+  const [dashboardInfo, setDashboardInfo] = useState([]);
+
+  const token = sessionStorage.getItem("token");
+  useEffect(() => {
+    axios
+      .get(baseURL + "/agent/dashboard", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => setDashboardInfo(res.data.total));
+  }, []);
+
+  const [agent, setAgent] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(baseURL + "/agent/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => setAgent(res.data.data));
+  }, []);
+
   return (
     <>
       <div className="dashboard-section">
         <div className="container-fluid">
-          <h2>Dashboard</h2>
+           <h2>Dashboard</h2>
+          <div className="dashboard-container">
+            <div className="row">
+              <div className="col-md-4">
+                <div className="profile-container">
+                  {/* <h2>Agent Profile</h2> */}
 
-          <div className="dashboard-info-card-container">
-            {dashboardInfo.map((info) => (
-              <InfoDetails key={info.qty} info={info}></InfoDetails>
-            ))}
-          </div>
-          <div className="chart-container">
-            <div className="sales-chart-container">
-              <h5>Sales Analysis</h5>
-              <Bar options={options} data={data} />
-            </div>
-            <div className="commission-chart-container">
-              <h5>Commission Analysis</h5>
-              <Bar options={options} data={data} />
+                  <div className="profile-content-container">
+                    <div className="profile-content">
+                      <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
+                      <div className="text-end">
+                        <Link to='/update-agent-profile'><button className="profileEditBtn" type="">
+                          {" "}
+                          <i class="bi bi-pencil-square"></i>
+                        </button></Link>
+                        <h5>{agent.name}</h5>
+                        <small>{agent.email}</small>
+                        <br/>
+                        <br/>
+                        <small>Role</small>
+                        <h6 className="">Agent</h6>
+                          <br/>
+                        <strong>Balance</strong>
+                        <p>{agent.wallet_balance}</p>
+                      </div>
+                    </div>
+                    <div className="profile-contact-content">
+                      <h5>CONTACT INFORMATION</h5>
+                      <div className="d-flex">
+                        <i class="bi bi-telephone"></i>
+                        <div className="mx-2">
+                          <label for="">Mobile</label>
+                          <p>{agent.phone}</p>
+                        </div>
+                      </div>
+                      <div className="d-flex">
+                      <i class="bi bi-envelope"></i>
+                        <div className="mx-2">
+                          <label for="">Email</label>
+                          <p>{agent.email}</p>
+                        </div>
+                      </div>
+                      <div className="d-flex">
+                        <i class="bi bi-house"></i>
+                        <div className="mx-2">
+                          <label for="">Address</label>
+                          <p>{agent.address}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-8">
+                <div>
+                  {/* <h2>Dashboard</h2> */}
+
+                  <div className="dashboard-info-card-container">
+                    {dashboardInfo?.map((info) => (
+                      <InfoDetails key={info.qty} info={info}></InfoDetails>
+                    ))}
+                  </div>
+                </div>
+
+                {/* <div className="chart-container">
+                  <div className="sales-chart-container">
+                    <h5>Sales Analysis</h5>
+                    <Bar options={options} data={data} />
+                  </div>
+                  <div className="commission-chart-container">
+                    <h5>Commission Analysis</h5>
+                    <Bar options={options} data={data} />
+                  </div>
+                </div> */}
+              </div>
             </div>
           </div>
         </div>

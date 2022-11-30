@@ -1,0 +1,64 @@
+.update-agent-section{
+    font-family: "Montserrat", sans-serif;
+}
+.update-agent-content-container{
+    width: 55%;
+    margin: 40px;
+    margin-top: 20px;
+    padding: 40px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+.update-agent-header{
+    height: 200px;
+    background: rgb(224, 224, 224);
+    border-radius: 7px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin-bottom: 40px;
+    
+}
+.profile-picture{
+    width: 150px;
+    height: 150px;
+    background: rgb(248, 209, 209);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 40px;
+}
+.update-agent-content-container form{
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-gap: 0px 25px;
+
+}
+.update-agent-content-container form input{
+    padding: 10px;
+    margin: 10px 0px; 
+    border: .5px solid rgb(197, 197, 197);
+    outline: none;
+    width: 100%;
+
+}
+.update-agent-content-container form button{
+    width: 40%;
+    padding: 10px 20px;
+    margin: 10px 0px; 
+    border: none;
+    background: #16a0da;
+    color: #ffff;
+    outline: none;
+
+}
+
+.update-agent-content-container form input::-webkit-outer-spin-button,
+.update-agent-content-container form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.update-agent-content-container form input[type=number] {
+  -moz-appearance: textfield;
+}

@@ -102,7 +102,7 @@ const SeeOrderDetails = () => {
             <p>
               Print:{" "}
               <button type="">
-                <i class="bi bi-printer"></i>
+                <i className="bi bi-printer"></i>
               </button>
             </p>
           </div>
@@ -135,8 +135,8 @@ const SeeOrderDetails = () => {
               <td>৳ {listData.salesCommission}</td>
 
               <td>
-                <i style={{cursor: "pointer"}} class="bi bi-eye" onClick={openModal}></i>
-                <i style={{cursor: "pointer"}} class="bi bi-printer"></i>
+                <i style={{cursor: "pointer"}} className="bi bi-eye" onClick={openModal}></i>
+                <i style={{cursor: "pointer"}} className="bi bi-printer"></i>
               </td>
             </tr>
           ))}
@@ -157,7 +157,7 @@ const SeeOrderDetails = () => {
             }}
             onClick={closeModal}
           >
-            <i class="bi bi-x-lg"></i>
+            <i className="bi bi-x-lg"></i>
           </span>
           <div className="cash-memo-container">
             <div className="modal-header">

@@ -1,9 +1,54 @@
 .dashboard-section {
-  margin: 20px 40px;
+  margin: 40px;
+  font-family: "Montserrat", sans-serif;
 }
+.dashboard-container{
+  
+}
+.profile-content-container{
+  /* height: 78vh; */
+  background: #ffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 10px;
+  color: #6b6b6b;
+}
+.profile-content{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+.profile-content img{
+  width: 200px;
+}
+.profile-content h5{
+ color: #505050;
+ margin-bottom: -2px;
+}
+.profileEditBtn{
+  position: absolute;
+  margin-top: -42px;
+  margin-left: -25px;
+  border: none;
+  border-radius: 5px;
+  background: #16a0da;
+  color: #ffff;
+}
+.profile-contact-content{
+ padding: 10px 30px;
+}
+.profile-contact-content h5{
+ font-size: 17px;
+ color: #505050;
+}
+.profile-contact-content i{
+ font-size: 24px;
+ color: #16a0da;
+ margin-top: 5px;
+}
+
 .dashboard-info-card-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
 }
 .info-card-container {
@@ -43,13 +88,14 @@
 .chart-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 40px;
+  grid-gap: 30px;
   /* margin: 40px; */
 }
 .sales-chart-container,
 .commission-chart-container {
+  background: #ffff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  margin: 40px 0px;
+  margin: 30px 0px;
   padding: 30px;
   border-radius: 10px;
 }
@@ -486,6 +532,7 @@
     width: 100%;
   }
 }
+
 @media screen and (max-width: 360px) {
   .dashboard-section {
     margin: 20px 10px;

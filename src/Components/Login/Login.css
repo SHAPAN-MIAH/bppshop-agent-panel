@@ -1,0 +1,92 @@
+.login-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form-container {
+  width: 900px;
+  height: 500px;
+  background: #fffffff1;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  
+}
+.imgback{
+    background: #011627f1;
+    height: 100%;
+    text-align: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+.imgback img{
+    margin-top: 100px;
+}
+.imgback h4{
+    font-size: 24px;
+    margin-top: 40px;
+}
+.login-title {
+  height: 120px;
+  width: 100%;
+  margin-top: -40px;
+  display: flex;
+  align-items: center;
+}
+.login-title h4 {
+  font-size: 34px;
+  color: #5c5c5c;
+  margin-top: 150px;
+  margin-left: 50px;
+}
+
+.login-form-container form {
+  padding: 30px 50px;
+  overflow: hidden;
+  color: #5c5c5c;
+  margin-top: 10px;
+}
+.login-form-container form input {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gainsboro;
+  background: transparent;
+  padding: 10px 0px;
+  font-size: 15px;
+}
+
+.login-form-container form input::-webkit-outer-spin-button,
+.login-form-container form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.login-form-container form input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.login-form-container form button {
+  width: 45%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 20px;
+  background: #16a0da;
+  color: #fff;
+}
+
+.forgotPass{
+  position: absolute;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-left: 9.5%;
+  cursor: pointer;
+}

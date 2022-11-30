@@ -18,32 +18,32 @@ const OrderBills = () => {
 
       <div className="order-bills-folder-container">
         <div onClick={BillsFolderHandler} className="order-bill-folder">
-          <i class="bi bi-folder-fill"></i>
+          <i className="bi bi-folder-fill"></i>
           <br />
           <small>dd/mm/yy</small>
         </div>
         <div onClick={BillsFolderHandler} className="order-bill-folder">
-          <i class="bi bi-folder-fill"></i>
+          <i className="bi bi-folder-fill"></i>
           <br />
           <small>dd/mm/yy</small>
         </div>
         <div onClick={BillsFolderHandler} className="order-bill-folder">
-          <i class="bi bi-folder-fill"></i>
+          <i className="bi bi-folder-fill"></i>
           <br />
           <small>dd/mm/yy</small>
         </div>
         <div onClick={BillsFolderHandler} className="order-bill-folder">
-          <i class="bi bi-folder-fill"></i>
+          <i className="bi bi-folder-fill"></i>
           <br />
           <small>dd/mm/yy</small>
         </div>
         <div onClick={BillsFolderHandler} className="order-bill-folder">
-          <i class="bi bi-folder-fill"></i>
+          <i className="bi bi-folder-fill"></i>
           <br />
           <small>dd/mm/yy</small>
         </div>
         <div onClick={BillsFolderHandler} className="order-bill-folder">
-          <i class="bi bi-folder-fill"></i>
+          <i className="bi bi-folder-fill"></i>
           <br />
           <small>dd/mm/yy</small>
         </div>

@@ -4,8 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/image/bpp_icon.png";
 
 const Sidebar = () => {
+
+
   useEffect(() => {
+
     const btns = document.querySelectorAll(".menu-item");
+
 
     const toggleItem = (elems) => {
       elems.forEach((elem) => {
@@ -15,6 +19,7 @@ const Sidebar = () => {
         });
       });
     };
+
 
     function removeActiveClass(elems) {
       elems.forEach((elem) => {
@@ -27,6 +32,8 @@ const Sidebar = () => {
     toggleItem(btns);
   }, []);
 
+
+
   const projectSubmenuHandler = () => {
     const projectSubmenu = document.querySelector(".projectSubmenu");
     const arrow = document.querySelector(".arrow");
@@ -36,64 +43,117 @@ const Sidebar = () => {
   };
 
 
+
+  const projectSubmenuHandler2 = () => {
+    const projectSubmenu2 = document.querySelector(".projectSubmenu2");
+    const arrow2 = document.querySelector(".arrow2");
+
+    projectSubmenu2.classList.toggle("projectSubmenuActive");
+    arrow2.classList.toggle("arowToggle");
+  };
+
+
+
+  const handleLogout = () => {
+		sessionStorage.removeItem("token");
+		window.location.reload();
+	};
+
+
   return (
     <>
-      <div className="sidebarMenu">
-        <Link to="/">
-          <div className="dashboard-logo">
-            <img src={logo} alt="" />
-            BBP Shop <br /> Agent Panel
-          </div>
-        </Link>
-        <div className="dashboard-profile-show-container"></div>
-        <ul className="menuList">
-          <NavLink to="/dashboard">
-            <li className="menu-item active">
-              <i class="bi bi-grid-fill"></i> Dashboard
-            </li>
-          </NavLink>
+      <div className="sidebarMenu-container">
+        <div className="sidebarMenu">
+          <Link to="/">
+            <div className="dashboard-logo">
+              <img src={logo} alt="" />
+              BPP Shop <br /> Agent Panel
+            </div>
+          </Link>
+          <div className="dashboard-profile-show-container"></div>
+          <ul className="menuList">
+            <NavLink to="/">
+              <li className="menu-item active">
+                <i className="bi bi-grid-fill"></i> Dashboard
+              </li>
+            </NavLink>
 
-          <NavLink to="/dashboard/customer">
+            {/* <NavLink to="/customer-list"> */}
             <li
               className="menu-item projectMenu "
               onClick={projectSubmenuHandler}
             >
-              <i class="bi bi-people-fill"></i> Customer{" "}
+              <i className="bi bi-people-fill"></i> Customer{" "}
               <span>
-                <i class="bi bi-chevron-down arrow"></i>
+                <i className="bi bi-chevron-down arrow"></i>
               </span>
             </li>
 
             <ul className="projectSubmenu">
-              <Link to="/dashboard/customer/customer-list">
+              <Link to="/customer/customer-list">
                 <li className="menu-item">
-                  <i class="bi bi-person-lines-fill"></i> Customer List
+                  <i className="bi bi-person-lines-fill"></i> Customer List
                 </li>
               </Link>
-              <Link to="/dashboard/customer/add-customer">
+              <Link to="/customer/add-customer">
                 <li className="menu-item">
-                  <i class="bi bi-person-plus-fill"></i> Add Customer
+                  <i className="bi bi-person-plus-fill"></i> Add Customer
                 </li>
               </Link>
             </ul>
-          </NavLink>
+            
+          
+            <NavLink to="/order-history">
+              <li className="menu-item">
+                <i className="bi bi-clock-history"></i> Order History
+              </li>
+            </NavLink>
 
-          <NavLink to="/dashboard/order-history">
-            <li className="menu-item">
-              <i class="bi bi-clock-history"></i> Order History
+            <li
+              className="menu-item projectMenu "
+              onClick={projectSubmenuHandler2}
+            >
+              <i className="bi bi-cash-stack"></i> My Commission{" "}
+              <span>
+                <i className="bi bi-chevron-down arrow2"></i>
+              </span>
             </li>
-          </NavLink>
 
-          <NavLink to="/dashboard/my-commission">
+            <ul className="projectSubmenu2">
+              <Link to="/commission/pending">
+                <li className="menu-item">
+                  <i className="bi bi-person-lines-fill"></i> Pending Commission
+                </li>
+              </Link>
+              <Link to="/commission/commission-history">
+                <li className="menu-item">
+                  <i className="bi bi-person-plus-fill"></i> Commission History
+                </li>
+              </Link>
+            </ul>
+
             <li className="menu-item">
-              <i class="bi bi-cash-stack"></i> My Commission
+              <i className="bi bi-wallet-fill"></i> Wallet
             </li>
-          </NavLink>
+            <li onClick={handleLogout} className="menu-item">
+              <i  className="bi bi-box-arrow-left"></i> Logout
+            </li>
+          </ul>
 
-          <li className="menu-item">
-            <i className="bi bi-box-arrow-left"></i> Logout
-          </li>
-        </ul>
+          <div className="balance-container">
+          <div>
+            <div className="balance-content">
+              <div>
+                <p>Balance</p>
+                <span>৳ 0.00</span>
+              </div>
+            </div>
+            <br />
+            <p>Your Remaining Balance</p>
+          </div>
+        </div>
+        </div>
+        
       </div>
     </>
   );
