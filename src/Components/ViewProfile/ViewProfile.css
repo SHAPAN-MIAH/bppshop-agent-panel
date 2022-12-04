@@ -1,0 +1,47 @@
+.viewProfile-section{
+    margin-top: 40px;
+    font-family: "Montserrat", sans-serif;
+}
+.viewProfile-container{
+    margin: 50px;
+}
+.viewProfile-container h2{
+    margin-bottom: 20px;
+}
+.view-profile-content-container{
+    border: 1px solid gainsboro;
+    background: #ffff;
+    border-radius: 10px;
+  padding: 30px;
+}
+.view-profile-content{
+    height: 200px;
+    display: flex;
+    background: gainsboro;
+}
+
+.viewProfileEditBtn{
+    border: none;
+    outline: none;
+    background: #16a0da;
+    padding: 10px 20px;
+    color: #ffff;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+.viewProfileEditBtn i{
+    margin-right: 10px;
+}
+.view-profile-contact-content{
+    margin-top: 40px;
+    color: #575757;
+}
+.view-profile-contact-content h5{
+    margin-bottom: 20px;
+}
+.view-profile-contact-content i{
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    color: #16a0da;
+}

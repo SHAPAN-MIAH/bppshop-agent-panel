@@ -7,10 +7,13 @@ import "../MyCommission.css";
 
 const CommissionHistory = () => {
     const [commissionHistory, setCommissionHistory] = useState([]);
+    const [totalPage, setTotalPage] = useState(0);
+
 
     let currentPage = 1;
-  
-    const token = sessionStorage.getItem("token");
+    let limit = 10;
+
+    const token = localStorage.getItem("token");
     const url = baseURL + `/agent/commission/history`;
     useEffect(() => {
       fetchCustomerList(currentPage);
@@ -25,7 +28,9 @@ const CommissionHistory = () => {
           no_of_rows: 10,
         },
         headers: { Authorization: `Bearer ${token}` },
-      }).then((res) => setCommissionHistory(res.data.data.data));
+      }).then((res) => {
+        setTotalPage(Math.ceil(res.data.data.total / limit))
+        setCommissionHistory(res.data.data.data)});
     //   }).then((res) => console.log(res.data.data.data));
     };
   
@@ -74,7 +79,7 @@ const CommissionHistory = () => {
             previousLabel={"Previous"}
             nextLabel={"Next"}
             breakLabel={"..."}
-            pageCount={15}
+            pageCount={totalPage}
             marginPagesDisplayed={3}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}

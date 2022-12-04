@@ -8,10 +8,15 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const CustomerList = () => {
   const navigate = useNavigate()
-  const [customerListData, setCustomerListData] = useState([]);
-  let currentPage = 1;
 
-  const token = sessionStorage.getItem("token");
+  const [customerListData, setCustomerListData] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
+
+
+  let currentPage = 1;
+  let limit = 10;
+
+  const token = localStorage.getItem("token");
   const url = baseURL+`/agent/customer/all`;
   useEffect(() => {
     /*axios
@@ -50,10 +55,13 @@ const CustomerList = () => {
       url: url,
       data: {
         page: currentPage,
-        no_of_rows: 10
+        no_of_rows: limit
       },
       headers: { 'Authorization': `Bearer ${token}` }
-    }).then((res) => setCustomerListData(res.data.data.data));
+    }).then((res) => {
+      setTotalPage(Math.ceil(res.data.data.total / limit))
+      setCustomerListData(res.data.data.data)
+    });
   };
 
   const handlePageClick = async (data) => {
@@ -87,9 +95,10 @@ const CustomerList = () => {
         <div className="customer-list-header">
           <h2>Customer List</h2>
           <div className="customer-list-input-btn">
-            <button type="">
+          <Link to="/customer/add-customer"> <button type="">
               Add New Customer <i className="bi bi-person-plus-fill"></i>
             </button>
+            </Link>
             <input type="" name="" placeholder="Search Customer Name/ID" />
           </div>
         </div>
@@ -115,12 +124,12 @@ const CustomerList = () => {
             <tbody>
               {customerListData.map((listData) => (
                 <tr>
-                  <td># {listData?.id}</td>
-                  <td>{listData?.customer_name}</td>
-                  <td>{listData?.customer_email}</td>
-                  <td>{listData?.customer_mobile}</td>
-                  <td>{listData?.customer_address}</td>
-                  <td className="d-flex justify-content-around">
+                  <td data-label="Customer Id"># {listData?.id}</td>
+                  <td data-label="Customer Name">{listData?.customer_name}</td>
+                  <td data-label="Customer Email">{listData?.customer_email}</td>
+                  <td data-label="Customer Mobile Number">{listData?.customer_mobile}</td>
+                  <td data-label="Customer Address">{listData?.customer_address}</td>
+                  <td data-label="#" className="tblActionBtn">
                     <button onClick={() => handleLoginAsCustomer(listData?.id)}>Login </button>{" "}
                     {/* <Link onClick={() => handleCustomerDetails(listData?.id)}><i className="bi bi-eye customerEdit-Btn"></i></Link> */}
                     <Link to={`/customer/customer-details/${listData?.id}`}><i className="bi bi-eye customerEdit-Btn"></i></Link>
@@ -136,7 +145,7 @@ const CustomerList = () => {
             previousLabel={"Previous"}
             nextLabel={"Next"}
             breakLabel={"..."}
-            pageCount={15}
+            pageCount={totalPage}
             marginPagesDisplayed={3}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
@@ -152,9 +161,9 @@ const CustomerList = () => {
             activeClassName={"active"}
           />
 
-          <div className="select-customer-btn-container">
+          {/* <div className="select-customer-btn-container">
             <button type="">Select Customer</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

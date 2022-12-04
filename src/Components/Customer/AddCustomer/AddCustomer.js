@@ -2,13 +2,41 @@ import React, { useEffect, useState } from "react";
 import "./AddCustomer.css";
 import axios from "axios";
 import { baseURL } from "./../../../BaseUrl/BaseUrl";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
+import Modal from 'react-modal';
+
+
+const customStyles = {
+  content: {
+    borderRadius: "10px",
+    top: "50%",
+    left: "58%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0 0 0 500vmax rgb(0 0 0 / 0.3)",
+    padding: "30px",
+    paddingTop: "30px",
+    width: "%",
+  },
+};
 
 const AddCustomer = () => {
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   const [customerData, setCustomerData] = useState({
     customer_name: "",
@@ -16,6 +44,8 @@ const AddCustomer = () => {
     customer_mobile: "",
     customer_address: "",
   });
+
+  const [successMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
@@ -32,11 +62,14 @@ const AddCustomer = () => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          // if (res.data.status == "success") {
-          //   toast(res.data.message);
-          // }
-
-          navigate("/customer/customer-list");
+          console.log(res);
+          if (res.data.status == "success") {
+            setSuccessMessage(res.data.message)
+            openModal();
+          }
+          if (res.data.status == "failed") {
+            setError(res.data.message)
+          }
         });
     } catch (error) {
       if (
@@ -44,7 +77,7 @@ const AddCustomer = () => {
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        setError(error.response.data.message);
+        console.log(error.response.data.message);
       }
     }
   };
@@ -56,11 +89,6 @@ const AddCustomer = () => {
         <h2>Add Customer</h2>
         <div className="add-customer-form-container">
           <form onSubmit={handleSubmit}>
-            {/* <div>
-              <label for="">Customer Id</label>
-              <br />
-              <input type="text" name="" value="" />
-            </div> */}
 
             <div>
               <label for="">Customer Name</label>
@@ -128,8 +156,8 @@ const AddCustomer = () => {
             {/* <br/> */}
             <button type="submit">Submit</button>
           </form>
-          
         </div>
+        <h6 className="text-danger">{error}</h6>
         {/* <ToastContainer /> */}
       </div>
       {/* <ToastContainer 
@@ -144,6 +172,45 @@ const AddCustomer = () => {
       pauseOnHover
       theme="light"
       /> */}
+
+      <Link to="/customer/customer-list">
+        <Modal
+          ariaHideApp={false}
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <div
+            style={{
+              textAlign: "center",
+              margin: "auto",
+              cursor: "pointer",
+              fontFamily: "Montserrat",
+              // fontSize: "25px",
+              color: "#002a47",
+            }}
+          >
+           <h6 className="text-success">{successMessage}</h6>
+           <br/>
+            <Link to="/customer/customer-list">
+              <span
+                style={{
+                  border: "none",
+                  background: "#16a0da",
+                  padding: "5px 20px",
+                  borderRadius: "5px",
+                  color: "#ffff",
+                  fontFamily: "Montserrat"
+                }}
+                onClick={closeModal}
+              >
+                Ok
+              </span>
+            </Link>
+          </div>
+        </Modal>
+      </Link>
     </div>
   );
 };

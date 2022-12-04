@@ -1,16 +1,17 @@
 .dashboard-section {
-  margin: 40px;
+  margin: 50px;
   font-family: "Montserrat", sans-serif;
 }
-.dashboard-container{
-  
+.dashboard-section h2{
+  margin-bottom: 20px;
 }
+
 .profile-content-container{
   /* height: 78vh; */
   background: #ffff;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 10px;
-  color: #6b6b6b;
+  color: #444444;
 }
 .profile-content{
   display: flex;
@@ -21,8 +22,11 @@
   width: 200px;
 }
 .profile-content h5{
- color: #505050;
+ color: #444444;
  margin-bottom: -2px;
+}
+.profile-content-textEnd{
+  text-align: end;
 }
 .profileEditBtn{
   position: absolute;
@@ -38,12 +42,13 @@
 }
 .profile-contact-content h5{
  font-size: 17px;
- color: #505050;
+ color: #444444;
+ margin-bottom: 10px;
 }
 .profile-contact-content i{
- font-size: 24px;
+ font-size: 20px;
  color: #16a0da;
- margin-top: 5px;
+ margin-top: 10px;
 }
 
 .dashboard-info-card-container {
@@ -79,10 +84,10 @@
 }
 .info-card-content h4 {
   font-weight: 600;
-  color: #6b6b6b;
+  color: #444444;
 }
 .info-card-content h6 {
-  color: #727272;
+  color: #555555;
 }
 
 .chart-container {
@@ -155,9 +160,14 @@
   }
 }
 @media screen and (max-width: 768px) {
+ 
   .dashboard-section {
     margin: 20px 10px;
   }
+  .profile-container{
+    margin-bottom: 20px;
+  }
+  
   .dashboard-info-card-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -250,6 +260,27 @@
   .dashboard-section {
     margin: 20px 10px;
   }
+  /* .profile-content{
+    display: block;
+  }
+  .profile-content-textEnd{
+    text-align: left;
+  }
+  .profileEditBtn{
+    position: absolute;
+    margin-top: -200px;
+    margin-left: 220px;
+  } */
+
+  .profile-content{
+    padding-bottom: 0px;
+  }
+  .profile-content img{
+    width: 150px;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
   .dashboard-info-card-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);

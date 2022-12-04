@@ -1,0 +1,30 @@
+.update-customer-content-container {
+  width: 60%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background: #ffff;
+  padding: 30px;
+  border-radius: 5px;
+}
+.update-customer-content-container form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+.update-customer-content-container input {
+  padding: 10px;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  /* margin-bottom: 10px; */
+}
+.update-customer-content-container button {
+  padding: 10px;
+  background: #16a0da;
+  color: #ffff;
+  border: none;
+  outline: none;
+  width: 50%;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}

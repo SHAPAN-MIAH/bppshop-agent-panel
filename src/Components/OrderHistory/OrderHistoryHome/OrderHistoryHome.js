@@ -66,10 +66,12 @@ import axios from 'axios';
 
 const OrderHistoryHome = () => {
     const [orderHistoryData, setOrderHistoryData] = useState([]);
+    const [totalPage, setTotalPage] = useState(0);
 
   let currentPage = 1;
+  let limit = 10;
 
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const url = baseURL+`/agent/order/all`;
   useEffect(() => {
     fetchCustomerList(currentPage);
@@ -85,7 +87,10 @@ const OrderHistoryHome = () => {
         no_of_rows: 10
       },
       headers: { 'Authorization': `Bearer ${token}` }
-    }).then((res) => setOrderHistoryData(res.data.data.data));
+    }).then((res) => {
+      setTotalPage(Math.ceil(res.data.data.total / limit))
+      setOrderHistoryData(res.data.data.data)}
+      );
   };
 
   const handlePageClick = async (data) => {
@@ -132,7 +137,7 @@ const OrderHistoryHome = () => {
                   <td>{listData.total_products}</td>
                   <td>৳ {listData.total_amount}</td>
                   <td >
-                    <Link to='/order-history/order-details'><button id='seeOrderBtn'>See Order</button></Link>
+                    <Link to={`/order-history/order-details/${listData?.customer_id}`}><button id='seeOrderBtn'>See Order Details</button></Link>
                   </td>
                   <td >
                   <Link to='/order-history/order-bills'><i className="bi bi-folder" ></i></Link>
@@ -145,7 +150,7 @@ const OrderHistoryHome = () => {
             previousLabel={"Previous"}
             nextLabel={"Next"}
             breakLabel={"..."}
-            pageCount={15}
+            pageCount={totalPage}
             marginPagesDisplayed={3}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}

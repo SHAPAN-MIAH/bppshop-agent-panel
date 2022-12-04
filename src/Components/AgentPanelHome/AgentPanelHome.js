@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./../Sidebar/Sidebar";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import "./AgentPanelHome.css";
 import profileImg from "../../assets/image/images (1).jpg";
 import { UserContext } from "./../../App";
@@ -36,18 +36,20 @@ const AgentPanelHome = () => {
 
   const [agent, setAgent] = useState([]);
 
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    axios.get(baseURL+ "/agent/profile", {
+    axios
+      .get(baseURL + "/agent/profile", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setAgent(res.data.data));
   }, []);
 
   const handleLogout = () => {
-		sessionStorage.removeItem("token");
-		window.location.reload();
-	};
+    localStorage.removeItem("token");
+    localStorage.removeItem("isLoggedIn");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -67,27 +69,46 @@ const AgentPanelHome = () => {
               </span>
             </div>
             <div className="user-tab">
-              <input type="text" name="" placeholder="Search" />
-              <i className="bi bi-search"></i>
-                  <small>{agent?.name}</small>
-                  <div className="user-profile " type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
-                  </div>
+              {/* <input type="text" name="" placeholder="Search" />
+              <i className="bi bi-search"></i> */}
+              <small>{agent?.name}</small>
+              <div
+                className="user-profile "
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src={`https://agentapi.bppshop.com.bd/${agent.image}`}
+                  alt="profile"
+                />
+              </div>
 
-                  <div className="dropdown-menu profile_dropdown">
-                    <ul>
-                      <li >
-                        <a className="dropdown-item" href="/view-profile"> View Profile
-                        </a>
-                      </li>
-                      <li onClick={handleLogout}>
-                        <a className="dropdown-item"> Logout
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+              <div className="dropdown-menu profile_dropdown">
+                <div
+                  className="d-flex mx-3"
+                  style={{
+                    borderBottom: "1px solid gray",
+                    padding: "10px 0px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  <img
+                    width="40"
+                    height="100%"
+                    src={`https://agentapi.bppshop.com.bd/${agent.image}`}
+                    alt="profile"
+                  />
+
+                  <h6>{agent?.name}</h6>
+                </div>
+                <Link to="/view-profile">
+                  <li className="dropdown-item">View Profile</li>
+                </Link>
+                <li onClick={handleLogout} className="dropdown-item">
+                  Logout
+                </li>
+              </div>
             </div>
           </div>
 

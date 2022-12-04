@@ -31,7 +31,8 @@ const Login = () => {
       await axios.post(url, data)
       .then(res => {
         setLoggedInUser(res.data)
-        sessionStorage.setItem("token", res.data.token)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("isLoggedIn", true)
         // console.log(res.data)
         let from = location?.state?.from?.pathname || "/";
         navigate(from, { replace: true });
@@ -53,25 +54,25 @@ const Login = () => {
         <div className="login-container">
           <div className="login-form-container">
             <div className=" imgback">
-              <img width="150" src={loginBackgroundImg} alt="" />
+              <img src={loginBackgroundImg} alt="" />
 
               <h4>
-                <span>Welcome To</span> <br /> BBP Shop Agent Panel
+                <span>Welcome To</span> <br /> BPP Shop Agent Panel
               </h4>
             </div>
-            <div className="">
+            <div className="loginForm">
               <div className="login-title">
                 <h4>Login</h4>
               </div>
               <form onSubmit={handleSubmit}>
-                <input
+                {/* <input
                   type="email"
                   placeholder="Email"
                   name="agent_email"
                   onChange={handleChange}
                   value={data.agent_email}
                 />
-                <br />
+                <br /> */}
                 <input
                   type="number"
                   placeholder="Phone Number"

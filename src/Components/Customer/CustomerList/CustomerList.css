@@ -55,7 +55,7 @@ td,
 th {
   border: 1px solid #cfcfcf;
   text-align: center;
-  padding: 10px;
+  padding: 7px;
 }
 /* th{
   background-color: #16a0da;
@@ -66,7 +66,7 @@ td button {
   border-radius: 5px;
   background: #01162727;
   color: rgb(36, 36, 36);
-  padding: 10px 30px;
+  padding: 10px 20px;
   font-size: 13px;
 }
 td i {
@@ -84,6 +84,10 @@ tr:nth-child(even) {
   background-color: #2bbefd11;
 }
 
+.tblActionBtn{
+  display: flex;
+  justify-content: space-around;
+}
 .select-customer-btn-container {
   text-align: right;
   padding: 0;
@@ -115,6 +119,273 @@ tr:nth-child(even) {
     align-items: center;
   }
 }
+@media screen and (max-width: 768px) {
+  .customer-list-section {
+    margin: 20px 0px;
+  }
+  .customer-list-header {
+    display: inline;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    height: 400px;
+    padding: 5px;
+    overflow: scroll;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+  .customer-list-header button {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #16a0da;
+    color: #ffff;
+    padding: 10px 20px;
+    margin: 10px 10px 0px 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+  .customer-list-header button:hover {
+    background: #011627f1;
+  }
+  .customer-list-header input {
+    font-family: "Montserrat", sans-serif;
+    width: 220px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    color: rgb(41, 41, 41);
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  .customer-list-print {
+    float: right;
+    margin: 20px 0px;
+  }
+
+  thead{
+    display: none;
+  }
+   tbody, tr, td{
+    display: block;
+    width: 100%;
+  }
+  tr{
+    margin-bottom: 20px;
+  }
+  td{
+    text-align: right;
+    padding-left: 50%;
+    font-size: 12px;
+    position: relative;
+  }
+  table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  td button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  td i {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .tblActionBtn{
+    display: flex;
+    justify-content: end;
+  }
+
+}
+@media screen and (max-width: 700px) {
+  .customer-list-section {
+    margin: 20px 0px;
+  }
+  .customer-list-header {
+    display: inline;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    height: 400px;
+    padding: 5px;
+    overflow: scroll;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+  .customer-list-header button {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #16a0da;
+    color: #ffff;
+    padding: 10px 20px;
+    margin: 10px 10px 0px 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+  .customer-list-header button:hover {
+    background: #011627f1;
+  }
+  .customer-list-header input {
+    font-family: "Montserrat", sans-serif;
+    width: 220px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    color: rgb(41, 41, 41);
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  .customer-list-print {
+    float: right;
+    margin: 20px 0px;
+  }
+
+  thead{
+    display: none;
+  }
+   tbody, tr, td{
+    display: block;
+    width: 100%;
+  }
+  tr{
+    margin-bottom: 20px;
+  }
+  td{
+    text-align: right;
+    padding-left: 50%;
+    font-size: 12px;
+    position: relative;
+  }
+  table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  td button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  td i {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .tblActionBtn{
+    display: flex;
+    justify-content: end;
+  }
+
+}
+@media screen and (max-width: 600px) {
+  .customer-list-section {
+    margin: 20px 0px;
+  }
+  .customer-list-header {
+    display: inline;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    height: 400px;
+    padding: 5px;
+    overflow: scroll;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+  .customer-list-header button {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #16a0da;
+    color: #ffff;
+    padding: 10px 20px;
+    margin: 10px 10px 0px 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+  .customer-list-header button:hover {
+    background: #011627f1;
+  }
+  .customer-list-header input {
+    font-family: "Montserrat", sans-serif;
+    width: 220px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    color: rgb(41, 41, 41);
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  .customer-list-print {
+    float: right;
+    margin: 20px 0px;
+  }
+
+  thead{
+    display: none;
+  }
+   tbody, tr, td{
+    display: block;
+    width: 100%;
+  }
+  tr{
+    margin-bottom: 20px;
+  }
+  td{
+    text-align: right;
+    padding-left: 50%;
+    font-size: 12px;
+    position: relative;
+  }
+  table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  td button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  td i {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .tblActionBtn{
+    display: flex;
+    justify-content: end;
+  }
+
+}
 @media screen and (max-width: 500px) {
   .customer-list-section {
     margin: 20px 0px;
@@ -125,7 +396,7 @@ tr:nth-child(even) {
 
   .table-container {
     border-collapse: collapse;
-    width: 448px;
+    width: 100%;
     height: 400px;
     padding: 5px;
     overflow: scroll;
@@ -139,7 +410,7 @@ tr:nth-child(even) {
     background: #16a0da;
     color: #ffff;
     padding: 10px 20px;
-    margin: 20px 0px;
+    margin: 10px 10px 0px 0px;
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
   }
@@ -162,7 +433,7 @@ tr:nth-child(even) {
     margin: 20px 0px;
   }
 
-  /* thead{
+  thead{
     display: none;
   }
    tbody, tr, td{
@@ -183,26 +454,28 @@ tr:nth-child(even) {
     position: absolute;
     left: 0;
     width: 50%;
-    padding-left: 15%;
+    padding-left: 10px;
     font-size: 12px;
     text-align: left;
-  } */
-  th,
-  td {
-    font-size: 10px;
   }
 
   td button {
-    padding: 9px;
-    font-size: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
   }
   td i {
     font-size: 20px;
     display: flex;
     align-items: center;
   }
+
+  .tblActionBtn{
+    display: flex;
+    justify-content: end;
+  }
+
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 473px) {
   .customer-list-section {
     margin: 20px 0px;
   }
@@ -212,7 +485,7 @@ tr:nth-child(even) {
 
   .table-container {
     border-collapse: collapse;
-    width: 420px;
+    width: 100%;
     height: 400px;
     padding: 5px;
     overflow: scroll;
@@ -226,7 +499,7 @@ tr:nth-child(even) {
     background: #16a0da;
     color: #ffff;
     padding: 10px 20px;
-    margin: 20px 0px;
+    margin: 10px 0px ;
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
   }
@@ -249,7 +522,7 @@ tr:nth-child(even) {
     margin: 20px 0px;
   }
 
-  /* thead{
+  thead{
     display: none;
   }
    tbody, tr, td{
@@ -270,285 +543,26 @@ tr:nth-child(even) {
     position: absolute;
     left: 0;
     width: 50%;
-    padding-left: 15%;
+    padding-left: 10px;
     font-size: 12px;
     text-align: left;
-  } */
-  th,
-  td {
-    font-size: 10px;
   }
 
   td button {
-    padding: 9px;
-    font-size: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
   }
   td i {
     font-size: 20px;
     display: flex;
     align-items: center;
   }
-}
-@media screen and (max-width: 460px) {
-  .customer-list-section {
-    margin: 20px 0px;
-  }
-  .customer-list-header {
-    display: inline;
-  }
 
-  .table-container {
-    border-collapse: collapse;
-    width: 400px;
-    height: 400px;
-    padding: 5px;
-    overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-  .customer-list-header button {
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background: #16a0da;
-    color: #ffff;
-    padding: 10px 20px;
-    margin: 20px 0px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-  }
-  .customer-list-header button:hover {
-    background: #011627f1;
-  }
-  .customer-list-header input {
-    font-family: "Montserrat", sans-serif;
-    width: 220px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 5px;
-    outline: none;
-    background: none;
-    color: rgb(41, 41, 41);
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-  .customer-list-print {
-    float: right;
-    margin: 20px 0px;
-  }
-
-  /* thead{
-    display: none;
-  }
-   tbody, tr, td{
-    display: block;
-    width: 100%;
-  }
-  tr{
-    margin-bottom: 20px;
-  }
-  td{
-    text-align: right;
-    padding-left: 50%;
-    font-size: 12px;
-    position: relative;
-  }
-  table td::before{
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 15%;
-    font-size: 12px;
-    text-align: left;
-  } */
-  th,
-  td {
-    font-size: 10px;
-  }
-
-  td button {
-    padding: 9px;
-    font-size: 10px;
-  }
-  td i {
-    font-size: 20px;
+  .tblActionBtn{
     display: flex;
-    align-items: center;
-  }
-}
-@media screen and (max-width: 450px) {
-  .customer-list-section {
-    margin: 20px 0px;
-  }
-  .customer-list-header {
-    display: inline;
+    justify-content: end;
   }
 
-  .table-container {
-    border-collapse: collapse;
-    width: 380px;
-    height: 400px;
-    padding: 5px;
-    overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-  .customer-list-header button {
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background: #16a0da;
-    color: #ffff;
-    padding: 10px 20px;
-    margin: 20px 0px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-  }
-  .customer-list-header button:hover {
-    background: #011627f1;
-  }
-  .customer-list-header input {
-    font-family: "Montserrat", sans-serif;
-    width: 220px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 5px;
-    outline: none;
-    background: none;
-    color: rgb(41, 41, 41);
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-  .customer-list-print {
-    float: right;
-    margin: 20px 0px;
-  }
-
-  /* thead{
-    display: none;
-  }
-   tbody, tr, td{
-    display: block;
-    width: 100%;
-  }
-  tr{
-    margin-bottom: 20px;
-  }
-  td{
-    text-align: right;
-    padding-left: 50%;
-    font-size: 12px;
-    position: relative;
-  }
-  table td::before{
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 15%;
-    font-size: 12px;
-    text-align: left;
-  } */
-  th,
-  td {
-    font-size: 10px;
-  }
-
-  td button {
-    padding: 9px;
-    font-size: 10px;
-  }
-  td i {
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-  }
-}
-@media screen and (max-width: 420px) {
-  .customer-list-section {
-    margin: 20px 0px;
-  }
-  .customer-list-header {
-    display: inline;
-  }
-
-  .table-container {
-    border-collapse: collapse;
-    width: 360px;
-    height: 400px;
-    padding: 5px;
-    overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-  .customer-list-header button {
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background: #16a0da;
-    color: #ffff;
-    padding: 10px 20px;
-    margin: 20px 0px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-  }
-  .customer-list-header button:hover {
-    background: #011627f1;
-  }
-  .customer-list-header input {
-    font-family: "Montserrat", sans-serif;
-    width: 220px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 5px;
-    outline: none;
-    background: none;
-    color: rgb(41, 41, 41);
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-  .customer-list-print {
-    float: right;
-    margin: 20px 0px;
-  }
-
-  /* thead{
-    display: none;
-  }
-   tbody, tr, td{
-    display: block;
-    width: 100%;
-  }
-  tr{
-    margin-bottom: 20px;
-  }
-  td{
-    text-align: right;
-    padding-left: 50%;
-    font-size: 12px;
-    position: relative;
-  }
-  table td::before{
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 15%;
-    font-size: 12px;
-    text-align: left;
-  } */
-  th,
-  td {
-    font-size: 10px;
-  }
-
-  td button {
-    padding: 9px;
-    font-size: 10px;
-  }
-  td i {
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-  }
 }
 @media screen and (max-width: 400px) {
   .customer-list-section {
@@ -560,139 +574,7 @@ tr:nth-child(even) {
 
   .table-container {
     border-collapse: collapse;
-    width: 340px;
-    height: 350px;
-    padding: 5px;
-    overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-  .customer-list-header button {
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background: #16a0da;
-    color: #ffff;
-    padding: 9px 20px;
-    margin: 20px 0px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 13px;
-  }
-  .customer-list-header button:hover {
-    background: #011627f1;
-  }
-  .customer-list-header input {
-    font-family: "Montserrat", sans-serif;
-    width: 220px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 5px;
-    outline: none;
-    background: none;
-    color: rgb(41, 41, 41);
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-  .customer-list-print {
-    float: right;
-    margin: 20px 10px;
-  }
-
-  th,
-  td {
-    font-size: 10px;
-  }
-
-  td button {
-    padding: 9px;
-    font-size: 10px;
-  }
-  td i {
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-  }
-  .select-customer-btn-container{
-    font-size: 13px;
-    margin-right: 10px;
-  }
-}
-@media screen and (max-width: 380px) {
-  .customer-list-section {
-    margin: 20px 0px;
-  }
-  .customer-list-header {
-    display: inline;
-  }
-
-  .table-container {
-    border-collapse: collapse;
-    width: 320px;
-    height: 350px;
-    padding: 5px;
-    overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-  .customer-list-header button {
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background: #16a0da;
-    color: #ffff;
-    padding: 9px 20px;
-    margin: 20px 0px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 13px;
-  }
-  .customer-list-header button:hover {
-    background: #011627f1;
-  }
-  .customer-list-header input {
-    font-family: "Montserrat", sans-serif;
-    width: 220px;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 5px;
-    outline: none;
-    background: none;
-    color: rgb(41, 41, 41);
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-  .customer-list-print {
-    float: right;
-    margin: 20px 10px;
-  }
-
-  th,
-  td {
-    font-size: 10px;
-  }
-
-  td button {
-    padding: 9px;
-    font-size: 10px;
-  }
-  td i {
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-  }
-  .select-customer-btn-container{
-    font-size: 13px;
-    margin-right: 10px;
-  }
-}
-@media screen and (max-width: 360px) {
-  .customer-list-section {
-    margin: 20px 0px;
-  }
-  .customer-list-header {
-    display: inline;
-  }
-
-  .table-container {
-    border-collapse: collapse;
-    width: 310px;
+    width: 100%;
     height: 400px;
     padding: 5px;
     overflow: scroll;
@@ -706,7 +588,7 @@ tr:nth-child(even) {
     background: #16a0da;
     color: #ffff;
     padding: 10px 20px;
-    margin: 20px 0px;
+    margin: 10px 0px;
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
   }
@@ -729,7 +611,97 @@ tr:nth-child(even) {
     margin: 20px 0px;
   }
 
-  /* thead{
+  thead{
+    display: none;
+  }
+   tbody, tr, td{
+    display: block;
+    width: 100%;
+  }
+  tr{
+    margin-bottom: 20px;
+  }
+  td{
+    text-align: right;
+    padding: 10px 20px ;
+    padding-left: 50%;
+    font-size: 12px;
+    position: relative;
+  }
+  table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  td button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  td i {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .tblActionBtn{
+    display: flex;
+    justify-content: end;
+  }
+
+}
+@media screen and (max-width: 300px) {
+  .customer-list-section {
+    margin: 20px 0px;
+  }
+  .customer-list-header {
+    display: inline;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    height: 400px;
+    padding: 5px;
+    overflow: scroll;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+  .customer-list-header button {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #16a0da;
+    color: #ffff;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+  .customer-list-header button:hover {
+    background: #011627f1;
+  }
+  .customer-list-header input {
+    font-family: "Montserrat", sans-serif;
+    width: 220px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    color: rgb(41, 41, 41);
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  .customer-list-print {
+    float: right;
+    margin: 20px 0px;
+  }
+
+  thead{
     display: none;
   }
    tbody, tr, td{
@@ -750,22 +722,26 @@ tr:nth-child(even) {
     position: absolute;
     left: 0;
     width: 50%;
-    padding-left: 15%;
+    padding-left: 10px;
     font-size: 12px;
     text-align: left;
-  } */
-  th,
-  td {
-    font-size: 10px;
   }
 
   td button {
-    padding: 9px;
-    font-size: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
   }
   td i {
     font-size: 20px;
     display: flex;
     align-items: center;
   }
+
+  .tblActionBtn{
+    display: flex;
+    justify-content: end;
+  }
+
 }
+
+

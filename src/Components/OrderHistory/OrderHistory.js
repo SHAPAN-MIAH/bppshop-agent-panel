@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const OrderHistory = () => {
   return (
-    <div style={{margin: "40px"}}>
+    <div style={{margin: "50px"}}>
       <Outlet/>
     </div>
   );

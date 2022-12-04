@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Modal from "react-modal";
 import "./SeeOrderDetails.css";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { baseURL } from "./../../../BaseUrl/BaseUrl";
 
 const customStyles = {
   content: {
@@ -19,64 +22,39 @@ const customStyles = {
 
 const OrderHistoryDetailsData = [
   {
-    Date: "10-11-2022",
-    orderId: "3452345",
-    customerName: "Jamal Uddin",
-    totalItem: 12,
-    payAmount: 34000,
-    salesCommission: 1400,
-  },
-  {
-    Date: "10-11-2022",
-    orderId: "3452345",
-    customerName: "Jamal Uddin",
-    totalItem: 12,
-    payAmount: 34000,
-    salesCommission: 1400,
-  },
-  {
-    Date: "10-11-2022",
-    orderId: "3452345",
-    customerName: "Jamal Uddin",
-    totalItem: 12,
-    payAmount: 34000,
-    salesCommission: 1400,
-  },
-  {
-    Date: "10-11-2022",
-    orderId: "3452345",
-    customerName: "Jamal Uddin",
-    totalItem: 12,
-    payAmount: 34000,
-    salesCommission: 1400,
-  },
-  {
-    Date: "10-11-2022",
-    orderId: "3452345",
-    customerName: "Jamal Uddin",
-    totalItem: 12,
-    payAmount: 34000,
-    salesCommission: 1400,
-  },
-  {
-    Date: "10-11-2022",
-    orderId: "3452345",
-    customerName: "Jamal Uddin",
-    totalItem: 12,
-    payAmount: 34000,
-    salesCommission: 1400,
-  },
-  {
-    Date: "10-11-2022",
-    orderId: "3452345",
-    customerName: "Jamal Uddin",
-    totalItem: 12,
-    payAmount: 34000,
-    salesCommission: 1400,
+    status: "success",
+    message: "Order details",
+    data: {
+      order_id: "100111",
+      payment_status: "unpaid",
+      order_status: "unpaid",
+      payment_method: "unpaid",
+      order_amount: 5000,
+      order_date: "29-11-2022 12:13PM",
+      discount_amount: 30,
+      customer_name: "Rashed sir xx",
+      shipping_address: "sector 11, Uttara",
+      products: [
+        {
+          product_name: "Bashundhara Screw Macaroni",
+          price: 1000,
+          discount: 20,
+          quantity: 2,
+        },
+        {
+          product_name: "Zahedi Dates 10 Kg",
+          price: 1500,
+          discount: 10,
+          quantity: 2,
+        },
+      ],
+    },
   },
 ];
 
 const SeeOrderDetails = () => {
+  const { id } = useParams();
+  const token = localStorage.getItem("token");
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
@@ -90,57 +68,68 @@ const SeeOrderDetails = () => {
   const [orderHistoryDetailsData, setOrderHistoryDetailsData] = useState(
     OrderHistoryDetailsData
   );
-  return (
-    <div className="container-fluid">
-      <div className="customer-list-header">
-            <h2>Order History Details</h2>
-            <div>
-              <input type="" name="" placeholder="Search Customer Name/ID" />
-            </div>
-          </div>
-          <div className="customer-list-print">
-            <p>
-              Print:{" "}
-              <button type="">
-                <i className="bi bi-printer"></i>
-              </button>
-            </p>
-          </div>
-      <div className="commission-history-contact-print">
-        <div>
-          <p>
-            Customer Name : <span>Rahim Mahmud</span>
-          </p>
-          <p>
-            Customer Id : <span>#wtf454</span>
-          </p>
-        </div>
-      </div>
-      <div className="history-table">
-        <table>
-          <tr>
-            <th>Date</th>
-            <th>Order Id</th>
-            <th>Total Items</th>
-            <th>Pay Amount</th>
-            <th>Sales Commission</th>
-            <th>Action</th>
-          </tr>
-          {orderHistoryDetailsData.map((listData) => (
-            <tr>
-              <td>{listData.Date}</td>
-              <td>{listData.orderId}</td>
-              <td>{listData.totalItem}</td>
-              <td>৳ {listData.payAmount}</td>
-              <td>৳ {listData.salesCommission}</td>
 
-              <td>
-                <i style={{cursor: "pointer"}} className="bi bi-eye" onClick={openModal}></i>
-                <i style={{cursor: "pointer"}} className="bi bi-printer"></i>
-              </td>
-            </tr>
-          ))}
-        </table>
+  // console.log(orderHistoryDetailsData[0].data);
+
+  useEffect(() => {
+    axios
+      .get(baseURL + `/agent/order/details/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => console.log(res.data.data));
+  }, [id]);
+
+  return (
+    <div className="order-history-details-section">
+      <div className="container-fluid">
+        <div className="order-history-details-header">
+          <h2>Order Details</h2>
+        </div>
+        <div className="order-history-details-content-container">
+          <h4>Customer Name: {orderHistoryDetailsData[0].data.customer_name}</h4>
+          <div className="order-details-all">
+          <p><span>Order Id:</span> {orderHistoryDetailsData[0].data.order_id}</p>
+          <p><span>Order Date:</span> {orderHistoryDetailsData[0].data.order_date}</p>
+          <p><span>Order Amount:</span> {orderHistoryDetailsData[0].data.order_amount}</p>
+          <p><span>Discount Amount:</span> {orderHistoryDetailsData[0].data.discount_amount}</p>
+          <p><span>Order Status:</span> {orderHistoryDetailsData[0].data.order_status}</p>
+          <p><span>Payment Method:</span> {orderHistoryDetailsData[0].data.payment_method}</p>
+          <p><span>Payment Status:</span> {orderHistoryDetailsData[0].data.payment_status}</p>
+          <p><span>Shipping Address:</span> {orderHistoryDetailsData[0].data.shipping_address}</p>
+          </div>
+          <div>
+            <h4>Products: </h4>
+            {/* {orderHistoryDetailsData[0].data.products.map(productItem => <ul>
+            <li>Product Name: {productItem.product_name}</li>
+            <li>Quantity: {productItem.quantity}</li>
+            <li>Price: {productItem.price}</li>
+            <li>Discount: {productItem.discount}</li>
+          </ul>)} */}
+          
+          <table>
+            <thead>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Discount</th>
+            </thead>
+            <tbody>
+            {orderHistoryDetailsData[0].data.products.map(productItem => (
+                <tr>
+                  <td>{productItem.product_name}</td>
+                  <td>{productItem.quantity}</td>
+                  <td>{productItem.price}</td>
+                  <td>{productItem.discount}</td>
+                  {/* <td className="d-flex justify-content-around">
+                    <button onClick={() => handleLoginAsCustomer(listData?.id)}>Login </button>{" "}
+                    <Link to={`/customer/customer-details/${listData?.id}`}><i className="bi bi-eye customerEdit-Btn"></i></Link>
+                  </td> */}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
+        </div>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}

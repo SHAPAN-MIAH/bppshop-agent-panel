@@ -13,9 +13,11 @@ const Signup = () => {
     password: "",
   });
 
+  const [registerAgent, setRegisterAgent] = useState([]);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const location = useLocation();
+
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -27,11 +29,18 @@ const Signup = () => {
       const url = baseURL+"/register";
       axios.post(url, data)
       .then(res => {
-        console.log(res.config.data, res.data)
-        navigate("/login")
+        console.log(res)
+
+        if(res.data.status == "success"){
+
+          document.querySelector('.registerSuccess').innerHTML = "Mr." + " " + res.data.data.name + " " + " <br> your register successful as agent. Please Sign in."
+
+          document.querySelector('#form-container').style.display = 'none'
+          document.querySelector('.registerSuccess').style.display = 'block'
+        }
+        // navigate("/login")
       });
-      // let from = location?.state?.from?.pathname || "/";
-      //   navigate(from, { replace: true });
+
     } catch (error) {
       if (
         error.response &&
@@ -43,13 +52,14 @@ const Signup = () => {
     }
   };
 
+ 
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
-          <img width="150" src={loginBackgroundImg} alt="" />
+          <img src={loginBackgroundImg} alt="" />
           <h4>
-            <span>Welcome To</span> <br /> BBP Shop Agent Panel
+            <span>Welcome To</span> <br /> BPP Shop Agent Panel
           </h4>
           <Link to="/login">
             <button type="button" className={styles.white_btn}>
@@ -58,7 +68,7 @@ const Signup = () => {
           </Link>
         </div>
         <div className={styles.right}>
-          <form className={styles.form_container} onSubmit={handleSubmit}>
+          <form id="form-container" className={styles.form_container} onSubmit={handleSubmit}>
             <h1>Create Account</h1>
             <input
               type="text"
@@ -71,16 +81,7 @@ const Signup = () => {
               autoComplete="false"
             />
            
-            <input
-              type="email"
-              placeholder="Email"
-              name="agent_email"
-              onChange={handleChange}
-              value={data.agent_email}
-              required
-              className={styles.input}
-              autoComplete="false"
-            />
+            
              <input
               type="text"
               placeholder="Phone Number"
@@ -88,6 +89,15 @@ const Signup = () => {
               onChange={handleChange}
               value={data.agent_mobile_number}
               required
+              className={styles.input}
+              autoComplete="false"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="agent_email"
+              onChange={handleChange}
+              value={data.agent_email}
               className={styles.input}
               autoComplete="false"
             />
@@ -107,6 +117,10 @@ const Signup = () => {
               Sing Up
             </button>
           </form>
+
+          <div className=" d-flex justify-content-center text-center">
+            <h5 style={{width: '80%', display: "flex", justifyContent: "center" }} className="registerSuccess"></h5>
+          </div>
         </div>
       </div>
     </div>

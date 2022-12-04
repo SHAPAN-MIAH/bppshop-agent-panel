@@ -6,10 +6,13 @@ import "../MyCommission.css";
 
 const PendingCommission = () => {
   const [myCommissionData, setMyCommissionData] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
 
+  
   let currentPage = 1;
+  let limit = 10;
 
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const url = baseURL + `/agent/commission/pending`;
   useEffect(() => {
     fetchCustomerList(currentPage);
@@ -24,7 +27,10 @@ const PendingCommission = () => {
         no_of_rows: 10,
       },
       headers: { Authorization: `Bearer ${token}` },
-    }).then((res) => setMyCommissionData(res.data.data.data));
+    }).then((res) => {
+      setMyCommissionData(res.data.data.data)
+      setTotalPage(Math.ceil(res.data.data.total / limit))
+    });
     // }).then((res) => console.log(res.data.data.data));
   };
 
@@ -73,7 +79,7 @@ const PendingCommission = () => {
           previousLabel={"Previous"}
           nextLabel={"Next"}
           breakLabel={"..."}
-          pageCount={15}
+          pageCount={totalPage}
           marginPagesDisplayed={3}
           pageRangeDisplayed={3}
           onPageChange={handlePageClick}

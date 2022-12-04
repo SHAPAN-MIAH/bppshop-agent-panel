@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/image/bpp_icon.png";
+import axios from "axios";
+import { baseURL } from './../../BaseUrl/BaseUrl';
 
 const Sidebar = () => {
+  const token = localStorage.getItem("token");
+  const [agent, setAgent] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(baseURL + "/agent/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => setAgent(res.data.data));
+  }, []);
 
 
   useEffect(() => {
-
     const btns = document.querySelectorAll(".menu-item");
-
 
     const toggleItem = (elems) => {
       elems.forEach((elem) => {
@@ -55,7 +65,8 @@ const Sidebar = () => {
 
 
   const handleLogout = () => {
-		sessionStorage.removeItem("token");
+		localStorage.removeItem("token");
+    localStorage.removeItem("isLoggedIn")
 		window.location.reload();
 	};
 
@@ -131,10 +142,11 @@ const Sidebar = () => {
                 </li>
               </Link>
             </ul>
-
+            <Link to="/wallet">
             <li className="menu-item">
               <i className="bi bi-wallet-fill"></i> Wallet
             </li>
+            </Link>
             <li onClick={handleLogout} className="menu-item">
               <i  className="bi bi-box-arrow-left"></i> Logout
             </li>
@@ -145,7 +157,7 @@ const Sidebar = () => {
             <div className="balance-content">
               <div>
                 <p>Balance</p>
-                <span>৳ 0.00</span>
+                <span>৳ {agent.wallet_balance}</span>
               </div>
             </div>
             <br />

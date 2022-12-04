@@ -34,6 +34,7 @@
   height: 50px;
   border-radius: 30px;
   margin-top: 5px;
+  margin-right: 20px;
   font-size: 15px;
   border: none;
   padding: 0px 20px;
@@ -70,13 +71,23 @@
 
 .profile_dropdown{
   width: 200px;
-  padding: 10px 0px;
+  padding: 0px 0px;
+  padding-bottom: 10px;
   overflow: hidden;
 }
+.profile_dropdown img{
+  border-radius: 50%;
+}
+.profile_dropdown h6{
+  margin: 10px;
+}
+
 .profile_dropdown li{
   list-style: none;
-  margin-left: -32px;
   cursor: pointer;
+}
+.profile_dropdown li i{
+  color: black;
 }
 
 

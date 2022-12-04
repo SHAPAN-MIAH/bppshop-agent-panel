@@ -12,7 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const UpdateAgent = () => {
   const navigate = useNavigate();
   const [agent, setAgent] = useState([]);
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
 
   useEffect(() => {
@@ -44,6 +44,8 @@ const UpdateAgent = () => {
   
         if(res.data.status == "success"){
           notify()
+
+           navigate('/view-profile') 
         }
       })
       .catch((error) => {
@@ -57,14 +59,14 @@ const UpdateAgent = () => {
     <>
       <div className="update-agent-section">
         <div className="container-fluid">
-          <h2 className="mt-5 mx-5">Update Agent Profile</h2>
+          <h2 className="">Update Agent Profile</h2>
           <div className="update-agent-content-container">
             <div className="update-agent-header">
               <div className="profile-picture">
               <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
               </div>
               <div className="mx-4">
-                <h2>{agent.name}</h2>
+                <h3>{agent.name}</h3>
                 <p>Agent</p>
               </div>
             </div>

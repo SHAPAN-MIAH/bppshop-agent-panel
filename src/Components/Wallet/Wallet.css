@@ -1,0 +1,133 @@
+
+.wallet-content-container {
+  margin: 40px;
+}
+.wallet-content-container h2 {
+  margin-bottom: 20px;
+}
+
+.wallet-balance-container,
+.wallet-information-container,
+.wallet-security-container {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; 
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+  background: #ffff;
+  padding: 25px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+ color: #444444;
+  font-weight: 600;
+}
+.wallet-balance-container h6,
+.wallet-information-container h6,
+.wallet-security-container h6 {
+  font-weight: 700;
+  /* color: #444444; */
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.balance-up-down {
+  display: flex;
+  margin-top: 20px;
+}
+
+.balance-up-down span {
+  margin-right: 50px;
+  font-size: 15px;
+}
+.balance-up-down span i {
+  background: rgb(221, 221, 221);
+  padding: 3px 5px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+.info-content {
+  font-size: 18px;
+  font-weight: 500;
+  color: #444444;
+}
+
+.wallet-security-container p i{
+  /* font-size: 20px; */
+  color: rgb(75, 75, 75);
+}
+.wallet-security-container button{
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 30px;
+  outline: none;
+  background: none;
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444444;
+}
+.transaction-container {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+  background: #ffff;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.cashOut-send-deposit-container{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+}
+.cash-out,
+.send,
+.deposit {
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  background: #ffff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.cash-out h5,
+.send h5,
+.deposit h5 {
+  margin-bottom: -5px;
+  margin-top: 10px;
+  color: #444444;
+}
+.cash-out i,
+.send i,
+.deposit i {
+  font-size: 20px;
+  background: #16a0da;
+  color: #ffff;
+  padding: 10px 12px;
+  border-radius: 50px;
+}
+
+.transaction-history-table-container th {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 700px) {
+  .wallet-content-container {
+    margin: 20px 10px;
+  }
+  .cashOut-send-deposit-container{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .wallet-content-container {
+    margin: 20px 10px;
+  }
+  .cashOut-send-deposit-container{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+  }
+}

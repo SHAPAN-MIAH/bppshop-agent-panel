@@ -9,14 +9,14 @@ const PrivateRoute = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   const isLoggedIn = () => {
-    const token = sessionStorage.getItem("token");
+    const token = window.localStorage.getItem("token");
+
     if (!token) {
       return false;
     }
     const decodedToken = jwt_decode(token);
     const currentTime = new Date().getTime() / 1000;
     return decodedToken.exp > currentTime;
-    // return decodedToken;
   };
 
   if (!isLoggedIn()) {

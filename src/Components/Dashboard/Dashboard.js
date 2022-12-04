@@ -60,7 +60,7 @@ export const data = {
 const Dashboard = () => {
   const [dashboardInfo, setDashboardInfo] = useState([]);
 
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   useEffect(() => {
     axios
       .get(baseURL + "/agent/dashboard", {
@@ -93,10 +93,10 @@ const Dashboard = () => {
                   <div className="profile-content-container">
                     <div className="profile-content">
                       <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
-                      <div className="text-end">
+                      <div className="profile-content-textEnd">
                         <Link to='/update-agent-profile'><button className="profileEditBtn" type="">
                           {" "}
-                          <i class="bi bi-pencil-square"></i>
+                          <i className="bi bi-pencil-square"></i>
                         </button></Link>
                         <h5>{agent.name}</h5>
                         <small>{agent.email}</small>
@@ -110,24 +110,24 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="profile-contact-content">
-                      <h5>CONTACT INFORMATION</h5>
+                      <h5>CONTACT INFORMATION :</h5>
                       <div className="d-flex">
-                        <i class="bi bi-telephone"></i>
-                        <div className="mx-2">
+                        <i className="bi bi-telephone"></i>
+                        <div className="mx-3">
                           <label for="">Mobile</label>
                           <p>{agent.phone}</p>
                         </div>
                       </div>
                       <div className="d-flex">
-                      <i class="bi bi-envelope"></i>
-                        <div className="mx-2">
+                      <i className="bi bi-envelope"></i>
+                        <div className="mx-3">
                           <label for="">Email</label>
                           <p>{agent.email}</p>
                         </div>
                       </div>
                       <div className="d-flex">
-                        <i class="bi bi-house"></i>
-                        <div className="mx-2">
+                        <i className="bi bi-house"></i>
+                        <div className="mx-3">
                           <label for="">Address</label>
                           <p>{agent.address}</p>
                         </div>
@@ -142,7 +142,7 @@ const Dashboard = () => {
 
                   <div className="dashboard-info-card-container">
                     {dashboardInfo?.map((info) => (
-                      <InfoDetails key={info.qty} info={info}></InfoDetails>
+                      <InfoDetails key={info.id} info={info}></InfoDetails>
                     ))}
                   </div>
                 </div>

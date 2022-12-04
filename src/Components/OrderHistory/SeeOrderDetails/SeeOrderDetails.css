@@ -1,3 +1,23 @@
+.order-history-details-content-container{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background: #ffff;
+  padding: 30px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.order-history-details-content-container h4{
+  margin-bottom: 20px;
+}
+.order-details-all{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 20px;
+}
+.order-details-all p span{
+  font-weight: 700;
+  color: #444444;
+  margin-right: 10px;
+}
 .cash-memo-container{
     border: .5px solid gainsboro;
     padding: 0px 20px;

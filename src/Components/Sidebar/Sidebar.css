@@ -1,5 +1,6 @@
 .sidebarMenu-container{
   position: relative;
+  z-index: 999999999999;
 }
 .sidebarMenu {
   height: 100%;
@@ -123,7 +124,7 @@ a {
   /* position: absolute; */
   color: #ffffff;
   text-align: center;
-  margin-top: 20vh;
+  margin-top: 5vh;
   z-index: 999;
   /* margin-left: 18%; */
 }
