@@ -8,7 +8,6 @@ const Wallet = () => {
   const token = localStorage.getItem("token");
   const [totalPage, setTotalPage] = useState(0);
 
-
   let currentPage = 1;
   let limit = 10;
 
@@ -28,8 +27,9 @@ const Wallet = () => {
       },
       headers: { Authorization: `Bearer ${token}` },
     }).then((res) => {
-      setTotalPage(Math.ceil(res.data.data.total / limit))
-      console.log(res)});
+      setTotalPage(Math.ceil(res.data.data.total / limit));
+      console.log(res);
+    });
   };
 
   const handlePageClick = async (data) => {
@@ -51,15 +51,17 @@ const Wallet = () => {
                   {/* <h4>৳ 234787</h4> */}
                   <div className="balance-up-down">
                     <span>
-                      <i className="bi bi-arrow-up-right"></i> <small>+ 1134</small>
+                      <i className="bi bi-arrow-up-right"></i>{" "}
+                      <small>+ 1134</small>
                     </span>
                     <span>
-                      <i className="bi bi-arrow-down-left"></i> <small>- 750</small>
+                      <i className="bi bi-arrow-down-left"></i>{" "}
+                      <small>- 750</small>
                     </span>
                   </div>
                 </div>
-                <div className="wallet-information-container">
-                  <h6>Information</h6>
+                {/* <div className="wallet-information-container"> */}
+                  {/* <h6>Information</h6>
 
                   <div className="info-content">
                     <small>Location : Tangail</small>
@@ -67,14 +69,33 @@ const Wallet = () => {
                     <small>Address : Tangail, Dhaka</small>
                     <br />
                     <small>Wallet ID : 2344t28348734gf3246</small>
+                  </div> */}
+
+                  <div className="cashOut-send-deposit-container">
+                    <div className="cash-out">
+                      <i className="bi bi-arrow-90deg-down"></i>
+                      <h5>Cash Out</h5>
+                    </div>
+                    <div className="deposit">
+                      <i className="bi bi-arrow-90deg-up"></i>
+                      <h5>Deposit</h5>
+                    </div>
+                    {/* <div className="send">
+                      <i className="bi bi-arrow-90deg-right"></i>
+                      <h5>Send</h5>
+                    </div> */}
                   </div>
-                </div>
+                {/* </div> */}
                 <div className="wallet-security-container">
                   <h6>Security</h6>
 
-                  <div >
-                    <p className="d-flex justify-content-between"><span><i class="bi bi-lock"></i> Key</span> <button>Change</button></p>
-                    
+                  <div>
+                    <p className="d-flex justify-content-between">
+                      <span>
+                        <i class="bi bi-lock"></i> Key
+                      </span>{" "}
+                      <button>Change</button>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -85,6 +106,7 @@ const Wallet = () => {
                   <div className="transaction-history-table-container">
                     <table>
                       <thead>
+                        <th>Date Time</th>
                         <th>Transaction Id</th>
                         <th>Transaction Type</th>
                         <th>Order Group Id</th>
@@ -94,14 +116,15 @@ const Wallet = () => {
                         <th>Balance </th>
                       </thead>
                       <tbody>
-                      <tr>
-                        <td data-label="Transaction Id"></td>
-                        <td data-label="Transaction Type"></td>
-                        <td data-label="Order Group Id"></td>
-                        <td data-label="Credit"></td>
-                        <td data-label="Debit"></td>
-                        <td data-label="Reference no"></td>
-                        <td data-label="Balance"></td>
+                        <tr>
+                          <td data-label="Date Time"></td>
+                          <td data-label="Transaction Id"></td>
+                          <td data-label="Transaction Type"></td>
+                          <td data-label="Order Group Id"></td>
+                          <td data-label="Credit"></td>
+                          <td data-label="Debit"></td>
+                          <td data-label="Reference no"></td>
+                          <td data-label="Balance"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -128,22 +151,6 @@ const Wallet = () => {
                       />
                     </div>
                   </div>
-
-                  <div className="cashOut-send-deposit-container">
-                  <div className="cash-out">
-                    <i className="bi bi-arrow-90deg-down"></i>
-                    <h5>Cash Out</h5>
-                  </div>
-                  <div className="deposit">
-                    <i className="bi bi-arrow-90deg-up"></i>
-                    <h5>Deposit</h5>
-                  </div>
-                  <div className="send">
-                    <i className="bi bi-arrow-90deg-right"></i>
-                    <h5>Send</h5>
-                  </div>
-                  
-                </div>
                 </div>
               </div>
               {/* <div className="col-md-2">

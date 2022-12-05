@@ -14,7 +14,6 @@ import { Bar } from "react-chartjs-2";
 import faker from "faker";
 import axios from "axios";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
-import profileImg from "../../assets/image/images (1).jpg";
 import { Link } from 'react-router-dom';
 
 ChartJS.register(
@@ -67,7 +66,7 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setDashboardInfo(res.data.total));
-  }, []);
+  }, [token]);
 
   const [agent, setAgent] = useState([]);
 
@@ -77,7 +76,8 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setAgent(res.data.data));
-  }, []);
+  }, [token]);
+ 
 
   return (
     <>
@@ -141,8 +141,9 @@ const Dashboard = () => {
                   {/* <h2>Dashboard</h2> */}
 
                   <div className="dashboard-info-card-container">
+                    {/* hello */}
                     {dashboardInfo?.map((info) => (
-                      <InfoDetails key={info.id} info={info}></InfoDetails>
+                      <InfoDetails key={info} info={info}></InfoDetails>
                     ))}
                   </div>
                 </div>

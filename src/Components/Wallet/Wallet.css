@@ -70,9 +70,9 @@
 }
 
 .cashOut-send-deposit-container{
-  margin-top: 40px;
+  margin: 20px 0px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
 }
 .cash-out,
