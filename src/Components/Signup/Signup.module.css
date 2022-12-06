@@ -121,6 +121,7 @@
   border: .5px solid rgb(172, 172, 172);
   outline: none;
   padding: 10px;
+  /* margin-top: 10px; */
   text-align: center;
   border-radius: 5px;
 }

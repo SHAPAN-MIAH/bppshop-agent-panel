@@ -64,12 +64,14 @@
 }
 
 .login-form-container form input::-webkit-outer-spin-button,
-.login-form-container form input::-webkit-inner-spin-button {
+.login-form-container form input::-webkit-inner-spin-button ,
+.forgot_pass_content input::-webkit-outer-spin-button,
+.forgot_pass_content input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.login-form-container form input[type="number"] {
+.login-form-container form input[type="number"], .forgot_pass_content input {
   -moz-appearance: textfield;
 }
 
@@ -89,6 +91,51 @@
   cursor: pointer;
 }
 
+.forgot_pass_container{
+  display: none;
+}
+.forgot_pass_content{
+  margin-top: 100px !important;
+  margin: 0px 50px;
+  /* text-align: center; */
+}
+.forgot_pass_content label{
+  text-align: left !important;
+}
+.forgot_pass_content input{
+  width: 80%;
+  padding: 10px;
+  border: 1px solid rgb(167, 167, 167);
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+}
+.forgot_pass_content button{
+  
+  padding: 10px 60px;
+  font-size: 14px;
+  color: #ffff;
+  background: #16a0da;
+  border: none;
+  border-radius: 5px;
+}
+.forgot_pass_content span{
+  font-weight: 600;
+  cursor: pointer;
+  color: #16a0da;
+}
+.forgot_otp-container{
+  display: none;
+  text-align: center
+  
+}
+.forgot_otp-container h4{
+  margin: 20px 0px;
+  
+}
+#otpInput{
+  margin-top: 20px;
+}
 @media screen and (max-width: 800px) {
   .login-form-container {
     width: 100%;

@@ -16,3 +16,13 @@
     background: #16a0da;
     color: #ffff;
 }
+.countdown-text{
+    display: flex;
+    justify-content: center;
+}
+.countdown-text button{
+    margin-top: -5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-size: 14px;
+}

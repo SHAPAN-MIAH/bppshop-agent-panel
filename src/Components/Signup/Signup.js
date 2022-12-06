@@ -20,30 +20,32 @@ const Signup = () => {
   const [registerAgent, setRegisterAgent] = useState([]);
   const [error, setError] = useState("");
 
-  // const navigate = useNavigate();
-  // const location = useLocation();
-
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
+
+  const [otpSuccessStatus, setOtpSuccessStatus] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const url = baseURL + "/register";
 
-      axios.post(url, data).then((res) => {
+      await axios.post(url, data).then((res) => {
         console.log(res);
         setRegisterAgent(res.data.data);
 
-        if (res.data.status == "success") {
+        if (res.data.status === "success") {
+
+         setOtpSuccessStatus(true)
+
           const otpBox = document.querySelector('.otp_box')
           otpBox.style.display = "block"
           document.querySelector("#form-container").style.display = "none";
           document.querySelector(".registerSuccess").style.display = "none";
 
         }
-        if (res.data.status == "failed") {
+        if (res.data.status === "failed") {
           document.querySelector(".registerSuccess").innerHTML =
             res.data.message + " Please try again.";
 
@@ -64,25 +66,15 @@ const Signup = () => {
         setError(error.message);
       }
     }
-
-
-
-    // const resendTimer = document.querySelector('.resendTimer');
-    // resendTimer.appendChild =  <OtpTimer
-    //                               minutes={2}
-    //                               seconds={1}
-    //                               text="Time:"
-    //                               ButtonText="Resend"
-    //                               resend={otpResendSubmit}
-    //                           />;
-    
    
   };
 
-  const otpResendSubmit = () => {
-    console.log("button clicked");
-  };
-  // const [timer, setTimer] = useState(120);  
+  // const otpResendSubmit = () => {
+  //   console.log("button clicked");
+  // };
+
+
+  // const [timer, setTimer] = useState(60);  
 
   // const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
 
@@ -98,6 +90,47 @@ const Signup = () => {
   //   }
   // };
 
+  const [minutes, setMinutes] = useState(2);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    if(otpSuccessStatus === true){
+      const interval = setTimeout(() => {
+        if (seconds > 0) {
+          setSeconds(seconds - 1);
+        }
+    
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(interval);
+          } else {
+            setSeconds(59);
+            setMinutes(minutes - 1);
+          }
+        }
+      }, 1000);
+    
+      return () => {
+        clearInterval(interval);
+      };
+    }
+    
+  }, [otpSuccessStatus, seconds, minutes]);
+
+  const resendOtpData = {
+    type: 1,
+    phone: registerAgent.phone
+  }
+
+  const resendOTP = () => {
+    setMinutes(2);
+    setSeconds(0);
+
+    axios.post(baseURL + "/resend", resendOtpData)
+    .then(res => {
+      console.log(res)
+    })
+  };
 
 
   const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -108,11 +141,12 @@ const Signup = () => {
     setOtp([...otp.map((item, indx) => (indx === index) ? element.value : item)]);
 
     // focus next input
-
     if(element.nextSibling){
       element.nextSibling.focus();
     }
   }
+
+
   const verifyData = {
     type: 1,
     phone: registerAgent.phone,
@@ -127,6 +161,8 @@ const Signup = () => {
       console.log(res)
 
       if(res.data.status == "success"){
+        document.querySelector('.otp_box').style.display = "none"
+        document.querySelector('#otpInput').style.display = "none"
           document.querySelector(".registerSuccess").innerHTML =
             "Your pin validation successful. Please Sign in.";
           document.querySelector(".registerSuccess").style.display = "block";
@@ -145,6 +181,7 @@ const Signup = () => {
     
     })
   }
+
 
   return (
     <div className={styles.signup_container}>
@@ -216,13 +253,34 @@ const Signup = () => {
 
           {/* otp box */}
           <div className="otp_box">
-          <h6>Enter the OTP sent to you to verify your identity</h6>
-          <div className="resendTimer">
-            
-          </div>
-          {/* <p style={styles.textLogin} on={resetTimer}>Resend OTP ({timer})</p> */}
+            <h6>Enter the OTP sent to you to verify your identity</h6>
+            <div className="resendTimer">
+              <div className="countdown-text">
+                  {seconds > 0 || minutes > 0 ? (
+                    <p>
+                      OTP Send in: {minutes < 10 ? `0${minutes}` : minutes}:
+                      {seconds < 10 ? `0${seconds}` : seconds}
+                    </p>
+                  ) : (
+                    <p>Didn't receive code?</p>
+                  )}
 
-            <div className={styles.otp_form_container}>
+                   
+                  {seconds > 0 || minutes > 0 ? (
+                    null
+                  ) : (
+                    <button
+                    style={{
+                      color:  "#ffff",
+                    }}
+                    onClick={resendOTP}
+                  >
+                    Resend OTP
+                  </button>
+                  )}
+              </div>
+            </div>
+            <div className={styles.otp_form_container} id='otpInput'>
               {otp.map((data, index) => {
                 return (
                   <input
@@ -238,7 +296,6 @@ const Signup = () => {
                 );
               })}
             </div>
-
             <button onClick={otpSubmit} type="submit"> Verify OTP</button>
           </div>
 
