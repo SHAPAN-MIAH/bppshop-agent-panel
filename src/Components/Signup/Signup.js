@@ -153,6 +153,7 @@ const Signup = () => {
     pin: otp.join("")
   }
 
+
   const otpSubmit = (e) => {
     e.preventDefault()
 

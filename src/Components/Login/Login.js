@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -49,45 +49,129 @@ const Login = () => {
   };
 
   // forgot password
-  const [forgotPhoneData, setForgotPhoneData] = useState('');
+  const [forgotPhoneData, setForgotPhoneData] = useState("");
   const forgotData = {
     type: 2,
-    phone: forgotPhoneData
+    phone: forgotPhoneData,
   };
 
   const forgotPassHandler = () => {
     document.querySelector(".loginFormContent").style.display = "none";
     document.querySelector(".forgot_pass_container").style.display = "block";
   };
-  
-  const handleForgotChange = (data) => { 
+
+  const handleForgotChange = (data) => {
     setForgotPhoneData(data);
   };
 
   const forgotPhoneNumberSend = () => {
-    axios.post(baseURL + "/forgot", forgotData)
-    .then(res => {
-      console.log(res)
-      if(res.data.status == "success"){
-        document.querySelector('.forgot_pass_content').style.display = "none"
-        document.querySelector('.forgot_otp-container').style.display = "block"
+    axios.post(baseURL + "/forgot", forgotData).then((res) => {
+      console.log(res);
+      if (res.data.status == "success") {
+        document.querySelector(".forgot_pass_content").style.display = "none";
+        document.querySelector(".forgot_otp-container").style.display = "block";
+
+        setOtpSuccessStatus(true);
       }
-    })
-  }
+    });
+  };
 
   const [otp, setOtp] = useState(new Array(6).fill(""));
 
   const handleOtpChange = (element, index) => {
-    if(isNaN(element.value)) return false;
+    if (isNaN(element.value)) return false;
 
-    setOtp([...otp.map((item, indx) => (indx === index) ? element.value : item)]);
+    setOtp([
+      ...otp.map((item, indx) => (indx === index ? element.value : item)),
+    ]);
 
     // focus next input
-    if(element.nextSibling){
+    if (element.nextSibling) {
       element.nextSibling.focus();
     }
-  }
+  };
 
+  const verifyData = {
+    type: 2,
+    phone: forgotPhoneData,
+    pin: otp.join(""),
+  };
+
+  const otpSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post(baseURL + "/verify", verifyData).then((res) => {
+      console.log(res);
+
+      if(res.data.status == "success"){
+        document.querySelector('.forgot_otp-container').style.display ="none";
+        // document.querySelector('#otpInput').style.display = "none"
+          // document.querySelector(".registerSuccess").innerHTML =
+          //   "Your pin validation successful. Please Sign in.";
+          document.querySelector(".changePassword-container").style.display ="block";
+          // document.querySelector(".registerSuccess").style.color = "green;";
+          // document.querySelector(".registerSuccess").style.textAlign = "center";
+          // document.querySelector(".registerSuccess").style.fontSize = "18px";
+      }
+      // if(res.data.status == "failed"){
+      //     document.querySelector(".registerSuccess").innerHTML =
+      //       "Your pin validation not successful. Please Try Again!.";
+      //     document.querySelector(".registerSuccess").style.display = "block";
+      //     document.querySelector(".registerSuccess").style.color = "red;";
+      //     document.querySelector(".registerSuccess").style.textAlign = "center";
+      //     document.querySelector(".registerSuccess").style.fontSize = "18px";
+      // }
+    });
+  };
+
+  const [otpSuccessStatus, setOtpSuccessStatus] = useState(false);
+  const [minutes, setMinutes] = useState(2);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    if (otpSuccessStatus === true) {
+      const interval = setTimeout(() => {
+        if (seconds > 0) {
+          setSeconds(seconds - 1);
+        }
+
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(interval);
+          } else {
+            setSeconds(59);
+            setMinutes(minutes - 1);
+          }
+        }
+      }, 1000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [otpSuccessStatus, seconds, minutes]);
+
+  const resendOtpData = {
+    type: 2,
+    phone: forgotPhoneData,
+  };
+
+  const resendOTP = () => {
+    setMinutes(2);
+    setSeconds(0);
+
+    axios.post(baseURL + "/resend", resendOtpData).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const changePasswordData = {
+    // toke: ,
+    // password: 
+  }
+  const handlePasswordChange = () => {
+    axios.post(baseURL + "/changePassword", )
+  }
   return (
     <>
       <div className="container-fluid">
@@ -166,8 +250,9 @@ const Login = () => {
 
                       <br />
                       <br />
-                      <button type="" onClick={forgotPhoneNumberSend}>Send</button>
-                      
+                      <button type="" onClick={forgotPhoneNumberSend}>
+                        Send
+                      </button>
                     </div>
                     <p className=" mt-4">
                       Need an Account?{" "}
@@ -177,30 +262,70 @@ const Login = () => {
                         </span>
                       </Link>
                     </p>
-                      <span>Back To sign in</span>
+                    <span>Back To sign in</span>
                   </div>
                 </div>
                 <div className="forgot_otp-container">
-                <h4>Verification</h4>
-                <p>Enter Verification Code</p>
-                <div className={styles.otp_form_container} id='otpInput'>
-                
-                  {otp.map((data, index) => {
-                    return (
-                      <input
-                        type="text"
-                        name="otp"
-                        className="otp-field"
-                        maxLength="1"
-                        key={index}
-                        value={data}
-                        onChange={(e) => handleOtpChange(e.target, index)}
-                        onFocus={e => e.target.select()}
-                      />
-                    );
-                  })}
+                  <h4>Verification</h4>
+                  <div className="resendTimer">
+                    <div className="countdown-text">
+                      {seconds > 0 || minutes > 0 ? (
+                        <p>
+                          OTP Send in: {minutes < 10 ? `0${minutes}` : minutes}:
+                          {seconds < 10 ? `0${seconds}` : seconds}
+                        </p>
+                      ) : (
+                        <p>Didn't receive code?</p>
+                      )}
+
+                      {seconds > 0 || minutes > 0 ? null : (
+                        <button
+                          style={{
+                            color: "#ffff",
+                          }}
+                          onClick={resendOTP}
+                        >
+                          Resend OTP
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  <p>Enter Verification Code</p>
+                  <div className={styles.otp_form_container} id="otpInput">
+                    {otp.map((data, index) => {
+                      return (
+                        <input
+                          type="text"
+                          name="otp"
+                          className="otp-field"
+                          maxLength="1"
+                          key={index}
+                          value={data}
+                          onChange={(e) => handleOtpChange(e.target, index)}
+                          onFocus={(e) => e.target.select()}
+                        />
+                      );
+                    })}
+                  </div>
+                  <button onClick={otpSubmit} type="submit">
+                    {" "}
+                    Verify OTP
+                  </button>
                 </div>
-                <button  type="submit"> Verify OTP</button>
+
+
+                {/* password change */}
+
+                <div className="changePassword-container">
+                  <h4>New Password</h4>
+
+                  <div className="changePass-form-container">
+                    <form>
+                      <input type="text" name="newPassword"  placeholder="New Password" onChange={(e) => handlePasswordChange(e.target.value)}/>
+
+                      <input type="text" name="confirmPassword"  placeholder="Confirm Password"/>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>

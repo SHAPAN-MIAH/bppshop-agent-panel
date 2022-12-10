@@ -215,5 +215,127 @@
     color: white;
     margin: 10px 0px;
   }
+  .otp_form_container{
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 5px;
+  }
+  .otp_form_container input{
+    width: 35px;
+    border: .5px solid rgb(172, 172, 172);
+    outline: none;
+    padding: 10px;
+    /* margin-top: 10px; */
+    text-align: center;
+    border-radius: 5px;
+  }
   
 }
+/* @media screen and (max-width: 470px) {
+  .signup_form_container {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 20px 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .left {
+    padding: 30px 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+  }
+  .left img {
+    width: 80px;
+  }
+  .left h4 {
+    margin-top: 20px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .right {
+    padding: 30px 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .form_container {
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    color: #5c5c5c;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .form_container h1 {
+    font-size: 30px;
+    margin-top: 0;
+    
+  }
+  
+  .input {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gainsboro;
+    padding: 10px 0px;
+    font-size: 15px;
+  }
+  
+  .error_msg {
+    width: 370px;
+    padding: 15px;
+    margin: 5px 0;
+    font-size: 14px;
+    background-color: #f34646;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .white_btn,
+  .green_btn {
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    background-color: white;
+    border-radius: 5px;
+    width: 180px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .white_btn{
+      color: #4d4d4d;
+  }
+  .green_btn {
+    background-color: #16a0da;
+    color: white;
+    margin: 10px 0px;
+  }
+  .otp_form_container{
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 5px;
+  }
+  .otp_form_container input{
+    width: 35px;
+    border: .5px solid rgb(172, 172, 172);
+    outline: none;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+} */
