@@ -49,7 +49,7 @@
   padding: 30px 50px;
   overflow: hidden;
   color: #5c5c5c;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .login-form-container form input {
   width: 100%;
@@ -98,20 +98,25 @@
 .forgot_pass_content {
   margin-top: 100px !important;
   margin: 0px 50px;
-  /* text-align: center; */
 }
-.forgot_pass_content label {
+.forgot_input-container form{
+  padding: 0px;
+}
+.forgot_input-container label {
   text-align: left !important;
 }
-.forgot_pass_content input {
-  width: 80%;
-  padding: 10px;
-  border: 1px solid rgb(185, 185, 185);
-  border-radius: 3px;
+.forgot_input-container form input {
+  width: 100%;
+  /* padding: 10px; */
+  /* border: 1px solid rgb(185, 185, 185); */
+  border: none;
+  border-bottom: 1px solid rgb(158, 158, 158);
+  /* border-radius: 3px; */
   outline: none;
-  font-size: 14px;
+  font-size: 15px;
+  color: #5c5c5c;
 }
-.forgot_pass_content button {
+.forgot_input-container form button {
   padding: 10px 60px;
   font-size: 14px;
   color: #ffff;
@@ -150,7 +155,22 @@
 }
 
 .changePassword-container h4 {
-  margin: 50px 0px 0px 50px;
+  margin: 100px 0px 0px 50px;
+}
+.password-update-message-container{
+  display: none;
+  text-align: center;
+  font-size: 20px;
+}
+.password-update-message-container p{
+  margin-top: 50%;
+  font-weight: 600;
+  color: rgba(5, 134, 1, 0.829);
+}
+.password-update-message-container span{
+  color: #16a0da;
+  font-weight: 600;
+  cursor: pointer;
 }
 @media screen and (max-width: 800px) {
   .login-form-container {
