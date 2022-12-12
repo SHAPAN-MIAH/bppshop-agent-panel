@@ -68,6 +68,7 @@ const Login = () => {
 
   const backToSignInHandler = () => {
     document.querySelector(".loginFormContent").style.display = "block";
+    document.querySelector(".forgot_pass_container").style.display = "none";
   }
 
 

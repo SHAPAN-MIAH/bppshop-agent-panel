@@ -26,3 +26,29 @@
     margin-left: 10px;
     font-size: 14px;
 }
+
+.registerSuccess{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    display: none;
+}
+.registerSuccess a{
+    color: #16a0da;
+}
+
+@media screen and (max-width: 360px) {
+    .otp_box{
+        margin: 0px 20px;
+    }
+    .otp_box h6{
+        margin-bottom: 20px;
+    }
+    #otpInput{
+        margin-top: -10px;
+    }
+    .otp_box button{
+        font-size: 13px;
+        margin: 20px 0px 10px 0px;
+    }
+}

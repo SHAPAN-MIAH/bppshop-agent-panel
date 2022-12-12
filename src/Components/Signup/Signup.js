@@ -164,8 +164,6 @@ const Signup = () => {
       if(res.data.status == "success"){
         document.querySelector('.otp_box').style.display = "none"
         document.querySelector('#otpInput').style.display = "none"
-          document.querySelector(".registerSuccess").innerHTML =
-            "Your pin validation successful. Please Sign in.";
           document.querySelector(".registerSuccess").style.display = "block";
           document.querySelector(".registerSuccess").style.color = "green;";
           document.querySelector(".registerSuccess").style.textAlign = "center";
@@ -204,7 +202,7 @@ const Signup = () => {
             className={styles.form_container}
             onSubmit={handleSubmit}
           >
-            <h1>Create Account</h1>
+            <h4>Create Account</h4>
             <input
               type="text"
               placeholder="Name"
@@ -302,14 +300,12 @@ const Signup = () => {
 
           {/* status message */}
           <div className=" d-flex justify-content-center text-center">
-            <h5
-              style={{
-                width: "80%",
-                display: "flex",
-                justifyContent: "center",
-              }}
+            <div
               className="registerSuccess"
-            ></h5>
+            >
+              <h6>Your pin validation successful.</h6>
+              <h5 className="gotoSignIng">Please <Link to='/login'>sign in</Link></h5> 
+            </div>
           </div>
         </div>
       </div>
