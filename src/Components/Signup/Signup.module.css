@@ -233,6 +233,106 @@
   }
   
 }
+ @media screen and (max-width: 460px) {
+  .signup_form_container {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 10px;
+    box-shadow: none !important;
+    border-radius: none;
+  }
+  .left {
+    padding: 30px 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  .left img {
+    width: 70px;
+  }
+  
+  .left h4 {
+    margin-top: 20px;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+ 
+
+  .right {
+    padding: 30px 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  
+  .form_container {
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    color: #5c5c5c;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  .form_container h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    
+  }
+  
+  .input {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gainsboro;
+    padding: 5px 0px;
+    font-size: 15px;
+  }
+  
+  .error_msg {
+    width: 370px;
+    padding: 15px;
+    margin: 5px 0;
+    font-size: 14px;
+    background-color: #f34646;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .white_btn,
+  .green_btn {
+    width: 150px;
+    padding: 10px 0px;
+    font-size: 13px;
+  }
+  .white_btn{
+      color: #4d4d4d;
+  }
+  .green_btn {
+    margin: 10px 0px;
+  }
+  .otp_form_container{
+    width: 60%;
+    /* margin: auto; */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2px;
+  }
+  .otp_form_container input{
+    width: 30px;
+    border: .5px solid rgb(172, 172, 172);
+    outline: none;
+    padding: 7px 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+  
+} 
  @media screen and (max-width: 360px) {
   .signup_form_container {
     width: 100%;
