@@ -380,9 +380,16 @@ a {
     margin-left: 0px;
     /* transition: all 1s; */
   }
-
+  .dashboard-logo {
+    margin-left: 20px;
+    font-size: 15px;
+  }
+  .dashboard-logo img {
+    width: 43px;
+  }
   .menu-item {
     font-size: 14px;
+    padding: 0px;
   }
   .menu-item i {
     font-size: 18px;
@@ -391,7 +398,11 @@ a {
     margin: 10px;
     font-size: 14px;
   }
-
+  .projectMenu span i {
+    float: right;
+    font-size: 13px;
+    margin-top: 5px;
+  }
   .menu-bar-icon {
     position: absolute;
     margin-left: 450px;
@@ -407,18 +418,29 @@ a {
     margin-left: 0px;
     /* transition: all 1s; */
   }
-
-  .menu-item {
-    font-size: 13px;
-  }
-  .menu-item i {
+  .dashboard-logo {
+    margin-left: 20px;
     font-size: 15px;
   }
+  .dashboard-logo img {
+    width: 43px;
+  }
+  .menu-item {
+    font-size: 13px;
+    padding: 0px;
+  }
+  .menu-item i {
+    font-size: 14px;
+  }
   .projectSubmenu li {
-    margin: 10px;
+    margin: 10px 0px;
     font-size: 13px;
   }
-
+  .projectMenu span i {
+    float: right;
+    font-size: 13px;
+    margin-top: 2px;
+  }
   .dashboard-logo {
     display: flex;
     margin-left: 20px;
@@ -429,5 +451,31 @@ a {
   .dashboard-logo img {
     width: 45px;
     margin-right: 12px;
+  }
+
+  .balance-container{
+    /* position: absolute; */
+    color: #ffffff;
+    text-align: center;
+    margin-top: 5vh;
+    z-index: 999;
+    /* margin-left: 18%; */
+  }
+  .balance-content {
+    margin: auto;
+    width: 120px;
+    height: 110px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  
+  }
+  .balance-content p{
+    font-size: 15px;
   }
 }

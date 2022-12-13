@@ -252,7 +252,8 @@ const Signup = () => {
 
           {/* otp box */}
           <div className="otp_box">
-            <h6>Enter the OTP sent to you to verify your identity</h6>
+            <h4>Verification</h4>
+            <br/>
             <div className="resendTimer">
               <div className="countdown-text">
                   {seconds > 0 || minutes > 0 ? (
@@ -279,6 +280,7 @@ const Signup = () => {
                   )}
               </div>
             </div>
+            <h6>Enter the OTP sent to you to verify your identity</h6>
             <div className={styles.otp_form_container} id='otpInput'>
               {otp.map((data, index) => {
                 return (

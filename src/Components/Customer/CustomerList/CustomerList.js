@@ -95,11 +95,12 @@ const CustomerList = () => {
         <div className="customer-list-header">
           <h2>Customer List</h2>
           <div className="customer-list-input-btn">
+          <input type="" name="" placeholder="Search Customer Name/ID" />
           <Link to="/customer/add-customer"> <button type="">
               Add New Customer <i className="bi bi-person-plus-fill"></i>
             </button>
             </Link>
-            <input type="" name="" placeholder="Search Customer Name/ID" />
+            
           </div>
         </div>
         <div className="customer-list-print">

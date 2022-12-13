@@ -1,9 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import './OrderHistory.css'
 
 const OrderHistory = () => {
   return (
-    <div style={{margin: "50px"}}>
+    <div className='orderHistory-section'>
       <Outlet/>
     </div>
   );

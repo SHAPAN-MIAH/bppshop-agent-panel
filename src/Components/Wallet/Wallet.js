@@ -28,7 +28,7 @@ const Wallet = () => {
       headers: { Authorization: `Bearer ${token}` },
     }).then((res) => {
       setTotalPage(Math.ceil(res.data.data.total / limit));
-      console.log(res);
+      // console.log(res);
     });
   };
 
@@ -92,7 +92,7 @@ const Wallet = () => {
                   <div>
                     <p className="d-flex justify-content-between">
                       <span>
-                        <i class="bi bi-lock"></i> Key
+                        <i className="bi bi-lock"></i> Key
                       </span>{" "}
                       <button>Change</button>
                     </p>

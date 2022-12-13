@@ -70,13 +70,13 @@ const CustomerDetails = () => {
   return (
     <div className="customer-details-section">
       <div className="container-fluid">
-        <div className="mt-5 mx-5">
+        <div className="customer-details-content-container">
           <h2>Customer Profile</h2>
           <div className="customer-details-container">
             <img src={profileImg} alt="img" />
             <div className="customer-profile">
               <h4>Customer Name: {customerDetail.customer_name}</h4>
-              <div className="d-flex justify-content-between">
+              <div className="customerContactDetails">
                 <div>
                   <h6><span>Customer Id:</span> {customerDetail.id}</h6>
                   <h6><span>Customer Email:</span> {customerDetail.customer_email}</h6>
@@ -96,7 +96,7 @@ const CustomerDetails = () => {
           <div className="update-customer-container">
             <div className="update-customer-section">
               <div className="">
-                <h5 className="mt-5 mb-4">Update Customer</h5>
+                <h5 className="mt-5 mb-2">Update Customer</h5>
                 <div className="update-customer-content-container">
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div>

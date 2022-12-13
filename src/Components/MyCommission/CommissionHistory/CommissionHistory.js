@@ -57,20 +57,20 @@ const CommissionHistory = () => {
           </div>
           <div className="mb-4">
             <table>
-              <tr>
+              <thead>
                 <th>Customer Id</th>
                 <th>Order Id</th>
                 <th>Total Products</th>
                 <th>Total Amount</th>
                 <th>Total Commission</th>
-              </tr>
+              </thead>
               {commissionHistory.map((listData) => (
                 <tr>
-                  <td>#{listData.customer_id}</td>
-                  <td>{listData.order_id}</td>
-                  <td>{listData.total_products}</td>
-                  <td>৳ {listData.total_amount}</td>
-                  <td>৳ {listData.total_commission}</td>
+                  <td data-label="Customer Id">#{listData.customer_id}</td>
+                  <td data-label="Order Id">{listData.order_id}</td>
+                  <td data-label="Total Products">{listData.total_products}</td>
+                  <td data-label="Total Amount">৳ {listData.total_amount}</td>
+                  <td data-label="Total Commission">৳ {listData.total_commission}</td>
                 </tr>
               ))}
             </table>

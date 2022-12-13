@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 import { baseURL } from './../../../BaseUrl/BaseUrl';
 import axios from 'axios';
+import './OrderHistoryHome.css'
 
 // const OrderHistoryData = [
 //     {
@@ -120,27 +121,27 @@ const OrderHistoryHome = () => {
   
           <div className='history-table mb-4'>
             <table>
-              <tr>
-              <th>Order Date</th>
+              <thead>
+                <th>Order Date</th>
                 <th>Order Id</th>
                 <th>Customer Id</th>
                 <th>Total Products</th>
                 <th>Total Amount</th>
                 <th>Action</th>
                 <th>Bill Folder</th>
-              </tr>
+              </thead>
               {orderHistoryData.map((listData) => (
                 <tr>
-                  <td>{listData.order_date}</td>
-                  <td>{listData.order_id}</td>
-                  <td>{listData.customer_id}</td>
-                  <td>{listData.total_products}</td>
-                  <td>৳ {listData.total_amount}</td>
-                  <td >
+                  <td data-label="Order Date">{listData.order_date}</td>
+                  <td data-label="Order Id">{listData.order_id}</td>
+                  <td data-label="Customer Id">{listData.customer_id}</td>
+                  <td data-label="Total Products">{listData.total_products}</td>
+                  <td data-label="Total Amount">৳ {listData.total_amount}</td>
+                  <td data-label="Action">
                     <Link to={`/order-history/order-details/${listData?.customer_id}`}><button id='seeOrderBtn'>See Order Details</button></Link>
                   </td>
-                  <td >
-                  <Link to='/order-history/order-bills'><i className="bi bi-folder" ></i></Link>
+                  <td data-label="Bill Folder" >
+                  <Link to='/order-history/order-bills'><i className="bi bi-folder billFolderBtn" ></i></Link>
                   </td>
                 </tr>
               ))}

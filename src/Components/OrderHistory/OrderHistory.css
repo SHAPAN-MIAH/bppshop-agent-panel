@@ -1,0 +1,9 @@
+.orderHistory-section{
+    margin: 30px 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .orderHistory-section{
+        margin: 40px 10px;
+    }
+}

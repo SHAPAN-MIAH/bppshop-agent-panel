@@ -36,7 +36,13 @@
 .registerSuccess a{
     color: #16a0da;
 }
-
+#otpInput{
+    margin-top: -10px;
+    
+}#otpInput{
+    width: 70%;
+    margin-top: 20px;
+}
 @media screen and (max-width: 360px) {
     .otp_box{
         margin: 0px 20px;
@@ -46,6 +52,7 @@
     }
     #otpInput{
         margin-top: -10px;
+        
     }
     .otp_box button{
         font-size: 13px;

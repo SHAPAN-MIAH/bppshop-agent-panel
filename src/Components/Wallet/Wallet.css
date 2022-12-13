@@ -109,7 +109,7 @@
     font-size: 15px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .wallet-content-container {
     margin: 20px 10px;
   }
@@ -119,6 +119,9 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
   }
+  .transaction-history-table-container td {
+    padding: 15px 0px;
+}
 }
 @media screen and (max-width: 400px) {
   .wallet-content-container {

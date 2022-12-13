@@ -13,7 +13,7 @@
   background: #16a0da;
   color: #ffff;
   padding: 10px 20px;
-  margin-right: 20px;
+  margin-left: 10px;
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
 }
@@ -130,11 +130,11 @@ tr:nth-child(even) {
   .table-container {
     border-collapse: collapse;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 5px;
     overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   }
   .customer-list-header button {
     border: none;
@@ -174,7 +174,7 @@ tr:nth-child(even) {
     width: 100%;
   }
   tr{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   td{
     text-align: right;
@@ -219,11 +219,11 @@ tr:nth-child(even) {
   .table-container {
     border-collapse: collapse;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 5px;
     overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   }
   .customer-list-header button {
     border: none;
@@ -263,7 +263,7 @@ tr:nth-child(even) {
     width: 100%;
   }
   tr{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   td{
     text-align: right;
@@ -308,11 +308,11 @@ tr:nth-child(even) {
   .table-container {
     border-collapse: collapse;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 5px;
     overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   }
   .customer-list-header button {
     border: none;
@@ -352,7 +352,7 @@ tr:nth-child(even) {
     width: 100%;
   }
   tr{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   td{
     text-align: right;
@@ -397,11 +397,11 @@ tr:nth-child(even) {
   .table-container {
     border-collapse: collapse;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 5px;
     overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   }
   .customer-list-header button {
     border: none;
@@ -441,7 +441,7 @@ tr:nth-child(even) {
     width: 100%;
   }
   tr{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   td{
     text-align: right;
@@ -486,11 +486,11 @@ tr:nth-child(even) {
   .table-container {
     border-collapse: collapse;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 5px;
     overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   }
   .customer-list-header button {
     border: none;
@@ -530,7 +530,7 @@ tr:nth-child(even) {
     width: 100%;
   }
   tr{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   td{
     text-align: right;
@@ -575,11 +575,11 @@ tr:nth-child(even) {
   .table-container {
     border-collapse: collapse;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 5px;
     overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   }
   .customer-list-header button {
     border: none;
@@ -619,11 +619,100 @@ tr:nth-child(even) {
     width: 100%;
   }
   tr{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   td{
     text-align: right;
     padding: 10px 20px ;
+    padding-left: 50%;
+    font-size: 10px;
+    position: relative;
+  }
+  table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    font-size: 10px;
+    text-align: left;
+  }
+
+  td button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  td i {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .tblActionBtn{
+    display: flex;
+    justify-content: end;
+  }
+
+}
+@media screen and (max-width: 360px) {
+  .customer-list-section {
+    margin: 20px 0px;
+  }
+  .customer-list-header {
+    display: inline;
+  }
+
+  .table-container {
+    border-collapse: collapse;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    overflow: scroll;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+  }
+  .customer-list-header button {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: #16a0da;
+    color: #ffff;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+  .customer-list-header button:hover {
+    background: #011627f1;
+  }
+  .customer-list-header input {
+    font-family: "Montserrat", sans-serif;
+    width: 220px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    color: rgb(41, 41, 41);
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  .customer-list-print {
+    float: right;
+    margin: 20px 0px;
+  }
+
+  thead{
+    display: none;
+  }
+   tbody, tr, td{
+    display: block;
+    width: 100%;
+  }
+  tr{
+    margin-bottom: 30px;
+  }
+  td{
+    text-align: right;
     padding-left: 50%;
     font-size: 12px;
     position: relative;
@@ -634,13 +723,13 @@ tr:nth-child(even) {
     left: 0;
     width: 50%;
     padding-left: 10px;
-    font-size: 12px;
+    font-size: 10px;
     text-align: left;
   }
 
   td button {
     padding: 5px 10px;
-    font-size: 12px;
+    font-size: 10px;
   }
   td i {
     font-size: 20px;
@@ -665,11 +754,11 @@ tr:nth-child(even) {
   .table-container {
     border-collapse: collapse;
     width: 100%;
-    height: 400px;
+    height: auto;
     padding: 5px;
     overflow: scroll;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   }
   .customer-list-header button {
     border: none;
@@ -709,12 +798,12 @@ tr:nth-child(even) {
     width: 100%;
   }
   tr{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   td{
     text-align: right;
     padding-left: 50%;
-    font-size: 12px;
+    font-size: 10px;
     position: relative;
   }
   table td::before{
@@ -723,7 +812,7 @@ tr:nth-child(even) {
     left: 0;
     width: 50%;
     padding-left: 10px;
-    font-size: 12px;
+    font-size: 10px;
     text-align: left;
   }
 
