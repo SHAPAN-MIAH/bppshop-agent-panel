@@ -10,40 +10,80 @@ import { useEffect } from "react";
 import { useCallback } from "react";
 
 const Signup = () => {
+
   const [data, setData] = useState({
     agent_name: "",
     agent_email: "",
     agent_mobile_number: "",
     password: "",
+    district_id: "",
+    area_id: "",
   });
+
+
+  const [districtData, setDistrictData] = useState([]);
+  const [areaData, setAreaData] = useState([]);
+  const [districtId, setDistrictId] = useState('');
+  const [areaId, setAreaId] = useState('');
+
+
+  useEffect(() => {
+    axios
+      .get(baseURL + "/location/districts")
+      .then((res) => setDistrictData(res.data.data));
+  }, []);
+
+
+  const AreaSelectHandler = (e) => {
+    const distId = e.target.value;
+    setDistrictId(e.target.value);
+
+    axios
+      .get(baseURL + `/location/areas/${distId}`)
+      .then((res) => setAreaData(res.data.data));
+  };
+
+
+
+  const AreaIdHandler = (e) => {
+    // console.log (e.target.value);
+    const areaId = e.target.value;
+
+    setAreaId(areaId)
+  }
+
+
 
   const [registerAgent, setRegisterAgent] = useState([]);
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
+    setData({ ...data, [input.name]: input.value});
   };
 
-  const [otpSuccessStatus, setOtpSuccessStatus] = useState(false)
+
+
+  const [otpSuccessStatus, setOtpSuccessStatus] = useState(false);
+
+  const newData = ({...data, district_id: districtId,  area_id: areaId})
+  // console.log(newData)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const url = baseURL + "/register";
 
-      await axios.post(url, data).then((res) => {
-        console.log(res);
+      await axios.post(url, newData).then((res) => {
+        // console.log(res);
         setRegisterAgent(res.data.data);
 
         if (res.data.status === "success") {
+          setOtpSuccessStatus(true);
 
-         setOtpSuccessStatus(true)
-
-          const otpBox = document.querySelector('.otp_box')
-          otpBox.style.display = "block"
+          const otpBox = document.querySelector(".otp_box");
+          otpBox.style.display = "block";
           document.querySelector("#form-container").style.display = "none";
           document.querySelector(".registerSuccess").style.display = "none";
-
         }
         if (res.data.status === "failed") {
           document.querySelector(".registerSuccess").innerHTML =
@@ -53,7 +93,9 @@ const Signup = () => {
           document.querySelector(".registerSuccess").style.display = "block";
           document.querySelector(".registerSuccess").style.color = "red";
           document.querySelector(".registerSuccess").style.textAlign = "left";
-          document.querySelector(".registerSuccess").style.fontSize = "16px";
+          document.querySelector(".registerSuccess").style.fontSize = "14px";
+          document.querySelector(".registerSuccess").style.width = "100%";
+          document.querySelector(".registerSuccess").style.margin = "0px 30px";
         }
         // navigate("/login")
       });
@@ -66,15 +108,14 @@ const Signup = () => {
         setError(error.message);
       }
     }
-   
   };
+
 
   // const otpResendSubmit = () => {
   //   console.log("button clicked");
   // };
 
-
-  // const [timer, setTimer] = useState(60);  
+  // const [timer, setTimer] = useState(60);
 
   // const timeOutCallback = useCallback(() => setTimer(currTimer => currTimer - 1), []);
 
@@ -94,12 +135,12 @@ const Signup = () => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    if(otpSuccessStatus === true){
+    if (otpSuccessStatus === true) {
       const interval = setTimeout(() => {
         if (seconds > 0) {
           setSeconds(seconds - 1);
         }
-    
+
         if (seconds === 0) {
           if (minutes === 0) {
             clearInterval(interval);
@@ -109,78 +150,77 @@ const Signup = () => {
           }
         }
       }, 1000);
-    
+
       return () => {
         clearInterval(interval);
       };
     }
-    
   }, [otpSuccessStatus, seconds, minutes]);
 
   const resendOtpData = {
     type: 1,
-    phone: registerAgent.phone
-  }
+    phone: registerAgent.phone,
+  };
 
   const resendOTP = () => {
     setMinutes(2);
     setSeconds(0);
 
-    axios.post(baseURL + "/resend", resendOtpData)
-    .then(res => {
-      console.log(res)
-    })
+    axios.post(baseURL + "/resend", resendOtpData).then((res) => {
+      console.log(res);
+    });
   };
-
 
   const [otp, setOtp] = useState(new Array(6).fill(""));
 
   const handleOtpChange = (element, index) => {
-    if(isNaN(element.value)) return false;
+    if (isNaN(element.value)) return false;
 
-    setOtp([...otp.map((item, indx) => (indx === index) ? element.value : item)]);
+    setOtp([
+      ...otp.map((item, indx) => (indx === index ? element.value : item)),
+    ]);
 
     // focus next input
-    if(element.nextSibling){
+    if (element.nextSibling) {
       element.nextSibling.focus();
     }
-  }
+  };
 
+  const [varifyStatus, setVerifyStatus] = useState('')
 
   const verifyData = {
     type: 1,
     phone: registerAgent.phone,
-    pin: otp.join("")
-  }
-
+    pin: otp.join(""),
+  };
 
   const otpSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     axios.post(baseURL + "/verify", verifyData)
-    .then(res => {
-      console.log(res)
+    .then((res) => {
+      console.log(res);
 
-      if(res.data.status == "success"){
-        document.querySelector('.otp_box').style.display = "none"
-        document.querySelector('#otpInput').style.display = "none"
-          document.querySelector(".registerSuccess").style.display = "block";
-          document.querySelector(".registerSuccess").style.color = "green;";
-          document.querySelector(".registerSuccess").style.textAlign = "center";
-          document.querySelector(".registerSuccess").style.fontSize = "18px";
+      if (res.data.status == "success") {
+         document.querySelector(".registerSuccess-msg").innerHTML =
+          "Your registration is successful.";
+        document.querySelector(".otp_box").style.display = "none";
+        document.querySelector("#otpInput").style.display = "none";
+        document.querySelector(".registerSuccess").style.display = "block";
+        document.querySelector(".registerSuccess").style.color = "green;";
+        document.querySelector(".registerSuccess").style.textAlign = "center";
+        document.querySelector(".registerSuccess").style.fontSize = "18px";
       }
-      if(res.data.status == "failed"){
-          document.querySelector(".registerSuccess").innerHTML =
-            "Your pin validation not successful. Please Try Again!.";
-          document.querySelector(".registerSuccess").style.display = "block";
-          document.querySelector(".registerSuccess").style.color = "red;";
-          document.querySelector(".registerSuccess").style.textAlign = "center";
-          document.querySelector(".registerSuccess").style.fontSize = "18px";
+      if (res.data.status == "failed") {
+        // document.querySelector(".registerSuccess").innerHTML =
+        //   "Your pin validation not successful. Please Try Again!.";
+        document.querySelector(".registerSuccess").style.display = "block";
+        document.querySelector(".registerSuccess").style.color = "red;";
+        document.querySelector(".registerSuccess").style.textAlign = "center";
+        document.querySelector(".registerSuccess").style.fontSize = "18px";
       }
-    
-    })
-  }
-
+    });
+  };
 
   return (
     <div className={styles.signup_container}>
@@ -243,6 +283,24 @@ const Signup = () => {
               className={styles.input}
               autoComplete="false"
             />
+            <div className="area-container">
+              <select name="country" onChange={(e) => AreaSelectHandler(e)} required>
+                <option value="">Choose Districts ---</option>
+                {districtData?.map((district, index) => (
+                  <option value={district.id} key={index}>
+                    {district.name}
+                  </option>
+                ))}
+              </select>
+              <select name="country" onChange={(e) => AreaIdHandler(e)} required>
+                <option value="">Choose Area ---</option>
+                {areaData.map((area, index) => (
+                  <option value={area.id} key={index}>
+                  {area.name}
+                </option>
+                ))}
+              </select>
+            </div>
             {error && <div className={styles.error_msg}>{error}</div>}
 
             <button type="submit" className={styles.green_btn}>
@@ -253,35 +311,32 @@ const Signup = () => {
           {/* otp box */}
           <div className="otp_box">
             <h4>Verification</h4>
-            <br/>
+            <br />
             <div className="resendTimer">
               <div className="countdown-text">
-                  {seconds > 0 || minutes > 0 ? (
-                    <p>
-                      OTP Send in: {minutes < 10 ? `0${minutes}` : minutes}:
-                      {seconds < 10 ? `0${seconds}` : seconds}
-                    </p>
-                  ) : (
-                    <p>Didn't receive code?</p>
-                  )}
+                {seconds > 0 || minutes > 0 ? (
+                  <p>
+                    OTP Send in: {minutes < 10 ? `0${minutes}` : minutes}:
+                    {seconds < 10 ? `0${seconds}` : seconds}
+                  </p>
+                ) : (
+                  <p>Didn't receive code?</p>
+                )}
 
-                   
-                  {seconds > 0 || minutes > 0 ? (
-                    null
-                  ) : (
-                    <button
+                {seconds > 0 || minutes > 0 ? null : (
+                  <button
                     style={{
-                      color:  "#ffff",
+                      color: "#ffff",
                     }}
                     onClick={resendOTP}
                   >
                     Resend OTP
                   </button>
-                  )}
+                )}
               </div>
             </div>
             <h6>Enter the OTP sent to you to verify your identity</h6>
-            <div className={styles.otp_form_container} id='otpInput'>
+            <div className={styles.otp_form_container} id="otpInput">
               {otp.map((data, index) => {
                 return (
                   <input
@@ -292,21 +347,24 @@ const Signup = () => {
                     key={index}
                     value={data}
                     onChange={(e) => handleOtpChange(e.target, index)}
-                    onFocus={e => e.target.select()}
+                    onFocus={(e) => e.target.select()}
                   />
                 );
               })}
             </div>
-            <button onClick={otpSubmit} type="submit"> Verify OTP</button>
+            <button onClick={otpSubmit} type="submit">
+              {" "}
+              Verify OTP
+            </button>
           </div>
 
           {/* status message */}
           <div className=" d-flex justify-content-center text-center">
-            <div
-              className="registerSuccess"
-            >
-              <h6>Your pin validation successful.</h6>
-              <h5 className="gotoSignIng">Please <Link to='/login'>sign in</Link></h5> 
+            <div className="registerSuccess">
+              <h6 className="registerSuccess-msg"></h6>
+              <h5 className="gotoSignIng">
+                Please <Link to="/login">sign in</Link>
+              </h5>
             </div>
           </div>
         </div>

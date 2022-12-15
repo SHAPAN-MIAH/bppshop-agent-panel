@@ -56,21 +56,21 @@ const ViewProfile = () => {
                 <div className="d-flex">
                   <i className="bi bi-telephone"></i>
                   <div className="mx-2">
-                    <label for="">Mobile</label>
+                    <span >Mobile</span>
                     <p>{agent.phone}</p>
                   </div>
                 </div>
                 <div className="d-flex">
                   <i className="bi bi-envelope"></i>
                   <div className="mx-2">
-                    <label for="">Email</label>
+                    <span >Email</span>
                     <p>{agent.email}</p>
                   </div>
                 </div>
                 <div className="d-flex">
                   <i className="bi bi-house"></i>
                   <div className="mx-2">
-                    <label for="">Address</label>
+                    <span>Address</span>
                     <p>{agent.address}</p>
                   </div>
                 </div>

@@ -6,9 +6,12 @@ import styles from "../Signup/Signup.module.css";
 import loginBackgroundImg from "../../assets/image/bpp_icon.png";
 import { UserContext } from "../../App";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
+import Signup from "../Signup/Signup";
+
+
 
 const Login = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const [loggedInUser, setLoggedInUser] = useState('');
 
 
   // Login Start..................
@@ -32,12 +35,30 @@ const Login = () => {
       const url = baseURL + "/login";
 
       await axios.post(url, data).then((res) => {
-        setLoggedInUser(res.data);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("isLoggedIn", true);
-        // console.log(res.data)
-        let from = location?.state?.from?.pathname || "/";
-        navigate(from, { replace: true });
+        console.log(res)
+        if (res.data.status == 'success'){
+          if (res.data.is_verified == 1){
+            setLoggedInUser(res.data);
+         
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("isLoggedIn", true);
+          console.log(res)
+          let from = location?.state?.from?.pathname || "/";
+          navigate(from, { replace: true });
+          }
+          else{
+            document.querySelector(".forgot_pass_container").style.display ="block";
+            document.querySelector(".forgot_pass_content").style.display ="none";
+            document.querySelector(".verify-container").style.display ="block";
+            document.querySelector(".loginFormContent").style.display ="none";
+
+            setOtpSuccessStatus(true);
+            signUpverifyPhoneNumberSend(data.agent_mobile_number)
+          }
+        }
+        else{
+          setError(error.response.data.message);
+        }
       });
     } catch (error) {
       if (
@@ -63,6 +84,7 @@ const Login = () => {
   const forgotPassHandler = () => {
     document.querySelector(".loginFormContent").style.display = "none";
     document.querySelector(".forgot_pass_container").style.display = "block";
+    document.querySelector(".forgot_pass_content").style.display ="block";
   };
 
 
@@ -88,6 +110,46 @@ const Login = () => {
 
         setOtpSuccessStatus(true);
       }
+      if (res.data.status == "failed") {
+        document.querySelector('.deactivate_status').innerHTML = "Your account is not active. Please verify your account.";
+        document.querySelector('.deactivate_status').style.color = 'red';
+        document.querySelector('.deactivate_status').style.fontSize = '13px';
+
+        setOtpSuccessStatus(false);
+      }
+    });
+  };
+
+
+  
+
+  const [otpExpairStatus, setOtpExpairStatus] = useState('')
+  const signUpverifyPhoneNumberSend = (agent_mobile_number) => {
+
+    const signUpverifyPhoneData = {
+      type: 1,
+      phone: agent_mobile_number,
+    };
+
+    axios.post(baseURL + "/resend", signUpverifyPhoneData).then((res) => {
+      console.log(res);
+      if (res.data.status == "success") {
+        document.querySelector(".forgot_pass_content").style.display = "none";
+        document.querySelector(".forgot_otp-container").style.display = "block";
+
+        setOtpSuccessStatus(true);
+      }
+      if (res.data.status == "failed") {
+        setOtpExpairStatus(res.data.message)
+        // document.querySelector('.deactivate_status').innerHTML = "Your account is not active. Please verify your account.";
+        document.querySelector('.deactivate_status').innerHTML = "Your account is not active. Please verify your account.";
+        document.querySelector('.deactivate_status').style.color = 'red';
+        document.querySelector('.deactivate_status').style.fontSize = '13px';
+
+        // document.querySelector(".verify-container").style.display = "none";
+
+        setOtpSuccessStatus(false);
+      }
     });
   };
 
@@ -98,16 +160,15 @@ const Login = () => {
 
   const handleOtpChange = (element, index) => {
     if (isNaN(element.value)) return false;
-
     setOtp([
       ...otp.map((item, indx) => (indx === index ? element.value : item)),
     ]);
-
     // focus next input
     if (element.nextSibling) {
       element.nextSibling.focus();
     }
   };
+
 
   const verifyData = {
     type: 2,
@@ -141,6 +202,8 @@ const Login = () => {
   const [otpSuccessStatus, setOtpSuccessStatus] = useState(false);
   const [minutes, setMinutes] = useState(2);
   const [seconds, setSeconds] = useState(0);
+  const [minutess, setMinutess] = useState(2);
+  const [secondss, setSecondss] = useState(0);
 
   useEffect(() => {
     if (otpSuccessStatus === true) {
@@ -164,6 +227,29 @@ const Login = () => {
       };
     }
   }, [otpSuccessStatus, seconds, minutes]);
+
+  useEffect(() => {
+    if (otpSuccessStatus === true) {
+      const interval = setTimeout(() => {
+        if (secondss > 0) {
+          setSecondss(secondss - 1);
+        }
+
+        if (secondss === 0) {
+          if (minutess === 0) {
+            clearInterval(interval);
+          } else {
+            setSecondss(59);
+            setMinutess(minutess - 1);
+          }
+        }
+      }, 1000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [otpSuccessStatus, secondss, minutess]);
  // OTP input validation and verify end...................
 
 
@@ -178,6 +264,21 @@ const Login = () => {
     setSeconds(0);
 
     axios.post(baseURL + "/resend", resendOtpData)
+    .then((res) => {
+      console.log(res);
+    });
+  };
+
+  const resendSignupOtpData = {
+    type: 2,
+    phone: forgotPhoneData,
+  };
+
+  const resendSignupOTP = () => {
+    setMinutess(2);
+    setSecondss(0);
+
+    axios.post(baseURL + "/resend", resendSignupOtpData)
     .then((res) => {
       console.log(res);
     });
@@ -270,6 +371,38 @@ const Login = () => {
 
   // Change Password end.......................
 
+  const signUpVerifyData = {
+    type: 1,
+    phone: data.agent_mobile_number,
+    pin: otp.join(""),
+  };
+
+  // console.log(signUpVerifyData)
+
+  const signupOtpSubmit = (e) => {
+      e.preventDefault();
+  
+      axios.post(baseURL + "/verify", signUpVerifyData)
+      .then((res) => {
+        console.log("clicked", res)
+
+        if(res.data.status === "success"){
+          // setOtpVerifyToken(res.data.data.token)
+            document.querySelector('.verify-container').style.display ="none";
+            // document.querySelector(".changePassword-container").style.display ="block";
+        }
+        // if(res.data.status == "failed"){
+        //     document.querySelector(".registerSuccess").innerHTML =
+        //       "Your pin validation not successful. Please Try Again!.";
+        //     document.querySelector(".registerSuccess").style.display = "block";
+        //     document.querySelector(".registerSuccess").style.color = "red;";
+        //     document.querySelector(".registerSuccess").style.textAlign = "center";
+        //     document.querySelector(".registerSuccess").style.fontSize = "18px";
+        // }
+      });
+  }
+
+
   return (
     <>
       <div className="container-fluid">
@@ -343,7 +476,9 @@ const Login = () => {
                           onChange={(e) => handleForgotChange(e.target.value)}
                           required
                         />
+
                         <br />
+                        <small className="deactivate_status"></small>
                         <br />
                         <button type="submit" >
                           Send
@@ -407,7 +542,58 @@ const Login = () => {
                     Verify OTP
                   </button>
                 </div>
+                <div className="verify-container">
+                  <h4>Verification</h4>
+                  {/* <Signup/> */}
+                  <div className="resendTimer">
+                    <div className="countdown-text">
+                      {secondss > 0 || minutess > 0 ? (
+                        <p>
+                          OTP Send in: {minutess < 10 ? `0${minutess}` : minutess}:
+                          {secondss < 10 ? `0${secondss}` : secondss}
+                        </p>
+                      ) : (
+                        <p>Didn't receive code?</p>
+                      )}
 
+                      {secondss > 0 || minutess > 0 ? null : (
+                        <button
+                          style={{
+                            color: "#ffff",
+                          }}
+                          onClick={resendSignupOTP}
+                        >
+                          Resend OTP
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  <div className="otpExpairStatus-container">
+                     <p>{otpExpairStatus}</p> 
+                    </div>
+                  <p>Enter Verification Code</p>
+                  <div className={styles.otp_form_container} id="otpInput">
+                    {otp.map((data, index) => {
+                      return (
+                        <input
+                          type="text"
+                          name="otp"
+                          className="otp-field"
+                          maxLength="1"
+                          key={index}
+                          value={data}
+                          onChange={(e) => handleOtpChange(e.target, index)}
+                          onFocus={(e) => e.target.select()}
+                        />
+                      );
+                    })}
+                  </div>
+                  <button onClick={signupOtpSubmit} type="submit">
+                    {" "}
+                    Verify OTP
+                  </button>
+                </div>
+                    
 
                 {/* password change */}
 

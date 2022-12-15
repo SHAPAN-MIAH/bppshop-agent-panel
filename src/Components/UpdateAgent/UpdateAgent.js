@@ -107,7 +107,7 @@ const UpdateAgent = () => {
                 <input
                   type="text"
                   name="agent_address"
-                  defaultValue={agent.address}
+                  defaultValue={agent.area_name}
                   {...register("agent_address")}
                 />
               </div>

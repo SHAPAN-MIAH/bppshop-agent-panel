@@ -70,6 +70,8 @@ const Dashboard = () => {
 
   const [agent, setAgent] = useState([]);
 
+  console.log(agent)
+
   useEffect(() => {
     axios
       .get(baseURL + "/agent/profile", {
@@ -129,7 +131,7 @@ const Dashboard = () => {
                         <i className="bi bi-house"></i>
                         <div className="mx-3">
                           <label for="">Address</label>
-                          <p>{agent.address}</p>
+                          <p>{agent.area_name}, {agent.district_name}</p>
                         </div>
                       </div>
                     </div>
