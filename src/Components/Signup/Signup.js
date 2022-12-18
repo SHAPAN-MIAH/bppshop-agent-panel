@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
 import "./signup.css";
 import loginBackgroundImg from "../../assets/image/bpp_icon.png";
@@ -318,11 +318,6 @@ const Signup = () => {
                 ))}
               </select>
 
-          {/* <select class="js-example-basic-single" name="state">
-            <option value="AL">Alabama</option>
-              ...
-            <option value="WY">Wyoming</option>
-          </select> */}
 
             </div>
             {error && <div className={styles.error_msg}>{error}</div>}
@@ -331,6 +326,8 @@ const Signup = () => {
               Sing Up
             </button>
           </form>
+
+          {/* <Outlet/> */}
 
           {/* otp box */}
           <div className="otp_box">

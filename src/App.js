@@ -21,6 +21,7 @@ import ViewProfile from "./Components/ViewProfile/ViewProfile";
 import CustomerDetails from "./Components/Customer/CustomerDetails/CustomerDetails";
 import EditCustomer from "./Components/Customer/EditCustomer/EditCustomer";
 import Wallet from "./Components/Wallet/Wallet";
+import SignupForm from './Components/Signup/SignupForm/SignupForm';
 
 export const UserContext = createContext();
 function App() {
@@ -76,7 +77,9 @@ function App() {
             </Route>
           {/* )} */}
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/signup" element={<Signup />}>
+            {/* <Route index element={<SignupForm/>}></Route> */}
+          </Route>
           <Route path="/" element={<Navigate replace to="/login" />} />
         </Routes>
       </UserContext.Provider>

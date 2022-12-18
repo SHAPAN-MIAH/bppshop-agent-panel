@@ -3,7 +3,7 @@
     font-family: "Montserrat", sans-serif;
 }
 .viewProfile-container{
-    margin: 50px;
+    margin: 40px;
 }
 .viewProfile-container h2{
     margin-bottom: 20px;
@@ -12,7 +12,7 @@
     border: 1px solid gainsboro;
     background: #ffff;
     border-radius: 10px;
-  padding: 30px;
+    padding: 30px;
 }
 .view-profile-content{
     height: 200px;
@@ -44,4 +44,120 @@
     margin-right: 10px;
     font-size: 20px;
     color: #16a0da;
+}
+
+@media screen and (max-width: 768px) {
+    .viewProfile-section{
+        margin-top: 20px;
+    }
+    .viewProfile-container{
+        margin: 10px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .viewProfile-container{
+        margin: 10px;
+    }
+    .view-profile-content-container{
+        border: 1px solid gainsboro;
+        background: #ffff;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    .view-profile-content{
+        height: 180px;
+        display: flex;
+        background: gainsboro;
+    }
+    .view-profile-content h3 {
+        font-size: 18px;
+    }
+    .viewProfileEditBtn{
+        border: none;
+        outline: none;
+        background: #16a0da;
+        padding: 10px;
+        color: #ffff;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 510px) {
+    .viewProfile-container{
+        margin: 10px;
+    }
+    .view-profile-content-container{
+        border: 1px solid gainsboro;
+        background: #ffff;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    .view-profile-content{
+        height: 180px;
+        display: flex;
+        background: gainsboro;
+    }
+    .viewProfileEditBtn{
+        border: none;
+        outline: none;
+        background: #16a0da;
+        padding: 8px 10px;
+        color: #ffff;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    .view-profile-content h3 {
+        font-size: 17px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .viewProfile-container{
+        margin: 10px;
+    }
+    .view-profile-content-container{
+        border: 1px solid gainsboro;
+        background: #ffff;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    .view-profile-content{
+        height: auto;
+        display: flex;
+        background: gainsboro;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+        padding: 20px 0px;
+    }
+    .view-profile-content img{
+        border-radius: 50%;
+        margin: auto;
+        /* margin-top: 20px; */
+    }
+    .viewProfileEditBtn{
+        border: none;
+        outline: none;
+        background: #16a0da;
+        padding: 10px;
+        color: #ffff;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    .view-profile-contact-content{
+        margin-top: 20px;
+        color: #575757;
+    }
+    .view-profile-contact-content h5{
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    .view-profile-contact-content i{
+        margin-top: 10px;
+        margin-right: 10px;
+        font-size: 20px;
+        color: #16a0da;
+    }
 }

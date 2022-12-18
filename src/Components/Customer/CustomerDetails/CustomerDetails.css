@@ -77,15 +77,15 @@
     }
     .customer-profile h4{
         margin-bottom: 15px;
-        /* font-size: 20px; */
+        font-size: 20px;
     }
     .customer-profile h6{
         font-weight: 500;
-        font-size: 14px;
+        font-size: 13px;
     }
     .customer-profile h6 span{
         font-weight: 600;
-        font-size: 15px;
+        font-size: 14px;
     }
     .customer-profile button{
         position: absolute;
@@ -119,7 +119,7 @@
     }
     .customer-profile h4{
         margin-bottom: 15px;
-        /* font-size: 20px; */
+        font-size: 18px;
     }
     .customer-profile h6{
         font-weight: 500;
@@ -140,7 +140,7 @@
     }
     .customer-details-container{
         width: 100%;
-        height: auto;
+        height: 450px;
         margin-top: 10px;
         display: flex;
         /* flex-wrap: wrap; */
@@ -150,10 +150,11 @@
         overflow: hidden;
     }
     .customer-details-container img{
-        margin: 0px 0px 20px 0px;
+        margin: 0px center !important;
        border-radius: 5px;
-       width: 100px;
-       height: 100px;
+       width: 200px;
+       height: 200px;
+       margin: auto;
     }
     .customer-profile{
         padding: 0px;
@@ -172,12 +173,7 @@
         font-size: 15px;
     }
     .customer-profile button{
-        position: absolute;
-        margin-top: -238px;
-        margin-left: 115px;
         font-size: 13px;
-        background: none;
-        color: #5c5c5c;
     }
   }
   @media screen and (max-width: 360px) {
@@ -186,7 +182,7 @@
     }
     .customer-details-container{
         width: 100%;
-        height: 550px;
+        height: 400px;
         margin-top: 10px;
         display: flex;
         flex-wrap: wrap;
@@ -196,7 +192,7 @@
         overflow: hidden;
     }
     .customer-details-container img{
-       margin: 0px 0px 20px 0px;
+       margin: 0px 0px 0px 0px;
        border-radius: 5px;
        width: 100%;
     }

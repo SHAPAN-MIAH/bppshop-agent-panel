@@ -65,7 +65,7 @@ const UpdateAgent = () => {
               <div className="profile-picture">
               <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
               </div>
-              <div className="mx-4">
+              <div className="update-agent-name">
                 <h3>{agent.name}</h3>
                 <p>Agent</p>
               </div>

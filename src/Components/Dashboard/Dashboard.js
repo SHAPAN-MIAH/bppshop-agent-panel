@@ -15,6 +15,7 @@ import faker from "faker";
 import axios from "axios";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
 import { Link } from 'react-router-dom';
+import avatar from '../../assets/image/profileDefaultImg.jpg'
 
 ChartJS.register(
   CategoryScale,
@@ -94,7 +95,10 @@ const Dashboard = () => {
 
                   <div className="profile-content-container">
                     <div className="profile-content">
-                      <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
+                     <div className="profile-avatar">
+                      {agent.image? <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
+                      : <img src={avatar} alt="profile" />}
+                     </div>
                       <div className="profile-content-textEnd">
                         <Link to='/update-agent-profile'><button className="profileEditBtn" type="">
                           {" "}
@@ -103,15 +107,14 @@ const Dashboard = () => {
                         <h5>{agent.name}</h5>
                         <small>{agent.email}</small>
                         <br/>
-                        <br/>
-                        <small>Role</small>
-                        <h6 className="">Agent</h6>
-                          <br/>
-                        <strong>Balance</strong>
-                        <p>{agent.wallet_balance}</p>
+                        
+                        <h5>Balance</h5>
+                        <h6>৳ {agent.wallet_balance}</h6>
                       </div>
                     </div>
                     <div className="profile-contact-content">
+                    <h6 className=""><small>Role:</small> Agent</h6>
+                    
                       <h5>CONTACT INFORMATION :</h5>
                       <div className="d-flex">
                         <i className="bi bi-telephone"></i>
