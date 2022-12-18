@@ -8,11 +8,8 @@ import { UserContext } from "../../App";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
 import Signup from "../Signup/Signup";
 
-
-
 const Login = () => {
-  const [loggedInUser, setLoggedInUser] = useState('');
-
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   // Login Start..................
   const navigate = useNavigate();
@@ -35,28 +32,30 @@ const Login = () => {
       const url = baseURL + "/login";
 
       await axios.post(url, data).then((res) => {
-        console.log(res)
-        if (res.data.status == 'success'){
-          if (res.data.is_verified == 1){
+        console.log(res);
+        if (res.data.status == "success") {
+          if (res.data.is_verified == 1) {
             setLoggedInUser(res.data);
-         
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("isLoggedIn", true);
-          console.log(res)
-          let from = location?.state?.from?.pathname || "/";
-          navigate(from, { replace: true });
-          }
-          else{
-            document.querySelector(".forgot_pass_container").style.display ="block";
-            document.querySelector(".forgot_pass_content").style.display ="none";
-            document.querySelector(".verify-container").style.display ="block";
-            document.querySelector(".loginFormContent").style.display ="none";
+
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("isLoggedIn", true);
+            console.log(res);
+            let from = location?.state?.from?.pathname || "/";
+            navigate(from, { replace: true });
+          } else {
+            document.querySelector(".forgot_pass_container").style.display =
+              "block";
+            document.querySelector(".forgot_pass_content").style.display =
+              "none";
+            document.querySelector(".forgot_otp-container").style.display =
+              "none";
+            document.querySelector(".verify-container").style.display = "block";
+            document.querySelector(".loginFormContent").style.display = "none";
 
             setOtpSuccessStatus(true);
-            signUpverifyPhoneNumberSend(data.agent_mobile_number)
+            signUpverifyPhoneNumberSend(data.agent_mobile_number);
           }
-        }
-        else{
+        } else {
           setError(error.response.data.message);
         }
       });
@@ -72,7 +71,6 @@ const Login = () => {
   };
   // Login end..........
 
-
   // forgot password start.................
   const [forgotPhoneData, setForgotPhoneData] = useState("");
   const forgotData = {
@@ -80,24 +78,20 @@ const Login = () => {
     phone: forgotPhoneData,
   };
 
-
   const forgotPassHandler = () => {
     document.querySelector(".loginFormContent").style.display = "none";
     document.querySelector(".forgot_pass_container").style.display = "block";
-    document.querySelector(".forgot_pass_content").style.display ="block";
+    document.querySelector(".forgot_pass_content").style.display = "block";
   };
-
 
   const backToSignInHandler = () => {
     document.querySelector(".loginFormContent").style.display = "block";
     document.querySelector(".forgot_pass_container").style.display = "none";
-  }
-
+  };
 
   const handleForgotChange = (data) => {
     setForgotPhoneData(data);
   };
-
 
   const forgotPhoneNumberSend = (e) => {
     e.preventDefault();
@@ -111,21 +105,18 @@ const Login = () => {
         setOtpSuccessStatus(true);
       }
       if (res.data.status == "failed") {
-        document.querySelector('.deactivate_status').innerHTML = "Your account is not active. Please verify your account.";
-        document.querySelector('.deactivate_status').style.color = 'red';
-        document.querySelector('.deactivate_status').style.fontSize = '13px';
+        document.querySelector(".deactivate_status").innerHTML =
+          "Your account is not active. Please verify your account.";
+        document.querySelector(".deactivate_status").style.color = "red";
+        document.querySelector(".deactivate_status").style.fontSize = "13px";
 
         setOtpSuccessStatus(false);
       }
     });
   };
 
-
-  
-
-  const [otpExpairStatus, setOtpExpairStatus] = useState('')
+  const [otpExpairStatus, setOtpExpairStatus] = useState("");
   const signUpverifyPhoneNumberSend = (agent_mobile_number) => {
-
     const signUpverifyPhoneData = {
       type: 1,
       phone: agent_mobile_number,
@@ -140,11 +131,12 @@ const Login = () => {
         setOtpSuccessStatus(true);
       }
       if (res.data.status == "failed") {
-        setOtpExpairStatus(res.data.message)
+        setOtpExpairStatus(res.data.message);
         // document.querySelector('.deactivate_status').innerHTML = "Your account is not active. Please verify your account.";
-        document.querySelector('.deactivate_status').innerHTML = "Your account is not active. Please verify your account.";
-        document.querySelector('.deactivate_status').style.color = 'red';
-        document.querySelector('.deactivate_status').style.fontSize = '13px';
+        document.querySelector(".deactivate_status").innerHTML =
+          "Your account is not active. Please verify your account.";
+        document.querySelector(".deactivate_status").style.color = "red";
+        document.querySelector(".deactivate_status").style.fontSize = "13px";
 
         // document.querySelector(".verify-container").style.display = "none";
 
@@ -152,8 +144,6 @@ const Login = () => {
       }
     });
   };
-
-
 
   // OTP input validation and verify start...................
   const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -169,24 +159,22 @@ const Login = () => {
     }
   };
 
-
   const verifyData = {
     type: 2,
     phone: forgotPhoneData,
     pin: otp.join(""),
   };
 
-  const [otpVerifyToken, setOtpVerifyToken] = useState('')
+  const [otpVerifyToken, setOtpVerifyToken] = useState("");
   const otpSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(baseURL + "/verify", verifyData)
-    .then((res) => {
-
-      if(res.data.status === "success"){
-        setOtpVerifyToken(res.data.data.token)
-          document.querySelector('.forgot_otp-container').style.display ="none";
-          document.querySelector(".changePassword-container").style.display ="block";
+    axios.post(baseURL + "/verify", verifyData).then((res) => {
+      if (res.data.status === "success") {
+        setOtpVerifyToken(res.data.data.token);
+        document.querySelector(".forgot_otp-container").style.display = "none";
+        document.querySelector(".changePassword-container").style.display =
+          "block";
       }
       // if(res.data.status == "failed"){
       //     document.querySelector(".registerSuccess").innerHTML =
@@ -250,8 +238,7 @@ const Login = () => {
       };
     }
   }, [otpSuccessStatus, secondss, minutess]);
- // OTP input validation and verify end...................
-
+  // OTP input validation and verify end...................
 
   // OTP resend start...........
   const resendOtpData = {
@@ -263,8 +250,7 @@ const Login = () => {
     setMinutes(2);
     setSeconds(0);
 
-    axios.post(baseURL + "/resend", resendOtpData)
-    .then((res) => {
+    axios.post(baseURL + "/resend", resendOtpData).then((res) => {
       console.log(res);
     });
   };
@@ -278,96 +264,100 @@ const Login = () => {
     setMinutess(2);
     setSecondss(0);
 
-    axios.post(baseURL + "/resend", resendSignupOtpData)
-    .then((res) => {
+    axios.post(baseURL + "/resend", resendSignupOtpData).then((res) => {
       console.log(res);
     });
   };
   // OTP resend end..........
 
-
   // change password start............
   const [changePassInput, setChangePassInput] = useState({
-    newPassword: '',
-    confirmPassword: ''
+    newPassword: "",
+    confirmPassword: "",
   });
- 
 
   const [changePassError, setChangePassError] = useState({
-    newPassword: '',
-    confirmPassword: ''
-  })
- 
+    newPassword: "",
+    confirmPassword: "",
+  });
 
-  const onInputPasswordChange = e => {
+  const onInputPasswordChange = (e) => {
     const { name, value } = e.target;
-    setChangePassInput(prev => ({
+    setChangePassInput((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     validateInput(e);
-  }
- 
+  };
 
-  const validateInput = e => {
+  const validateInput = (e) => {
     let { name, value } = e.target;
-    setChangePassError(prev => {
+    setChangePassError((prev) => {
       const stateObj = { ...prev, [name]: "" };
- 
+
       switch (name) {
         case "newPassword":
           if (!value) {
             stateObj[name] = "Please enter Password.";
-          } else if (changePassInput.confirmPassword && value !== changePassInput.confirmPassword) {
-            stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
+          } else if (
+            changePassInput.confirmPassword &&
+            value !== changePassInput.confirmPassword
+          ) {
+            stateObj["confirmPassword"] =
+              "Password and Confirm Password does not match.";
           } else {
-            stateObj["confirmPassword"] = changePassInput.confirmPassword ? "" : error.confirmPassword;
+            stateObj["confirmPassword"] = changePassInput.confirmPassword
+              ? ""
+              : error.confirmPassword;
           }
           break;
- 
+
         case "confirmPassword":
           if (!value) {
             stateObj[name] = "Please enter Confirm Password.";
-          } else if (changePassInput.newPassword && value !== changePassInput.newPassword) {
+          } else if (
+            changePassInput.newPassword &&
+            value !== changePassInput.newPassword
+          ) {
             stateObj[name] = "Password and Confirm Password does not match.";
           }
           break;
- 
+
         default:
           break;
       }
- 
+
       return stateObj;
     });
-  }
+  };
 
-
-  const [updatePasswordMessage, setUpdatePasswordMessage] = useState('')
+  const [updatePasswordMessage, setUpdatePasswordMessage] = useState("");
   const changePasswordData = {
     token: otpVerifyToken,
-    password: changePassInput.newPassword
-  }
-
+    password: changePassInput.newPassword,
+  };
 
   const handleSubmitPasswordChange = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    axios.post(baseURL + "/changePassword", changePasswordData)
-    .then(res => {
+    axios.post(baseURL + "/changePassword", changePasswordData).then((res) => {
+      if (res.data.status == "success") {
+        document.querySelector(".changePassword-container").style.display =
+          "none";
+        document.querySelector(
+          ".password-update-message-container"
+        ).style.display = "block";
 
-      if(res.data.status == "success"){
-        document.querySelector(".changePassword-container").style.display ="none";
-        document.querySelector(".password-update-message-container").style.display ="block";
-
-        setUpdatePasswordMessage(res.data.message)
+        setUpdatePasswordMessage(res.data.message);
       }
-    })
-  }
+    });
+  };
 
   const GoToSignInAfterChangePass = () => {
-    document.querySelector(".loginFormContent").style.display = "block"
-    document.querySelector(".password-update-message-container").style.display ="none";
-  }
+    document.querySelector(".loginFormContent").style.display = "block";
+    document.querySelector(".password-update-message-container").style.display =
+      "none";
+  };
 
   // Change Password end.......................
 
@@ -380,27 +370,36 @@ const Login = () => {
   // console.log(signUpVerifyData)
 
   const signupOtpSubmit = (e) => {
-      e.preventDefault();
-  
-      axios.post(baseURL + "/verify", signUpVerifyData)
-      .then((res) => {
-        console.log("clicked", res)
+    e.preventDefault();
 
-        if(res.data.status === "success"){
-          // setOtpVerifyToken(res.data.data.token)
-            document.querySelector('.verify-container').style.display ="none";
-            // document.querySelector(".changePassword-container").style.display ="block";
-        }
-        // if(res.data.status == "failed"){
-        //     document.querySelector(".registerSuccess").innerHTML =
-        //       "Your pin validation not successful. Please Try Again!.";
-        //     document.querySelector(".registerSuccess").style.display = "block";
-        //     document.querySelector(".registerSuccess").style.color = "red;";
-        //     document.querySelector(".registerSuccess").style.textAlign = "center";
-        //     document.querySelector(".registerSuccess").style.fontSize = "18px";
-        // }
-      });
+    console.log("clicked");
+
+    axios.post(baseURL + "/verify", signUpVerifyData).then((res) => {
+      console.log("clicked", res);
+
+      if (res.data.status === "success") {
+        // setOtpVerifyToken(res.data.data.token)
+        document.querySelector(".verify-container").style.display = "none";
+        document.querySelector(".verifySuccess-msg-container").style.display ="block";
+        
+        document.querySelector(".verifySuccess-msg").innerHTML = "Your OTP Verification Successful.";
+      }
+      // if(res.data.status == "failed"){
+      //     document.querySelector(".registerSuccess").innerHTML =
+      //       "Your pin validation not successful. Please Try Again!.";
+      //     document.querySelector(".registerSuccess").style.display = "block";
+      //     document.querySelector(".registerSuccess").style.color = "red;";
+      //     document.querySelector(".registerSuccess").style.textAlign = "center";
+      //     document.querySelector(".registerSuccess").style.fontSize = "18px";
+      // }
+    });
+  };
+
+
+  const signInAfterVerifyHandler = () => {
+    document.querySelector(".loginFormContent").style.display ="block";
   }
+
 
 
   return (
@@ -466,34 +465,32 @@ const Login = () => {
               </div>
               <div className="forgot_pass_container">
                 <div className="forgot_pass_content">
-                    <h4>Forgot Password</h4>
-                    <div className="forgot_input-container">
-                      <form onSubmit={forgotPhoneNumberSend}>
-                        <input
-                          type="number"
-                          name="phone"
-                          placeholder="Enter Phone Number"
-                          onChange={(e) => handleForgotChange(e.target.value)}
-                          required
-                        />
+                  <h4>Forgot Password</h4>
+                  <div className="forgot_input-container">
+                    <form onSubmit={forgotPhoneNumberSend}>
+                      <input
+                        type="number"
+                        name="phone"
+                        placeholder="Enter Phone Number"
+                        onChange={(e) => handleForgotChange(e.target.value)}
+                        required
+                      />
 
-                        <br />
-                        <small className="deactivate_status"></small>
-                        <br />
-                        <button type="submit" >
-                          Send
-                        </button>
-                      </form>
-                      <p className=" mt-3">
-                        Need an Account?{" "}
-                        <Link to="/signup">
-                          <span style={{ color: "#16a0da", fontWeight: "600" }}>
-                            Sign up
-                          </span>
-                        </Link>
-                      </p>
-                      <span onClick={backToSignInHandler}>Back To sign in</span>
-                    </div>
+                      <br />
+                      <small className="deactivate_status"></small>
+                      <br />
+                      <button type="submit">Send</button>
+                    </form>
+                    <p className=" mt-3">
+                      Need an Account?{" "}
+                      <Link to="/signup">
+                        <span style={{ color: "#16a0da", fontWeight: "600" }}>
+                          Sign up
+                        </span>
+                      </Link>
+                    </p>
+                    <span onClick={backToSignInHandler}>Back To sign in</span>
+                  </div>
                 </div>
                 <div className="forgot_otp-container">
                   <h4>Verification</h4>
@@ -549,7 +546,8 @@ const Login = () => {
                     <div className="countdown-text">
                       {secondss > 0 || minutess > 0 ? (
                         <p>
-                          OTP Send in: {minutess < 10 ? `0${minutess}` : minutess}:
+                          OTP Send in:{" "}
+                          {minutess < 10 ? `0${minutess}` : minutess}:
                           {secondss < 10 ? `0${secondss}` : secondss}
                         </p>
                       ) : (
@@ -569,8 +567,8 @@ const Login = () => {
                     </div>
                   </div>
                   <div className="otpExpairStatus-container">
-                     <p>{otpExpairStatus}</p> 
-                    </div>
+                    <p>{otpExpairStatus}</p>
+                  </div>
                   <p>Enter Verification Code</p>
                   <div className={styles.otp_form_container} id="otpInput">
                     {otp.map((data, index) => {
@@ -593,7 +591,15 @@ const Login = () => {
                     Verify OTP
                   </button>
                 </div>
-                    
+
+                <div className=" d-flex justify-content-center text-center">
+                  <div className="verifySuccess-msg-container">
+                    <h6 className="verifySuccess-msg"></h6>
+                    <h5 className="gotoSignIng">
+                      Please <span onClick={signInAfterVerifyHandler}>sign in</span>
+                    </h5>
+                  </div>
+                </div>
 
                 {/* password change */}
 
@@ -605,39 +611,47 @@ const Login = () => {
                       <input
                         type="password"
                         name="newPassword"
-                        placeholder='Enter New Password'
+                        placeholder="Enter New Password"
                         value={changePassInput.password}
                         onChange={onInputPasswordChange}
                         onBlur={validateInput}
                         required
-                        >
-                      </input>
-                      {changePassError.password && <span className='err text-danger'>{changePassError.password}</span>}
-              
+                      ></input>
+                      {changePassError.password && (
+                        <span className="err text-danger">
+                          {changePassError.password}
+                        </span>
+                      )}
+
                       <input
                         type="password"
                         name="confirmPassword"
-                        placeholder='Enter Confirm Password'
+                        placeholder="Enter Confirm Password"
                         value={changePassInput.confirmPassword}
                         onChange={onInputPasswordChange}
                         onBlur={validateInput}
                         required
-                        >
-                      </input>
-                      {changePassError.confirmPassword && <span className='err text-danger'>{changePassError.confirmPassword}</span>}
+                      ></input>
+                      {changePassError.confirmPassword && (
+                        <span className="err text-danger">
+                          {changePassError.confirmPassword}
+                        </span>
+                      )}
 
-                      <br/>
-                      <br/>
+                      <br />
+                      <br />
                       <button type="submit">Submit</button>
                     </form>
                   </div>
                 </div>
 
-
                 {/* password updated  */}
                 <div className="password-update-message-container ">
-                    <p>Your {updatePasswordMessage}.</p>
-                    <small>Please <span onClick={GoToSignInAfterChangePass}>sign in</span></small> 
+                  <p>Your {updatePasswordMessage}.</p>
+                  <small>
+                    Please{" "}
+                    <span onClick={GoToSignInAfterChangePass}>sign in</span>
+                  </small>
                 </div>
               </div>
             </div>

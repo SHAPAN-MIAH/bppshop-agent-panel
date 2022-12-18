@@ -9,7 +9,18 @@ import OtpTimer from "otp-timer";
 import { useEffect } from "react";
 import { useCallback } from "react";
 
+// import Select from 'react-select';
+
+
+
 const Signup = () => {
+  // const [isSearchable, setIsSearchable] = useState(true);
+  // const Checkbox = ({ children, ...props } ) => (
+  //   <label style={{ marginRight: '1em' }}>
+  //     <input type="checkbox" {...props} />
+  //     {children}
+  //   </label>
+  // );
 
   const [data, setData] = useState({
     agent_name: "",
@@ -30,10 +41,12 @@ const Signup = () => {
   useEffect(() => {
     axios
       .get(baseURL + "/location/districts")
-      .then((res) => setDistrictData(res.data.data));
+    .then((res) => {
+      setDistrictData(res.data.data)
+    });
   }, []);
 
-
+  
   const AreaSelectHandler = (e) => {
     const distId = e.target.value;
     setDistrictId(e.target.value);
@@ -222,6 +235,8 @@ const Signup = () => {
     });
   };
 
+
+
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
@@ -284,7 +299,8 @@ const Signup = () => {
               autoComplete="false"
             />
             <div className="area-container">
-              <select name="country" onChange={(e) => AreaSelectHandler(e)} required>
+              
+              <select name="country" mode="multiple" onChange={(e) => AreaSelectHandler(e)} required>
                 <option value="">Choose Districts ---</option>
                 {districtData?.map((district, index) => (
                   <option value={district.id} key={index}>
@@ -292,6 +308,7 @@ const Signup = () => {
                   </option>
                 ))}
               </select>
+
               <select name="country" onChange={(e) => AreaIdHandler(e)} required>
                 <option value="">Choose Area ---</option>
                 {areaData.map((area, index) => (
@@ -300,6 +317,13 @@ const Signup = () => {
                 </option>
                 ))}
               </select>
+
+          {/* <select class="js-example-basic-single" name="state">
+            <option value="AL">Alabama</option>
+              ...
+            <option value="WY">Wyoming</option>
+          </select> */}
+
             </div>
             {error && <div className={styles.error_msg}>{error}</div>}
 
