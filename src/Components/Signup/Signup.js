@@ -9,19 +9,9 @@ import OtpTimer from "otp-timer";
 import { useEffect } from "react";
 import { useCallback } from "react";
 
-// import Select from 'react-select';
-
 
 
 const Signup = () => {
-  // const [isSearchable, setIsSearchable] = useState(true);
-  // const Checkbox = ({ children, ...props } ) => (
-  //   <label style={{ marginRight: '1em' }}>
-  //     <input type="checkbox" {...props} />
-  //     {children}
-  //   </label>
-  // );
-
   const [data, setData] = useState({
     agent_name: "",
     agent_email: "",
@@ -31,17 +21,17 @@ const Signup = () => {
     area_id: "",
   });
 
-
+  // console.log(data);
+  
   const [districtData, setDistrictData] = useState([]);
   const [areaData, setAreaData] = useState([]);
   const [districtId, setDistrictId] = useState('');
   const [areaId, setAreaId] = useState('');
 
-
   useEffect(() => {
     axios
       .get(baseURL + "/location/districts")
-    .then((res) => {
+      .then((res) => {
       setDistrictData(res.data.data)
     });
   }, []);
@@ -59,7 +49,6 @@ const Signup = () => {
 
 
   const AreaIdHandler = (e) => {
-    // console.log (e.target.value);
     const areaId = e.target.value;
 
     setAreaId(areaId)
@@ -68,6 +57,7 @@ const Signup = () => {
 
 
   const [registerAgent, setRegisterAgent] = useState([]);
+  // console.log(registerAgent)
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
@@ -300,7 +290,7 @@ const Signup = () => {
             />
             <div className="area-container">
               
-              <select name="country" mode="multiple" onChange={(e) => AreaSelectHandler(e)} required>
+              <select name="country" onChange={(e) => AreaSelectHandler(e)} required>
                 <option value="">Choose Districts ---</option>
                 {districtData?.map((district, index) => (
                   <option value={district.id} key={index}>
@@ -309,7 +299,7 @@ const Signup = () => {
                 ))}
               </select>
 
-              <select name="country" onChange={(e) => AreaIdHandler(e)} required>
+              <select name="area" onChange={(e) => AreaIdHandler(e)} required>
                 <option value="">Choose Area ---</option>
                 {areaData.map((area, index) => (
                   <option value={area.id} key={index}>
@@ -333,29 +323,7 @@ const Signup = () => {
           <div className="otp_box">
             <h4>Verification</h4>
             <br />
-            <div className="resendTimer">
-              <div className="countdown-text">
-                {seconds > 0 || minutes > 0 ? (
-                  <p>
-                    OTP Send in: {minutes < 10 ? `0${minutes}` : minutes}:
-                    {seconds < 10 ? `0${seconds}` : seconds}
-                  </p>
-                ) : (
-                  <p>Didn't receive code?</p>
-                )}
-
-                {seconds > 0 || minutes > 0 ? null : (
-                  <button
-                    style={{
-                      color: "#ffff",
-                    }}
-                    onClick={resendOTP}
-                  >
-                    Resend OTP
-                  </button>
-                )}
-              </div>
-            </div>
+            
             <h6>Enter the OTP sent to you to verify your identity</h6>
             <div className={styles.otp_form_container} id="otpInput">
               {otp.map((data, index) => {
@@ -377,6 +345,31 @@ const Signup = () => {
               {" "}
               Verify OTP
             </button>
+            <br/>
+
+            <div className="resendTimer">
+              <div className="countdown-text">
+                {seconds > 0 || minutes > 0 ? (
+                  <p>
+                    Resend button will be activated in: {minutes < 10 ? `0${minutes}` : minutes}:
+                    {seconds < 10 ? `0${seconds}` : seconds}
+                  </p>
+                ) : (
+                  <p>Didn't receive the code?</p>
+                )}
+
+                {seconds > 0 || minutes > 0 ? null : (
+                  <button
+                    style={{
+                      color: "#ffff",
+                    }}
+                    onClick={resendOTP}
+                  >
+                    Resend OTP
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* status message */}

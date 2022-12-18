@@ -20,6 +20,7 @@ const Login = () => {
     agent_mobile_number: "",
     password: "",
   });
+  // console.log(data)
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
@@ -53,7 +54,7 @@ const Login = () => {
             document.querySelector(".loginFormContent").style.display = "none";
 
             setOtpSuccessStatus(true);
-            signUpverifyPhoneNumberSend(data.agent_mobile_number);
+            signUpVerifyPhoneNumberSend();
           }
         } else {
           setError(error.response.data.message);
@@ -73,6 +74,8 @@ const Login = () => {
 
   // forgot password start.................
   const [forgotPhoneData, setForgotPhoneData] = useState("");
+  // console.log(forgotPhoneData);
+
   const forgotData = {
     type: 2,
     phone: forgotPhoneData,
@@ -116,27 +119,34 @@ const Login = () => {
   };
 
   const [otpExpairStatus, setOtpExpairStatus] = useState("");
-  const signUpverifyPhoneNumberSend = (agent_mobile_number) => {
-    const signUpverifyPhoneData = {
-      type: 1,
-      phone: agent_mobile_number,
-    };
+  const signUpVerifyPhoneData = {
+    type: 1,
+    phone: data.agent_mobile_number,
+  };
 
-    axios.post(baseURL + "/resend", signUpverifyPhoneData).then((res) => {
+  // console.log(signUpVerifyPhoneData)
+
+  const signUpVerifyPhoneNumberSend = () => {
+
+    axios.post(baseURL + "/resend", signUpVerifyPhoneData).then((res) => {
       console.log(res);
       if (res.data.status == "success") {
         document.querySelector(".forgot_pass_content").style.display = "none";
-        document.querySelector(".forgot_otp-container").style.display = "block";
+        document.querySelector(".forgot_otp-container").style.display = "none";
+        document.querySelector(".verify-container").style.display = "block";
 
         setOtpSuccessStatus(true);
       }
       if (res.data.status == "failed") {
         setOtpExpairStatus(res.data.message);
+
+        // document.querySelector(".forgot_otp-container").style.display = "none";
         // document.querySelector('.deactivate_status').innerHTML = "Your account is not active. Please verify your account.";
         document.querySelector(".deactivate_status").innerHTML =
           "Your account is not active. Please verify your account.";
         document.querySelector(".deactivate_status").style.color = "red";
         document.querySelector(".deactivate_status").style.fontSize = "13px";
+
 
         // document.querySelector(".verify-container").style.display = "none";
 
@@ -260,6 +270,8 @@ const Login = () => {
     phone: forgotPhoneData,
   };
 
+  // console.log(resendSignupOtpData)
+
   const resendSignupOTP = () => {
     setMinutess(2);
     setSecondss(0);
@@ -375,7 +387,7 @@ const Login = () => {
     console.log("clicked");
 
     axios.post(baseURL + "/verify", signUpVerifyData).then((res) => {
-      console.log("clicked", res);
+      console.log( res);
 
       if (res.data.status === "success") {
         // setOtpVerifyToken(res.data.data.token)
@@ -384,20 +396,19 @@ const Login = () => {
         
         document.querySelector(".verifySuccess-msg").innerHTML = "Your OTP Verification Successful.";
       }
-      // if(res.data.status == "failed"){
-      //     document.querySelector(".registerSuccess").innerHTML =
-      //       "Your pin validation not successful. Please Try Again!.";
-      //     document.querySelector(".registerSuccess").style.display = "block";
-      //     document.querySelector(".registerSuccess").style.color = "red;";
-      //     document.querySelector(".registerSuccess").style.textAlign = "center";
-      //     document.querySelector(".registerSuccess").style.fontSize = "18px";
-      // }
+      if(res.data.status == "failed"){
+        document.querySelector(".verifySuccess-msg").innerHTML = "Your OTP Verification is not Successful. please try again.";
+          
+          document.querySelector(".verifySuccess-msg").style.color = "red;";
+          document.querySelector(".verifySuccess-msg").style.textAlign = "center";
+      }
     });
   };
 
 
   const signInAfterVerifyHandler = () => {
     document.querySelector(".loginFormContent").style.display ="block";
+    document.querySelector(".verifySuccess-msg-container").style.display ="none";
   }
 
 
@@ -494,29 +505,7 @@ const Login = () => {
                 </div>
                 <div className="forgot_otp-container">
                   <h4>Verification</h4>
-                  <div className="resendTimer">
-                    <div className="countdown-text">
-                      {seconds > 0 || minutes > 0 ? (
-                        <p>
-                          OTP Send in: {minutes < 10 ? `0${minutes}` : minutes}:
-                          {seconds < 10 ? `0${seconds}` : seconds}
-                        </p>
-                      ) : (
-                        <p>Didn't receive code?</p>
-                      )}
-
-                      {seconds > 0 || minutes > 0 ? null : (
-                        <button
-                          style={{
-                            color: "#ffff",
-                          }}
-                          onClick={resendOTP}
-                        >
-                          Resend OTP
-                        </button>
-                      )}
-                    </div>
-                  </div>
+                  
                   <p>Enter Verification Code</p>
                   <div className={styles.otp_form_container} id="otpInput">
                     {otp.map((data, index) => {
@@ -538,34 +527,36 @@ const Login = () => {
                     {" "}
                     Verify OTP
                   </button>
-                </div>
-                <div className="verify-container">
-                  <h4>Verification</h4>
-                  {/* <Signup/> */}
+                  <br/>
+
                   <div className="resendTimer">
                     <div className="countdown-text">
-                      {secondss > 0 || minutess > 0 ? (
+                      {seconds > 0 || minutes > 0 ? (
                         <p>
-                          OTP Send in:{" "}
-                          {minutess < 10 ? `0${minutess}` : minutess}:
-                          {secondss < 10 ? `0${secondss}` : secondss}
+                          Resend button will be activated in: {minutes < 10 ? `0${minutes}` : minutes}:
+                          {seconds < 10 ? `0${seconds}` : seconds}
                         </p>
                       ) : (
-                        <p>Didn't receive code?</p>
+                        <p>Didn't receive the code?</p>
                       )}
 
-                      {secondss > 0 || minutess > 0 ? null : (
+                      {seconds > 0 || minutes > 0 ? null : (
                         <button
                           style={{
                             color: "#ffff",
                           }}
-                          onClick={resendSignupOTP}
+                          onClick={resendOTP}
                         >
                           Resend OTP
                         </button>
                       )}
                     </div>
                   </div>
+                </div>
+                <div className="verify-container">
+                  <h4>Verification</h4>
+                  {/* <Signup/> */}
+                  
                   <div className="otpExpairStatus-container">
                     <p>{otpExpairStatus}</p>
                   </div>
@@ -590,6 +581,31 @@ const Login = () => {
                     {" "}
                     Verify OTP
                   </button>
+                  <br/>
+                  <div className="resendTimer">
+                    <div className="countdown-text">
+                      {secondss > 0 || minutess > 0 ? (
+                        <p>
+                          Resend button will be activated in:{" "}
+                          {minutess < 10 ? `0${minutess}` : minutess}:
+                          {secondss < 10 ? `0${secondss}` : secondss}
+                        </p>
+                      ) : (
+                        <p>Didn't receive the code?</p>
+                      )}
+
+                      {secondss > 0 || minutess > 0 ? null : (
+                        <button
+                          style={{
+                            color: "#ffff",
+                          }}
+                          onClick={resendSignupOTP}
+                        >
+                          Resend OTP
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
                 <div className=" d-flex justify-content-center text-center">

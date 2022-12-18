@@ -157,9 +157,11 @@
 }
 .verifySuccess-msg-container{
   display: none;
+
 }
 .verifySuccess-msg-container h6{
   color: green;
+  margin-top: 100px;
 }
 .verifySuccess-msg-container h5 span{
   color: rgb(0, 181, 226);
