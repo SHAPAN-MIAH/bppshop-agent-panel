@@ -59,8 +59,11 @@ export const data = {
 
 const Dashboard = () => {
   const [dashboardInfo, setDashboardInfo] = useState([]);
-
+  const [agent, setAgent] = useState([]);
+console.log(agent)
   const token = localStorage.getItem("token");
+
+
   useEffect(() => {
     axios
       .get(baseURL + "/agent/dashboard", {
@@ -68,10 +71,7 @@ const Dashboard = () => {
       })
       .then((res) => setDashboardInfo(res.data.total));
   }, [token]);
-
-  const [agent, setAgent] = useState([]);
-
-  console.log(agent)
+  
 
   useEffect(() => {
     axios
@@ -134,7 +134,9 @@ const Dashboard = () => {
                         <i className="bi bi-house"></i>
                         <div className="mx-3">
                           <label for="">Address</label>
-                          <p>{agent.area_name}, {agent.district_name}</p>
+                          {
+                            agent?.address == null || agent.address == "" ? <p>{agent.area_name}, {agent.district_name}</p> : <p>{agent.address}</p>
+                          }
                         </div>
                       </div>
                     </div>

@@ -71,7 +71,9 @@ const ViewProfile = () => {
                   <i className="bi bi-house"></i>
                   <div className="mx-2">
                     <span>Address</span>
-                    <p>{agent.address}</p>
+                    {
+                      agent?.address == null ? <p>{agent.area_name}, {agent.district_name}</p> : <p>{agent.address}</p> 
+                    }
                   </div>
                 </div>
               </div>

@@ -57,10 +57,14 @@ const Signup = () => {
 
 
   const [registerAgent, setRegisterAgent] = useState([]);
+  const [passMaxLenthAlert, setPassMaxLenthAlert] = useState([]);
   // console.log(registerAgent)
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
+    if(input.name == "password") {
+      setPassMaxLenthAlert("Password should be minimum 8 characters.")
+    }
     setData({ ...data, [input.name]: input.value});
   };
 
@@ -227,6 +231,18 @@ const Signup = () => {
 
 
 
+  const [passwordType, setPasswordType] = useState("password");
+  
+  const togglePassword =()=>{
+    if(passwordType==="password")
+    {
+     setPasswordType("text")
+     return;
+    }
+    setPasswordType("password")
+  }
+
+
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
@@ -278,16 +294,24 @@ const Signup = () => {
               className={styles.input}
               autoComplete="false"
             />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={data.password}
-              required
-              className={styles.input}
-              autoComplete="false"
-            />
+            <div>
+              <input
+                // type="password"
+                placeholder="Password"
+                name="password"
+                onChange={handleChange}
+                value={data.password}
+                required
+                className={styles.input}
+                autoComplete="false"
+                type={passwordType} 
+              />
+              <span className="passwordToggleBtn" onClick={togglePassword}>
+                { passwordType==="password"? <i className="bi bi-eye-slash"></i> :<i className="bi bi-eye"></i> }
+              </span>
+            </div>
+            <span style={{fontSize: "14px", color: "red"}}>{passMaxLenthAlert}</span>
+
             <div className="area-container">
               
               <select name="country" onChange={(e) => AreaSelectHandler(e)} required>

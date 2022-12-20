@@ -55,6 +55,40 @@ const UpdateAgent = () => {
 
   const notify = () => toast("agent update successfully");
 
+
+
+
+  const [districtData, setDistrictData] = useState([]);
+  const [areaData, setAreaData] = useState([]);
+  const [districtId, setDistrictId] = useState('');
+  const [areaId, setAreaId] = useState('');
+
+  useEffect(() => {
+    axios
+      .get(baseURL + "/location/districts")
+      .then((res) => {
+      setDistrictData(res.data.data)
+    });
+  }, []);
+
+  
+  const AreaSelectHandler = (e) => {
+    const distId = e.target.value;
+    setDistrictId(e.target.value);
+
+    axios
+      .get(baseURL + `/location/areas/${distId}`)
+      .then((res) => setAreaData(res.data.data));
+  };
+
+
+
+  const AreaIdHandler = (e) => {
+    const areaId = e.target.value;
+
+    setAreaId(areaId)
+  }
+
   return (
     <>
       <div className="update-agent-section">
@@ -107,16 +141,64 @@ const UpdateAgent = () => {
                 <input
                   type="text"
                   name="agent_address"
-                  defaultValue={agent.area_name}
+                  defaultValue={agent.address}
+                  
                   {...register("agent_address")}
                 />
               </div>
+              
+              <div>
+                <label for="">Agent District</label>
+                <br />
+                {/* <input
+                  type="text"
+                  name="agent_district"
+                  defaultValue={agent.district_name}
+                  
+                  {...register("agent_address")}
+                /> */}
+
+
+                <select name="district"  onChange={(e) => AreaSelectHandler(e)} required>
+                  <option value="" selected disabled hidden>{agent.district_name}</option>
+                  {districtData?.map((district, index) => (
+                    <option value={district.id} key={index}>
+                      {district.name}
+                    </option>
+                   ))}
+                </select>
+              </div>
+
+              <div>
+                <label for="">Agent Area</label>
+                <br />
+                {/* <input
+                  type="text"
+                  name="agent_area"
+                  defaultValue={agent.area_name}
+                  
+                  {...register("agent_address")}
+                /> */}
+
+
+
+
+              <select name="area" onChange={(e) => AreaIdHandler(e)} required>
+                <option value="" selected disabled hidden>{agent.area_name}</option>
+                {areaData.map((area, index) => (
+                  <option value={area.id} key={index}>
+                  {area.name}
+                </option>
+                ))}
+              </select>
+              </div>
+              
               <div>
                 <label for="">Profile Image</label>
                 <br />
                 <input type="file" name="image" {...register("image")}  multiple="multiple"/>
               </div>
-              <br />
+              {/* <br/> */}
               <button type="submit">Submit</button>
             </form>
             <ToastContainer />

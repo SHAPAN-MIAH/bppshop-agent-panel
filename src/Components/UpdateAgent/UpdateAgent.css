@@ -1,59 +1,56 @@
-.update-agent-section{
-    font-family: "Montserrat", sans-serif;
+.update-agent-section {
+  font-family: "Montserrat", sans-serif;
+  margin: 120px 40px 0px 40px;
 }
-.update-agent-section h2{
-    margin: 40px;
-}
-.update-agent-content-container{
-    width: 55%;
-    margin: 40px;
-    margin-top: 20px;
-    padding: 40px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    background: rgb(255, 255, 255);
-    border-radius: 10px;
-}
-.update-agent-header{
-    height: 200px;
-    background: rgb(224, 224, 224);
-    border-radius: 7px;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    margin-bottom: 40px;
-    
-}
-.profile-picture{
-    width: 150px;
-    height: 150px;
-    background: rgb(248, 209, 209);
-    border-radius: 50%;
-    overflow: hidden;
-    margin-left: 40px;
-}
-.update-agent-content-container form{
-   display: grid;
-   grid-template-columns: repeat(2, 1fr);
-   grid-gap: 0px 25px;
 
+.update-agent-content-container {
+  /* width: 70%; */
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
 }
-.update-agent-content-container form input{
-    padding: 10px;
-    margin: 10px 0px; 
-    border: .5px solid rgb(197, 197, 197);
-    outline: none;
-    width: 100%;
-
+.update-agent-header {
+  height: 200px;
+  background: rgb(224, 224, 224);
+  border-radius: 7px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-bottom: 40px;
 }
-.update-agent-content-container form button{
-    width: 40%;
-    padding: 10px 20px;
-    margin: 10px 0px; 
-    border: none;
-    background: #16a0da;
-    color: #ffff;
-    outline: none;
-
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  background: rgb(248, 209, 209);
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0px 20px 0px 20px;
+}
+.update-agent-content-container form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0px 25px;
+}
+.update-agent-content-container form input,
+.update-agent-content-container form select {
+  padding: 10px;
+  margin: 10px 0px;
+  border: 0.5px solid rgb(197, 197, 197);
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+}
+.update-agent-content-container form button {
+  height: 48px;
+  width: 50%;
+  padding: 10px 20px;
+  margin: 36px 0px 0px 0px;
+  border: none;
+  border-radius: 5px;
+  background: #16a0da;
+  color: #ffff;
+  outline: none;
 }
 
 .update-agent-content-container form input::-webkit-outer-spin-button,
@@ -62,327 +59,295 @@
   margin: 0;
 }
 
-.update-agent-content-container form input[type=number] {
+.update-agent-content-container form input[type="number"] {
   -moz-appearance: textfield;
 }
 
-@media screen and (max-width: 800px) {
-    .update-agent-section h2{
-        margin: 20px 0px;
-    }
-    .update-agent-content-container{
-        width: 100%;
-        margin: 20px 0px;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        background: rgb(255, 255, 255);
-        border-radius: 10px;
-    }
-    .update-agent-header{
-        height: auto;
-        padding: 12px 0px;
-        margin-bottom: 20px;
-        
-    }
-    .profile-picture{
-        width: 100px;
-        height: 100px;
-        background: rgb(248, 209, 209);
-        border-radius: 50%;
-        overflow: hidden;
-        margin-left: 30px;
-    }
-    .profile-picture img{
-        width: 100%;
-    }
-    .update-agent-content-container form{
-       display: grid;
-       grid-template-columns: repeat(2, 1fr);
-       grid-gap: 0px 20px;
-    
-    }
-    .update-agent-content-container form input{
-       border-radius: 5px;
-    
-    }
-    .update-agent-content-container form button{
-        width: 50%;
-        padding: 10px 20px;
-        margin-top:  10px; 
-        border: none;
-        background: #16a0da;
-        border-radius: 5px;
-        color: #ffff;
-        outline: none;
-    
-    }
+@media screen and (max-width: 768px) {
+  .update-agent-section {
+    margin: 100px 10px 0px 10px;
   }
+  .update-agent-content-container {
+    width: 100%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+  .update-agent-header {
+    height: auto;
+    padding: 12px 0px;
+    margin-bottom: 20px;
+  }
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    background: rgb(248, 209, 209);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 30px;
+  }
+  .profile-picture img {
+    width: 100%;
+  }
+  .update-agent-content-container form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0px 20px;
+  }
+  .update-agent-content-container form input {
+    border-radius: 5px;
+  }
+  .update-agent-content-container form button {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 36px;
+    border: none;
+    background: #16a0da;
+    border-radius: 5px;
+    color: #ffff;
+    outline: none;
+  }
+}
 @media screen and (max-width: 700px) {
-    .update-agent-section h2{
-        margin: 20px 0px;
-    }
-    .update-agent-content-container{
-        width: 100%;
-        margin: 20px 0px;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        background: rgb(255, 255, 255);
-        border-radius: 10px;
-    }
-    .update-agent-header{
-        height: auto;
-        padding: 12px 0px;
-        margin-bottom: 20px;
-        
-    }
-    .profile-picture{
-        width: 100px;
-        height: 100px;
-        background: rgb(248, 209, 209);
-        border-radius: 50%;
-        overflow: hidden;
-        margin-left: 30px;
-    }
-    .profile-picture img{
-        width: 100%;
-    }
-    .update-agent-content-container form{
-       display: grid;
-       grid-template-columns: repeat(2, 1fr);
-       grid-gap: 0px 20px;
-    
-    }
-    .update-agent-content-container form input{
-       border-radius: 5px;
-    
-    }
-    .update-agent-content-container form button{
-        width: 50%;
-        padding: 10px 20px;
-        margin-top:  10px; 
-        border: none;
-        background: #16a0da;
-        border-radius: 5px;
-        color: #ffff;
-        outline: none;
-    
-    }
+  .update-agent-section {
+    margin: 100px 10px 0px 10px;
   }
+  .update-agent-content-container {
+    width: 100%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+  .update-agent-header {
+    height: auto;
+    padding: 12px 0px;
+    margin-bottom: 20px;
+  }
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    background: rgb(248, 209, 209);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 30px;
+  }
+  .profile-picture img {
+    width: 100%;
+  }
+  .update-agent-content-container form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0px 20px;
+  }
+  .update-agent-content-container form input {
+    border-radius: 5px;
+  }
+  .update-agent-content-container form button {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 36px;
+    border: none;
+    background: #16a0da;
+    border-radius: 5px;
+    color: #ffff;
+    outline: none;
+  }
+}
 @media screen and (max-width: 600px) {
-    .update-agent-section h2{
-        margin: 20px 0px;
-    }
-    .update-agent-content-container{
-        width: 100%;
-        margin: 20px 0px;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        background: rgb(255, 255, 255);
-        border-radius: 10px;
-    }
-    .update-agent-header{
-        height: auto;
-        padding: 12px 0px;
-        margin-bottom: 20px;
-        
-    }
-    .profile-picture{
-        width: 100px;
-        height: 100px;
-        background: rgb(248, 209, 209);
-        border-radius: 50%;
-        overflow: hidden;
-        margin-left: 30px;
-    }
-    .profile-picture img{
-        width: 100%;
-    }
-    .update-agent-content-container form{
-       display: grid;
-       grid-template-columns: repeat(1, 1fr);
-       grid-gap: 0px 20px;
-    
-    }
-    .update-agent-content-container form input{
-       border-radius: 5px;
-    
-    }
-    .update-agent-content-container form button{
-        width: 50%;
-        padding: 10px 20px;
-        margin-top:  -10px; 
-        border: none;
-        background: #16a0da;
-        border-radius: 5px;
-        color: #ffff;
-        outline: none;
-    
-    }
+  .update-agent-section {
+    margin: 100px 10px 0px 10px;
   }
+  .update-agent-content-container {
+    width: 100%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+  .update-agent-header {
+    height: auto;
+    padding: 12px 0px;
+    margin-bottom: 20px;
+  }
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    background: rgb(248, 209, 209);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 30px;
+  }
+  .profile-picture img {
+    width: 100%;
+  }
+  .update-agent-content-container form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px 20px;
+  }
+  .update-agent-content-container form input {
+    border-radius: 5px;
+  }
+  .update-agent-content-container form button {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    background: #16a0da;
+    border-radius: 5px;
+    color: #ffff;
+    outline: none;
+  }
+}
 @media screen and (max-width: 500px) {
-    .update-agent-section h2{
-        margin: 20px 0px;
-    }
-    .update-agent-content-container{
-        width: 100%;
-        margin: 20px 0px;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        background: rgb(255, 255, 255);
-        border-radius: 10px;
-    }
-    .update-agent-header{
-        height: auto;
-        padding: 12px 0px;
-        margin-bottom: 20px;
-        
-    }
-    .profile-picture{
-        width: 100px;
-        height: 100px;
-        background: rgb(248, 209, 209);
-        border-radius: 50%;
-        overflow: hidden;
-        margin-left: 30px;
-    }
-    .profile-picture img{
-        width: 100%;
-    }
-    .update-agent-content-container form{
-       display: grid;
-       grid-template-columns: repeat(1, 1fr);
-       grid-gap: 0px 20px;
-    
-    }
-    .update-agent-content-container form input{
-       border-radius: 5px;
-    
-    }
-    .update-agent-content-container form button{
-        width: 50%;
-        padding: 10px 20px;
-        margin-top:  -10px; 
-        border: none;
-        background: #16a0da;
-        border-radius: 5px;
-        color: #ffff;
-        outline: none;
-    
-    }
+  .update-agent-section {
+    margin: 100px 10px 0px 10px;
   }
+  .update-agent-content-container {
+    width: 100%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+  .update-agent-header {
+    height: auto;
+    padding: 12px 0px;
+    margin-bottom: 20px;
+  }
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    background: rgb(248, 209, 209);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 30px;
+  }
+  .profile-picture img {
+    width: 100%;
+  }
+  .update-agent-content-container form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px 20px;
+  }
+  .update-agent-content-container form input {
+    border-radius: 5px;
+  }
+  .update-agent-content-container form button {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    background: #16a0da;
+    border-radius: 5px;
+    color: #ffff;
+    outline: none;
+  }
+}
 @media screen and (max-width: 460px) {
-    .update-agent-section h2{
-        margin: 20px 0px;
-    }
-    .update-agent-content-container{
-        width: 100%;
-        margin: 20px 0px;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        background: rgb(255, 255, 255);
-        border-radius: 10px;
-    }
-    .update-agent-header{
-        height: auto;
-        padding: 12px 0px;
-        margin-bottom: 20px;
-        
-    }
-    .update-agent-name{
-        margin: 20px 10px;
-    }
-    .update-agent-header h3{
-        font-size: 20px;
-        
-    }
-    .profile-picture{
-        width: 90px;
-        height: 90px;
-        background: rgb(248, 209, 209);
-        border-radius: 50%;
-        overflow: hidden;
-        margin-left: 20px;
-    }
-    .profile-picture img{
-        width: 100%;
-    }
-    .update-agent-content-container form{
-       display: grid;
-       grid-template-columns: repeat(1, 1fr);
-       grid-gap: 0px 20px;
-    
-    }
-    .update-agent-content-container form input{
-       border-radius: 5px;
-    
-    }
-    .update-agent-content-container form button{
-        width: 50%;
-        padding: 10px 20px;
-        margin-top:  -10px; 
-        border: none;
-        background: #16a0da;
-        border-radius: 5px;
-        color: #ffff;
-        outline: none;
-    
-    }
+  .update-agent-section {
+    margin: 100px 10px 0px 10px;
   }
+  .update-agent-content-container {
+    width: 100%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+  .update-agent-header {
+    height: auto;
+    padding: 12px 0px;
+    margin-bottom: 20px;
+  }
+  .update-agent-name {
+    margin: 20px 10px;
+  }
+  .update-agent-header h3 {
+    font-size: 20px;
+  }
+  .profile-picture {
+    width: 90px;
+    height: 90px;
+    background: rgb(248, 209, 209);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 20px;
+  }
+  .profile-picture img {
+    width: 100%;
+  }
+  .update-agent-content-container form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px 20px;
+  }
+  .update-agent-content-container form input {
+    border-radius: 5px;
+  }
+  .update-agent-content-container form button {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    background: #16a0da;
+    border-radius: 5px;
+    color: #ffff;
+    outline: none;
+  }
+}
 @media screen and (max-width: 400px) {
-    .update-agent-section h2{
-        margin: 20px 0px;
-    }
-    .update-agent-content-container{
-        width: 100%;
-        margin: 20px 0px;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        background: rgb(255, 255, 255);
-        border-radius: 10px;
-    }
-    .update-agent-header{
-        height: auto;
-        padding: 5px 0px;
-        margin-bottom: 20px;
-        
-    }
-    .update-agent-name{
-        margin: 10px;
-    }
-    .update-agent-header h3{
-        font-size: 16px;
-        
-    }
-    .profile-picture{
-        width: 80px;
-        height: 80px;
-        background: rgb(248, 209, 209);
-        border-radius: 50%;
-        overflow: hidden;
-        margin-left: 20px;
-    }
-    .profile-picture img{
-        width: 100%;
-    }
-    .update-agent-content-container form{
-       display: grid;
-       grid-template-columns: repeat(1, 1fr);
-       grid-gap: 0px 20px;
-    
-    }
-    .update-agent-content-container form input{
-       border-radius: 5px;
-    
-    }
-    .update-agent-content-container form button{
-        width: 50%;
-        padding: 10px 20px;
-        margin-top:  -10px; 
-        border: none;
-        background: #16a0da;
-        border-radius: 5px;
-        color: #ffff;
-        outline: none;
-    
-    }
+  .update-agent-section {
+    margin: 100px 10px 0px 10px;
   }
+  .update-agent-content-container {
+    width: 100%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+  .update-agent-header {
+    height: auto;
+    padding: 5px 0px;
+    margin-bottom: 20px;
+  }
+  .update-agent-name {
+    margin: 10px;
+  }
+  .update-agent-header h3 {
+    font-size: 16px;
+  }
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+    background: rgb(248, 209, 209);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 20px;
+  }
+  .profile-picture img {
+    width: 100%;
+  }
+  .update-agent-content-container form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px 20px;
+  }
+  .update-agent-content-container form input {
+    border-radius: 5px;
+  }
+  .update-agent-content-container form button {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    background: #16a0da;
+    border-radius: 5px;
+    color: #ffff;
+    outline: none;
+  }
+}

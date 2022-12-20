@@ -1,5 +1,5 @@
 .viewProfile-section{
-    margin-top: 40px;
+    margin-top: 120px;
     font-family: "Montserrat", sans-serif;
 }
 .viewProfile-container{
@@ -48,7 +48,7 @@
 
 @media screen and (max-width: 768px) {
     .viewProfile-section{
-        margin-top: 20px;
+        margin-top: 100px;
     }
     .viewProfile-container{
         margin: 10px;

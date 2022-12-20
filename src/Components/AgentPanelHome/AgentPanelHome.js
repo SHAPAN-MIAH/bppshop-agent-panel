@@ -58,7 +58,7 @@ const AgentPanelHome = () => {
           <Sidebar />
         </div>
         <div className="dashboard-content-outlet-container">
-          <div className="dashboard-navbar">
+          <div className="dashboard-navbar fixed-top">
             <div className="content-title">
               <span className="bar-icon">
                 <i onClick={menuToggle} className="bi bi-list"></i>

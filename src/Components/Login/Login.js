@@ -16,12 +16,13 @@ const Login = () => {
   const location = useLocation();
 
   const [data, setData] = useState({
-    agent_email: "",
+    // agent_email: "",
     agent_mobile_number: "",
     password: "",
   });
-  // console.log(data)
+
   const [error, setError] = useState("");
+  const [loginFailedMassage, setLoginFailedMassage] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -33,16 +34,14 @@ const Login = () => {
       const url = baseURL + "/login";
 
       await axios.post(url, data).then((res) => {
-        console.log(res);
         if (res.data.status == "success") {
           if (res.data.is_verified == 1) {
             setLoggedInUser(res.data);
-
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("isLoggedIn", true);
-            console.log(res);
             let from = location?.state?.from?.pathname || "/";
             navigate(from, { replace: true });
+
           } else {
             document.querySelector(".forgot_pass_container").style.display =
               "block";
@@ -54,8 +53,11 @@ const Login = () => {
             document.querySelector(".loginFormContent").style.display = "none";
 
             setOtpSuccessStatus(true);
-            signUpVerifyPhoneNumberSend();
+            signUpVerifyPhoneNumberSend(e);
           }
+        }
+        if (res.data.status == "failed") {
+          setLoginFailedMassage(res.data.message)
         } else {
           setError(error.response.data.message);
         }
@@ -74,8 +76,6 @@ const Login = () => {
 
   // forgot password start.................
   const [forgotPhoneData, setForgotPhoneData] = useState("");
-  // console.log(forgotPhoneData);
-
   const forgotData = {
     type: 2,
     phone: forgotPhoneData,
@@ -119,14 +119,14 @@ const Login = () => {
   };
 
   const [otpExpairStatus, setOtpExpairStatus] = useState("");
+
   const signUpVerifyPhoneData = {
     type: 1,
     phone: data.agent_mobile_number,
   };
 
-  // console.log(signUpVerifyPhoneData)
-
-  const signUpVerifyPhoneNumberSend = () => {
+  const signUpVerifyPhoneNumberSend = (e) => {
+    e.preventDefault()
 
     axios.post(baseURL + "/resend", signUpVerifyPhoneData).then((res) => {
       console.log(res);
@@ -266,11 +266,9 @@ const Login = () => {
   };
 
   const resendSignupOtpData = {
-    type: 2,
-    phone: forgotPhoneData,
+    type: 1,
+    phone: data.agent_mobile_number,
   };
-
-  // console.log(resendSignupOtpData)
 
   const resendSignupOTP = () => {
     setMinutess(2);
@@ -311,6 +309,9 @@ const Login = () => {
         case "newPassword":
           if (!value) {
             stateObj[name] = "Please enter Password.";
+          }
+          if (value > 0 && value < 8) {
+            stateObj[name] = "Password should be minimum 8 characters.";
           } else if (
             changePassInput.confirmPassword &&
             value !== changePassInput.confirmPassword
@@ -411,7 +412,16 @@ const Login = () => {
     document.querySelector(".verifySuccess-msg-container").style.display ="none";
   }
 
-
+  const [passwordType, setPasswordType] = useState("password");
+  
+  const togglePassword =()=>{
+    if(passwordType==="password")
+    {
+     setPasswordType("text")
+     return;
+    }
+    setPasswordType("password")
+  }
 
   return (
     <>
@@ -448,16 +458,22 @@ const Login = () => {
                     required
                   />
                   <br />
+                  <div>
                   <input
-                    type="password"
+                    type={passwordType} 
                     placeholder="Password"
                     name="password"
                     onChange={handleChange}
                     value={data.password}
                     required
                   />
+                  <span className="passwordToggleBtn" onClick={togglePassword}>
+                    { passwordType==="password"? <i className="bi bi-eye-slash"></i> :<i className="bi bi-eye"></i> }
+                  </span>
+                  </div>
 
                   {error && <div className="text-danger">{error}</div>}
+                  <small style={{color: "red"}}>{loginFailedMassage}</small>
                   <div className="d-flex justify-content-between mt-3">
                     <button type="submit">Login</button>
                     <p className="forgotPass" onClick={forgotPassHandler}>
@@ -473,6 +489,7 @@ const Login = () => {
                     </Link>
                   </p>
                 </form>
+                
               </div>
               <div className="forgot_pass_container">
                 <div className="forgot_pass_content">
@@ -560,6 +577,7 @@ const Login = () => {
                   <div className="otpExpairStatus-container">
                     <p>{otpExpairStatus}</p>
                   </div>
+                  
                   <p>Enter Verification Code</p>
                   <div className={styles.otp_form_container} id="otpInput">
                     {otp.map((data, index) => {
@@ -624,30 +642,40 @@ const Login = () => {
 
                   <div className="changePass-form-container">
                     <form onSubmit={handleSubmitPasswordChange}>
-                      <input
-                        type="password"
-                        name="newPassword"
-                        placeholder="Enter New Password"
-                        value={changePassInput.password}
-                        onChange={onInputPasswordChange}
-                        onBlur={validateInput}
-                        required
-                      ></input>
-                      {changePassError.password && (
-                        <span className="err text-danger">
-                          {changePassError.password}
+                      <div>
+                        <input
+                          type="passwordType"
+                          name="newPassword"
+                          placeholder="Enter New Password"
+                          value={changePassInput.password}
+                          onChange={onInputPasswordChange}
+                          onBlur={validateInput}
+                          required
+                        ></input>
+                        <span className="passwordToggleBtn" onClick={togglePassword}>
+                          { passwordType==="password"? <i className="bi bi-eye-slash"></i> :<i className="bi bi-eye"></i> }
+                        </span>
+                      </div>
+                      {changePassError.newPassword && (
+                        <span className="err text-danger" style={{fontSize: "14px"}}>
+                          {changePassError.newPassword}
                         </span>
                       )}
 
-                      <input
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Enter Confirm Password"
-                        value={changePassInput.confirmPassword}
-                        onChange={onInputPasswordChange}
-                        onBlur={validateInput}
-                        required
-                      ></input>
+                      <div>
+                        <input
+                          type="passwordType"
+                          name="confirmPassword"
+                          placeholder="Enter Confirm Password"
+                          value={changePassInput.confirmPassword}
+                          onChange={onInputPasswordChange}
+                          onBlur={validateInput}
+                          required
+                        ></input>
+                        <span className="passwordToggleBtn" onClick={togglePassword}>
+                            { passwordType==="password"? <i className="bi bi-eye-slash"></i> :<i className="bi bi-eye"></i> }
+                          </span>
+                      </div>
                       {changePassError.confirmPassword && (
                         <span className="err text-danger">
                           {changePassError.confirmPassword}

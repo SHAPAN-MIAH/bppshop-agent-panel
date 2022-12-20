@@ -27,6 +27,7 @@ const Wallet = () => {
       },
       headers: { Authorization: `Bearer ${token}` },
     }).then((res) => {
+      console.log(res)
       setTotalPage(Math.ceil(res.data.data.total / limit));
       // console.log(res);
     });
@@ -47,16 +48,16 @@ const Wallet = () => {
               <div className="col-md-4">
                 <div className="wallet-balance-container">
                   <h6>Available Balance</h6>
-                  <h4>Tk. 234787</h4>
+                  <h4>Tk. 0.00</h4>
                   {/* <h4>৳ 234787</h4> */}
                   <div className="balance-up-down">
                     <span>
                       <i className="bi bi-arrow-up-right"></i>{" "}
-                      <small>+ 1134</small>
+                      <small>+ 0.00</small>
                     </span>
                     <span>
                       <i className="bi bi-arrow-down-left"></i>{" "}
-                      <small>- 750</small>
+                      <small>- 0.00</small>
                     </span>
                   </div>
                 </div>
