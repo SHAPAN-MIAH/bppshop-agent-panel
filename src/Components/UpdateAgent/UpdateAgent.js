@@ -8,12 +8,10 @@ import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
 
-
 const UpdateAgent = () => {
   const navigate = useNavigate();
   const [agent, setAgent] = useState([]);
   const token = localStorage.getItem("token");
-
 
   useEffect(() => {
     axios
@@ -21,14 +19,16 @@ const UpdateAgent = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setAgent(res.data.data));
-  }, []);
+  }, [token]);
 
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
+    const newData = ({...data, district_id: districtId,  area_id: areaId})
+
     const formData = new FormData();
 
-    Object.entries(data).forEach(([key, value]) => {
+    Object.entries(newData).forEach(([key, value]) => {
       if (value instanceof FileList) {
         formData.append(key, value.item(0));
       } else {
@@ -41,6 +41,8 @@ const UpdateAgent = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(res => {
+
+        console.log(res)
   
         if(res.data.status == "success"){
           notify()
@@ -52,10 +54,7 @@ const UpdateAgent = () => {
         console.error("Error:", error);
       });
   };
-
   const notify = () => toast("agent update successfully");
-
-
 
 
   const [districtData, setDistrictData] = useState([]);
@@ -122,7 +121,7 @@ const UpdateAgent = () => {
                   type="number"
                   name="customer_phone"
                   value={agent.phone}
-                  {...register("customer_phone")}
+                  // {...register("customer_phone")}
                 />
               </div>
               <div>
@@ -132,7 +131,7 @@ const UpdateAgent = () => {
                   type="email"
                   name="customer_email"
                   value={agent.email}
-                  {...register("customer_email")}
+                  // {...register("customer_email")}
                 />
               </div>
               <div>
@@ -148,9 +147,9 @@ const UpdateAgent = () => {
               </div>
               
               <div>
-                <label for="">Agent District</label>
+                {/* <label for="">Agent District</label>
                 <br />
-                {/* <input
+                <input
                   type="text"
                   name="agent_district"
                   defaultValue={agent.district_name}
@@ -170,27 +169,23 @@ const UpdateAgent = () => {
               </div>
 
               <div>
-                <label for="">Agent Area</label>
+                {/* <label for="">Agent Area</label>
                 <br />
-                {/* <input
+                <input
                   type="text"
                   name="agent_area"
                   defaultValue={agent.area_name}
                   
                   {...register("agent_address")}
                 /> */}
-
-
-
-
-              <select name="area" onChange={(e) => AreaIdHandler(e)} required>
-                <option value="" selected disabled hidden>{agent.area_name}</option>
-                {areaData.map((area, index) => (
-                  <option value={area.id} key={index}>
-                  {area.name}
-                </option>
-                ))}
-              </select>
+                <select name="area" onChange={(e) => AreaIdHandler(e)} required>
+                  <option value="" selected disabled hidden>{agent.area_name}</option>
+                  {areaData.map((area, index) => (
+                    <option value={area.id} key={index}>
+                    {area.name}
+                  </option>
+                  ))}
+                </select> 
               </div>
               
               <div>

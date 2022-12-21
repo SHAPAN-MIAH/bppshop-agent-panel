@@ -6,7 +6,19 @@ import ReactPaginate from "react-paginate";
 
 const Wallet = () => {
   const token = localStorage.getItem("token");
+  const [agent, setAgent] = useState([]);
+  useEffect(() => {
+    axios
+      .get(baseURL + "/agent/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => setAgent(res.data.data));
+  }, [token]);
+
+
+  
   const [totalPage, setTotalPage] = useState(0);
+  const [transactionHistoryData, setTransactionHistoryData] = useState([]);
 
   let currentPage = 1;
   let limit = 10;
@@ -29,7 +41,7 @@ const Wallet = () => {
     }).then((res) => {
       console.log(res)
       setTotalPage(Math.ceil(res.data.data.total / limit));
-      // console.log(res);
+      setTransactionHistoryData(res.data.data.data)
     });
   };
 
@@ -48,7 +60,7 @@ const Wallet = () => {
               <div className="col-md-4">
                 <div className="wallet-balance-container">
                   <h6>Available Balance</h6>
-                  <h4>Tk. 0.00</h4>
+                  <h4>Tk. {agent.wallet_balance}</h4>
                   {/* <h4>৳ 234787</h4> */}
                   <div className="balance-up-down">
                     <span>
@@ -107,6 +119,7 @@ const Wallet = () => {
                   <div className="transaction-history-table-container">
                     <table>
                       <thead>
+                        <th>Agent Id</th>
                         <th>Date Time</th>
                         <th>Transaction Id</th>
                         <th>Transaction Type</th>
@@ -117,16 +130,19 @@ const Wallet = () => {
                         <th>Balance </th>
                       </thead>
                       <tbody>
+                      {transactionHistoryData.map((listData) => (
                         <tr>
-                          <td data-label="Date Time"></td>
-                          <td data-label="Transaction Id"></td>
-                          <td data-label="Transaction Type"></td>
-                          <td data-label="Order Group Id"></td>
-                          <td data-label="Credit"></td>
-                          <td data-label="Debit"></td>
-                          <td data-label="Reference no"></td>
-                          <td data-label="Balance"></td>
+                          <td data-label="'Agent Id">{listData.agent_id}</td>
+                          <td data-label="Date Time">{listData.date_time}</td>
+                          <td data-label="Transaction Id">{listData.transaction_id}</td>
+                          <td data-label="Transaction Type">{listData.transaction_type}</td>
+                          <td data-label="Order Group Id">{listData.order_group_id}</td>
+                          <td data-label="Credit">{listData.credit}</td>
+                          <td data-label="Debit">{listData.debit}</td>
+                          <td data-label="Reference no">{listData.balance}</td>
+                          <td data-label="Balance">{listData.reference}</td>
                         </tr>
+                      ))}
                       </tbody>
                     </table>
 

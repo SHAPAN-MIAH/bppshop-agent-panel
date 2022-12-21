@@ -58,11 +58,10 @@ export const data = {
 };
 
 const Dashboard = () => {
+  
   const [dashboardInfo, setDashboardInfo] = useState([]);
   const [agent, setAgent] = useState([]);
-console.log(agent)
   const token = localStorage.getItem("token");
-
 
   useEffect(() => {
     axios
@@ -81,7 +80,7 @@ console.log(agent)
       .then((res) => setAgent(res.data.data));
   }, [token]);
  
-
+console.log(agent)
   return (
     <>
       <div className="dashboard-section">

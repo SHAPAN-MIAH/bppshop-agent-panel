@@ -24,6 +24,7 @@ const EditCustomer = () => {
       }
     });
 
+    // console.log(formData)
     axios
       .post(baseURL + "/agent/profile/update", formData, {
         headers: { Authorization: `Bearer ${token}` },

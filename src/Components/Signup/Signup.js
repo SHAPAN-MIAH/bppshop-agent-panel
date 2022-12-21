@@ -8,10 +8,11 @@ import { baseURL } from "./../../BaseUrl/BaseUrl";
 import OtpTimer from "otp-timer";
 import { useEffect } from "react";
 import { useCallback } from "react";
-
+import Select from 'react-select'
 
 
 const Signup = () => {
+
   const [data, setData] = useState({
     agent_name: "",
     agent_email: "",
@@ -25,6 +26,7 @@ const Signup = () => {
   
   const [districtData, setDistrictData] = useState([]);
   const [areaData, setAreaData] = useState([]);
+ 
   const [districtId, setDistrictId] = useState('');
   const [areaId, setAreaId] = useState('');
 
@@ -37,9 +39,12 @@ const Signup = () => {
   }, []);
 
   
-  const AreaSelectHandler = (e) => {
-    const distId = e.target.value;
-    setDistrictId(e.target.value);
+  const AreaSelectHandler = (item) => {
+    
+    const distId = item;
+    console.log(distId)
+
+    setDistrictId(item);
 
     axios
       .get(baseURL + `/location/areas/${distId}`)
@@ -47,18 +52,14 @@ const Signup = () => {
   };
 
 
-
-  const AreaIdHandler = (e) => {
-    const areaId = e.target.value;
-
+  const AreaIdHandler = (item) => {
+    const areaId = item;
     setAreaId(areaId)
   }
 
 
-
   const [registerAgent, setRegisterAgent] = useState([]);
   const [passMaxLenthAlert, setPassMaxLenthAlert] = useState([]);
-  // console.log(registerAgent)
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
@@ -243,6 +244,8 @@ const Signup = () => {
   }
 
 
+ 
+
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
@@ -313,8 +316,21 @@ const Signup = () => {
             <span style={{fontSize: "14px", color: "red"}}>{passMaxLenthAlert}</span>
 
             <div className="area-container">
+            <Select 
+              defaultValue="Select your District"
+              onChange={(item) => AreaSelectHandler(item)}
               
-              <select name="country" onChange={(e) => AreaSelectHandler(e)} required>
+              options={districtData} 
+              style={{color: "red"}}
+            />
+            <Select 
+              defaultValue="Select your area"
+              onChange={(item) => AreaIdHandler(item)}
+              options={areaData} 
+              style={{color: "red"}}
+            />
+
+              {/* <select name="district" onChange={(e) => AreaSelectHandler(e)} required>
                 <option value="">Choose Districts ---</option>
                 {districtData?.map((district, index) => (
                   <option value={district.id} key={index}>
@@ -330,8 +346,7 @@ const Signup = () => {
                   {area.name}
                 </option>
                 ))}
-              </select>
-
+              </select> */}
 
             </div>
             {error && <div className={styles.error_msg}>{error}</div>}

@@ -630,7 +630,7 @@ const Login = () => {
                   <div className="verifySuccess-msg-container">
                     <h6 className="verifySuccess-msg"></h6>
                     <h5 className="gotoSignIng">
-                      Please <span onClick={signInAfterVerifyHandler}>sign in</span>
+                      Please <span style={{cursor: "pointer"}} onClick={signInAfterVerifyHandler}>sign in</span>
                     </h5>
                   </div>
                 </div>
