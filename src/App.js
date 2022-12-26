@@ -22,6 +22,7 @@ import CustomerDetails from "./Components/Customer/CustomerDetails/CustomerDetai
 import EditCustomer from "./Components/Customer/EditCustomer/EditCustomer";
 import Wallet from "./Components/Wallet/Wallet";
 import SignupForm from './Components/Signup/SignupForm/SignupForm';
+import EditAgentProfile from './Components/UpdateAgent/EditAgentProfile';
 
 export const UserContext = createContext();
 function App() {
@@ -47,6 +48,7 @@ function App() {
               <Route
                 path="update-agent-profile"
                 element={<UpdateAgent />}
+                // element={<EditAgentProfile />}
               ></Route>
 
               <Route path="customer" element={<Customer />}>

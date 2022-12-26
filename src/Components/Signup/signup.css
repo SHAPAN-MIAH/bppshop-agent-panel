@@ -45,7 +45,7 @@
 }
 .area-container{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: 15px;
     margin-bottom: 20px;
 }
@@ -70,10 +70,36 @@
     font-size: 20px;
 }
 
-select {
-    color: #16a0da;
+.css-13cymwt-control {
+    border-width: 0px !important;
+    padding: 0px !important;
 }
 
+.css-t3ipsp-control {
+    border-width: 0px !important;
+    box-shadow: none !important;
+}
+.css-t3ipsp-control:hover {
+    border-width: 0px !important;
+    box-shadow: none !important;
+}
+.css-1fdsijx-ValueContainer{
+    padding: 2px 0px !important;
+}
+.css-1xc3v61-indicatorContainer {
+    padding: 0px !important;
+}
+
+.css-1u9des2-indicatorSeparator {
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    width: 0px !important;
+    background-color: none !important;
+}
+.css-1jqq78o-placeholder {
+    margin-left: 0px !important;
+}
 
 @media screen and (max-width: 576px) {
    

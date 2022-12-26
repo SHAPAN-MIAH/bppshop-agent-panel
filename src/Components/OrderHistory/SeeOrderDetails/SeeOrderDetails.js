@@ -20,37 +20,37 @@ const customStyles = {
   },
 };
 
-const OrderHistoryDetailsData = [
-  {
-    status: "success",
-    message: "Order details",
-    data: {
-      order_id: "100111",
-      payment_status: "unpaid",
-      order_status: "unpaid",
-      payment_method: "unpaid",
-      order_amount: 5000,
-      order_date: "29-11-2022 12:13PM",
-      discount_amount: 30,
-      customer_name: "Rashed sir xx",
-      shipping_address: "sector 11, Uttara",
-      products: [
-        {
-          product_name: "Bashundhara Screw Macaroni",
-          price: 1000,
-          discount: 20,
-          quantity: 2,
-        },
-        {
-          product_name: "Zahedi Dates 10 Kg",
-          price: 1500,
-          discount: 10,
-          quantity: 2,
-        },
-      ],
-    },
-  },
-];
+// const OrderHistoryDetailsData = [
+//   {
+//     status: "success",
+//     message: "Order details",
+//     data: {
+//       order_id: "100111",
+//       payment_status: "unpaid",
+//       order_status: "unpaid",
+//       payment_method: "unpaid",
+//       order_amount: 5000,
+//       order_date: "29-11-2022 12:13PM",
+//       discount_amount: 30,
+//       customer_name: "Rashed sir xx",
+//       shipping_address: "sector 11, Uttara",
+//       products: [
+//         {
+//           product_name: "Bashundhara Screw Macaroni",
+//           price: 1000,
+//           discount: 20,
+//           quantity: 2,
+//         },
+//         {
+//           product_name: "Zahedi Dates 10 Kg",
+//           price: 1500,
+//           discount: 10,
+//           quantity: 2,
+//         },
+//       ],
+//     },
+//   },
+// ];
 
 const SeeOrderDetails = () => {
   const { id } = useParams();
@@ -65,9 +65,7 @@ const SeeOrderDetails = () => {
     setIsOpen(false);
   }
 
-  const [orderHistoryDetailsData, setOrderHistoryDetailsData] = useState(
-    OrderHistoryDetailsData
-  );
+  const [orderHistoryDetailsData, setOrderHistoryDetailsData] = useState([]);
 
   // console.log(orderHistoryDetailsData[0].data);
 
@@ -76,60 +74,91 @@ const SeeOrderDetails = () => {
       .get(baseURL + `/agent/order/details/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res.data.data));
+      .then((res) => setOrderHistoryDetailsData(res.data.data));
   }, [id]);
 
   return (
     <div className="order-history-details-section">
       <div className="container-fluid">
         <div className="order-history-details-header">
-          <h2>Order Details</h2>
+          <h2 onClick={openModal}>Order Details</h2>
         </div>
-        <div className="order-history-details-content-container">
-          <h4>Customer Name: {orderHistoryDetailsData[0].data.customer_name}</h4>
-          <div className="order-details-all">
-          <p><span>Order Id:</span> {orderHistoryDetailsData[0].data.order_id}</p>
-          <p><span>Order Date:</span> {orderHistoryDetailsData[0].data.order_date}</p>
-          <p><span>Order Amount:</span> {orderHistoryDetailsData[0].data.order_amount}</p>
-          <p><span>Discount Amount:</span> {orderHistoryDetailsData[0].data.discount_amount}</p>
-          <p><span>Order Status:</span> {orderHistoryDetailsData[0].data.order_status}</p>
-          <p><span>Payment Method:</span> {orderHistoryDetailsData[0].data.payment_method}</p>
-          <p><span>Payment Status:</span> {orderHistoryDetailsData[0].data.payment_status}</p>
-          <p><span>Shipping Address:</span> {orderHistoryDetailsData[0].data.shipping_address}</p>
-          </div>
-          <div>
-            <h4>Products: </h4>
-            {/* {orderHistoryDetailsData[0].data.products.map(productItem => <ul>
+
+        {orderHistoryDetailsData?.map(singleOrderHistoryData => (
+          <div className="order-history-details-content-container">
+            <div>
+              <h4>Customer Name: {singleOrderHistoryData.customer_name}</h4>
+              <div className="order-details-all">
+                <p>
+                  <span>Order Id:</span> {singleOrderHistoryData.order_id}
+                </p>
+                <p>
+                  <span>Order Date:</span> {singleOrderHistoryData.order_date}
+                </p>
+                <p>
+                  <span>Order Amount:</span>{" "}
+                  {singleOrderHistoryData.order_amount}
+                </p>
+                <p>
+                  <span>Discount Amount:</span>{" "}
+                  {singleOrderHistoryData.discount_amount}
+                </p>
+                <p>
+                  <span>Order Status:</span>{" "}
+                  {singleOrderHistoryData.order_status}
+                </p>
+                <p>
+                  <span>Payment Method:</span>{" "}
+                  {singleOrderHistoryData.payment_method}
+                </p>
+                <p>
+                  <span>Payment Status:</span>{" "}
+                  {singleOrderHistoryData.payment_status}
+                </p>
+                <p>
+                  <span>Shipping Address:</span>{" "}
+                  {singleOrderHistoryData.shipping_address}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h4>Products: </h4>
+              {/* {orderHistoryDetailsData[0].data.products.map(productItem => <ul>
             <li>Product Name: {productItem.product_name}</li>
             <li>Quantity: {productItem.quantity}</li>
             <li>Price: {productItem.price}</li>
             <li>Discount: {productItem.discount}</li>
           </ul>)} */}
-          
-          <table>
-            <thead>
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Discount</th>
-            </thead>
-            <tbody>
-            {orderHistoryDetailsData[0].data.products.map(productItem => (
-                <tr>
-                  <td>{productItem.product_name}</td>
-                  <td>{productItem.quantity}</td>
-                  <td>{productItem.price}</td>
-                  <td>{productItem.discount}</td>
-                  {/* <td className="d-flex justify-content-around">
+
+              <table>
+                <thead>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Discount</th>
+                </thead>
+                <tbody>
+                  {orderHistoryDetailsData[0].data.products.map(
+                    (productItem) => (
+                      <tr>
+                        <td>{productItem.product_name}</td>
+                        <td>{productItem.quantity}</td>
+                        <td>{productItem.price}</td>
+                        <td>{productItem.discount}</td>
+                        {/* <td className="d-flex justify-content-around">
                     <button onClick={() => handleLoginAsCustomer(listData?.id)}>Login </button>{" "}
                     <Link to={`/customer/customer-details/${listData?.id}`}><i className="bi bi-eye customerEdit-Btn"></i></Link>
                   </td> */}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        ))}
+
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}

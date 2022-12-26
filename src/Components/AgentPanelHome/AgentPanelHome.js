@@ -36,6 +36,8 @@ const AgentPanelHome = () => {
 
   const [agent, setAgent] = useState([]);
 
+  // console.log(agent)
+
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
@@ -94,7 +96,7 @@ const AgentPanelHome = () => {
                   }}
                 >
                   <img
-                    width="40"
+                    width="30"
                     height="100%"
                     src={`https://agentapi.bppshop.com.bd/${agent.image}`}
                     alt="profile"

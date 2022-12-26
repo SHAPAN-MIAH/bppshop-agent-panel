@@ -24,22 +24,35 @@ const ViewProfile = () => {
           <div className="viewProfile-container">
             <h2>Agent Profile</h2>
             <div className="view-profile-content-container">
-              <div className="view-profile-content">
-                <img
-                  src={`https://agentapi.bppshop.com.bd/${agent.image}`}
-                  alt="profile"
-                />
-                <div className="mx-4 mt-4">
-                  <h3>{agent.name}</h3>
-                  <small>{agent.email}</small>
-                  <br/>
+              <div className="view-profile-header-content">
+                <div className="view-profile-img">
+                  <img
+                    src={`https://agentapi.bppshop.com.bd/${agent.image}`}
+                    alt="profile"
+                  />
+                </div>
+
+                <div className="agentEditBtn">
                   <Link to="/update-agent-profile">
                     <button className="viewProfileEditBtn" type="">
                       <i className="bi bi-pencil-square"></i>
-                      Update Profile
+                      Edit Agent Profile
                     </button>
                   </Link>
                 </div>
+              </div>
+              <div className="view-profile-name">
+                <div>
+                  <h3>{agent.name}</h3>
+                  <small>{agent.email}</small>
+                </div>
+                <br />
+                {/* <Link to="/update-agent-profile">
+                  <button className="viewProfileEditBtn" type="">
+                  <i className="bi bi-pencil-square"></i>
+                  Edit Agent Profile
+                  </button>
+                </Link> */}
               </div>
               <div className="view-profile-contact-content">
                 <div className="">
@@ -51,19 +64,19 @@ const ViewProfile = () => {
                     <span>Balance</span> : {agent.wallet_balance}
                   </h4>
                 </div>
-                <br/>
+                <br />
                 <h5>CONTACT INFORMATION :</h5>
                 <div className="d-flex">
                   <i className="bi bi-telephone"></i>
                   <div className="mx-2">
-                    <span >Mobile</span>
+                    <span>Mobile</span>
                     <p>{agent.phone}</p>
                   </div>
                 </div>
                 <div className="d-flex">
                   <i className="bi bi-envelope"></i>
                   <div className="mx-2">
-                    <span >Email</span>
+                    <span>Email</span>
                     <p>{agent.email}</p>
                   </div>
                 </div>
@@ -71,9 +84,16 @@ const ViewProfile = () => {
                   <i className="bi bi-house"></i>
                   <div className="mx-2">
                     <span>Address</span>
-                    {
-                      agent?.address == null ? <p>{agent.area_name}, {agent.district_name}</p> : <p>{agent.address}</p> 
-                    }
+                    <p>
+                      {agent.address ? <span> {agent.address},</span> : ""}
+                      {agent.area_name ? <span> {agent.area_name},</span> : ""}
+                      {agent.area_name ? <span> {agent.thana_name},</span> : ""}
+                      {agent.district_name ? (
+                        <span> {agent.district_name}</span>
+                      ) : (
+                        ""
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>

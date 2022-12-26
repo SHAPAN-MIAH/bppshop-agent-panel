@@ -312,7 +312,10 @@ const Login = () => {
           }
           if (value > 0 && value < 8) {
             stateObj[name] = "Password should be minimum 8 characters.";
-          } else if (
+          } 
+          if(value >= 8){
+            stateObj[name] = "";
+          }else if (
             changePassInput.confirmPassword &&
             value !== changePassInput.confirmPassword
           ) {

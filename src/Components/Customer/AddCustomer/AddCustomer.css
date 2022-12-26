@@ -3,7 +3,7 @@
   font-family: "Montserrat", sans-serif;
 }
 .add-customer-form-container {
-  margin: 40px 0px;
+  margin: 20px 0px;
   background: #ffff;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -13,29 +13,30 @@
 }
 .add-customer-form-container form {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px 20px;
 }
 .add-customer-form-container form input,
 .add-customer-form-container form textarea {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   outline: none;
   background: none;
-  border: 1px solid rgb(190, 190, 190);
+  border: 1px solid rgb(206, 206, 206);
   border-radius: 5px;
 }
 .add-customer-form-container form textarea {
-  height: 45px;
+  height: 42px;
 }
 .add-customer-form-container button {
   width: 250px;
+  height: 45px;
   border: none;
   border-radius: 5px;
   background: #16a0da;
-  padding: 10px;
+  padding: 0px;
   color: #ffff;
-  margin-top: 10px;
+  margin-top: 23px;
 }
 .add-customer-form-container button:hover {
   background: #011627f1;
@@ -74,7 +75,7 @@
     background: #16a0da;
     padding: 10px;
     color: #ffff;
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }
 @media screen and (max-width: 576px) {
@@ -107,7 +108,7 @@
     background: #16a0da;
     padding: 10px;
     color: #ffff;
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -140,7 +141,7 @@
     background: #16a0da;
     padding: 10px;
     color: #ffff;
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }
 @media screen and (max-width: 450px) {
@@ -173,7 +174,7 @@
     background: #16a0da;
     padding: 10px;
     color: #ffff;
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }
 @media screen and (max-width: 400px) {
@@ -206,7 +207,7 @@
     background: #16a0da;
     padding: 10px;
     color: #ffff;
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }
 
@@ -240,6 +241,6 @@
     background: #16a0da;
     padding: 10px;
     color: #ffff;
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }

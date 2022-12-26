@@ -5,7 +5,8 @@ import { baseURL } from "./../../../BaseUrl/BaseUrl";
 import { Link, useNavigate } from "react-router-dom";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
-import Modal from 'react-modal';
+import Modal from "react-modal";
+import Select from 'react-select'
 
 
 const customStyles = {
@@ -38,6 +39,86 @@ const AddCustomer = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
+  const [districtDataOptions, setDistrictDataOptions] = useState([]);
+  const [thanaDataOptions, setThanaDataOptions] = useState([]);
+  const [areaDataOptions, setAreaDataOptions] = useState([]);
+ 
+  const [districtId, setDistrictId] = useState('');
+  const [thanaId, setThanaId] = useState('');
+  const [areaId, setAreaId] = useState('');
+
+
+  useEffect(() => {
+    const getDistrictData = () => {
+      const arr = [];
+
+      axios.get(baseURL + "/location/districts")
+      .then((res) => {
+        // setDistrictData(res.data.data)
+        let districtDataList =  res.data.data;
+
+        districtDataList.map(distData => {
+          return arr.push({value: distData.id, label: distData.name});
+        }) 
+        setDistrictDataOptions(arr)
+      });
+    }
+    getDistrictData();
+  }, []);
+
+  
+
+  const ThanaSelectHandler = (item) => {
+    const distId = item.value;
+    setDistrictId(distId);
+
+    const getThanasData = () => {
+    const thanaList = [];
+    axios
+      .get(baseURL + `/location/thanas/${distId}`)
+      .then((res) =>{
+
+        console.log(res)
+
+        let thanaDataList  = res.data.data;
+
+        thanaDataList.map(thanaData => {
+          return thanaList.push({value: thanaData.id, label: thanaData.name})
+        })
+        setThanaDataOptions(thanaList)
+        
+      });
+    }
+    getThanasData()
+  };
+
+  const AreaSelectHandler = (item) => {
+    const thanaId = item.value;
+    setThanaId(thanaId);
+
+    const getAreaData = () => {
+    const areaList = [];
+    axios
+      .get(baseURL + `/location/areas/${thanaId}`)
+      .then((res) =>{
+
+        let areaDataList  = res.data.data;
+
+        areaDataList.map(areaData => {
+          return areaList.push({value: areaData.id, label: areaData.name})
+        })
+         setAreaDataOptions(areaList)
+        
+      });
+    }
+    getAreaData()
+  };
+
+  const AreaIdHandler = (item) => {
+    const areaId = item.value;
+    setAreaId(areaId)
+  }
+
   const [customerData, setCustomerData] = useState({
     customer_name: "",
     customer_email: "",
@@ -52,23 +133,29 @@ const AddCustomer = () => {
     setCustomerData({ ...customerData, [input.name]: input.value });
   };
 
+
+  const newCustomerData = ({...customerData, district_id: districtId, thana_id: thanaId,  area_id: areaId});
+
+  // console.log(newCustomerData)
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const url = baseURL + "/agent/customer/create";
 
       await axios
-        .post(url, customerData, {
+        .post(url, newCustomerData, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
           console.log(res);
           if (res.data.status == "success") {
-            setSuccessMessage(res.data.message)
+            setSuccessMessage(res.data.message);
             openModal();
           }
           if (res.data.status == "failed") {
-            setError(res.data.message)
+            setError(res.data.message);
           }
         });
     } catch (error) {
@@ -83,13 +170,14 @@ const AddCustomer = () => {
   };
   // const notify = (data) => toast(data);
 
+  // const [required, setRequired] = useState(true)
+
   return (
     <div className="add-customer-section">
       <div className="container-fluid">
         <h2>Add Customer</h2>
         <div className="add-customer-form-container">
           <form onSubmit={handleSubmit}>
-
             <div>
               <label for="">Customer Name</label>
               <br />
@@ -102,18 +190,7 @@ const AddCustomer = () => {
                 required
               />
             </div>
-            <div>
-              <label for="">Customer Email</label>
-              <br />
-              <input
-                type="email"
-                name="customer_email"
-                placeholder="Enter Customer Email"
-                onChange={handleChange}
-                value={customerData.customer_email}
-                required
-              />
-            </div>
+            
             <div>
               <label for="">Customer Mobile</label>
               <br />
@@ -126,20 +203,51 @@ const AddCustomer = () => {
                 required
               />
             </div>
-            {/* <div>
-              <label for="">Customer Zone/Area</label>
-              <br />
-              <input type="text" name="" placeholder="Enter Customer Zone" />
-            </div> */}
-            {/* <div>
-              <label for="">Customer Division</label>
+            <div>
+              <label for="">Customer Email</label>
               <br />
               <input
-                type="text"
-                name=""
-                placeholder="Enter Customer Division"
+                type="email"
+                name="customer_email"
+                placeholder="Enter Customer Email"
+                onChange={handleChange}
+                value={customerData.customer_email}
+                // required
               />
-            </div> */}
+            </div>
+            <div>
+              <label for="">Customer District</label>
+              <br />
+              <Select
+                placeholder={"Select District"}
+                onChange={(item) => ThanaSelectHandler(item)}
+                noOptionsMessage={() => "District not found"}
+                options={districtDataOptions}
+                className="border rounded-3 px-2 "
+              />
+            </div>
+            <div>
+              <label for="">Customer Thana</label>
+              <br />
+              <Select
+                placeholder={"Select Thana"}
+                onChange={(item) => AreaSelectHandler(item)}
+                noOptionsMessage={() => "Thana not found"}
+                options={thanaDataOptions}
+                className="border rounded-3 px-2 "
+              />
+            </div>
+            <div>
+              <label for="">Customer Area</label>
+              <br />
+              <Select
+                placeholder={"Select Area"}
+                onChange={(item) => AreaIdHandler(item)}
+                noOptionsMessage={() => "Area not found"}
+                options={areaDataOptions}
+                className="border rounded-3 px-2"
+              />
+            </div>
             <div>
               <label for="">Customer Address</label>
               <br />
@@ -191,8 +299,8 @@ const AddCustomer = () => {
               color: "#002a47",
             }}
           >
-           <h6 className="text-success">{successMessage}</h6>
-           <br/>
+            <h6 className="text-success">{successMessage}</h6>
+            <br />
             <Link to="/customer/customer-list">
               <span
                 style={{
@@ -201,7 +309,7 @@ const AddCustomer = () => {
                   padding: "5px 20px",
                   borderRadius: "5px",
                   color: "#ffff",
-                  fontFamily: "Montserrat"
+                  fontFamily: "Montserrat",
                 }}
                 onClick={closeModal}
               >

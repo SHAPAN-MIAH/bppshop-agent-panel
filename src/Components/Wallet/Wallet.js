@@ -85,21 +85,21 @@ const Wallet = () => {
                   </div> */}
 
                   <div className="cashOut-send-deposit-container">
-                    <div className="cash-out">
+                    {/* <div className="cash-out">
                       <i className="bi bi-arrow-90deg-down"></i>
                       <h5>Cash Out</h5>
                     </div>
                     <div className="deposit">
                       <i className="bi bi-arrow-90deg-up"></i>
                       <h5>Deposit</h5>
-                    </div>
+                    </div> */}
                     {/* <div className="send">
                       <i className="bi bi-arrow-90deg-right"></i>
                       <h5>Send</h5>
                     </div> */}
                   </div>
                 {/* </div> */}
-                <div className="wallet-security-container">
+                {/* <div className="wallet-security-container">
                   <h6>Security</h6>
 
                   <div>
@@ -110,7 +110,7 @@ const Wallet = () => {
                       <button>Change</button>
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="col-md-8">
                 <div className="transaction-container">

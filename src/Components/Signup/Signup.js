@@ -18,42 +18,97 @@ const Signup = () => {
     agent_email: "",
     agent_mobile_number: "",
     password: "",
-    district_id: "",
-    area_id: "",
-  });
+    // district_id: "",
+    // thana_id: "",
+    // area_id: "",
+  }); 
 
   // console.log(data);
+
   
-  const [districtData, setDistrictData] = useState([]);
-  const [areaData, setAreaData] = useState([]);
+  const [districtDataOptions, setDistrictDataOptions] = useState([]);
+  const [thanaDataOptions, setThanaDataOptions] = useState([]);
+  const [areaDataOptions, setAreaDataOptions] = useState([]);
  
   const [districtId, setDistrictId] = useState('');
+  const [thanaId, setThanaId] = useState('');
   const [areaId, setAreaId] = useState('');
 
+
   useEffect(() => {
-    axios
-      .get(baseURL + "/location/districts")
+    const getDistrictData = () => {
+      const arr = [];
+
+      axios.get(baseURL + "/location/districts")
       .then((res) => {
-      setDistrictData(res.data.data)
-    });
+        // setDistrictData(res.data.data)
+        let districtDataList =  res.data.data;
+
+        districtDataList.map(distData => {
+          return arr.push({value: distData.id, label: distData.name});
+        }) 
+        setDistrictDataOptions(arr)
+      });
+    }
+    getDistrictData();
   }, []);
 
   
-  const AreaSelectHandler = (item) => {
-    
-    const distId = item;
-    console.log(distId)
 
-    setDistrictId(item);
+  const ThanaSelectHandler = (item) => {
+    const distId = item.value;
+    setDistrictId(distId);
 
+    const getThanasData = () => {
+    const thanaList = [];
     axios
-      .get(baseURL + `/location/areas/${distId}`)
-      .then((res) => setAreaData(res.data.data));
+      .get(baseURL + `/location/thanas/${distId}`)
+      .then((res) =>{
+
+        // console.log(res)
+
+        let thanaDataList  = res.data.data;
+
+        thanaDataList.map(thanaData => {
+          return thanaList.push({value: thanaData.id, label: thanaData.name})
+        })
+        setThanaDataOptions(thanaList)
+        
+      });
+    }
+    getThanasData()
   };
 
 
+
+
+
+  const AreaSelectHandler = (item) => {
+    const thanaId = item.value;
+    setThanaId(thanaId);
+
+    const getAreaData = () => {
+    const areaList = [];
+    axios
+      .get(baseURL + `/location/areas/${thanaId}`)
+      .then((res) =>{
+
+        let areaDataList  = res.data.data;
+
+        areaDataList.map(areaData => {
+          return areaList.push({value: areaData.id, label: areaData.name})
+        })
+         setAreaDataOptions(areaList)
+        
+      });
+    }
+    getAreaData()
+  };
+
+
+
   const AreaIdHandler = (item) => {
-    const areaId = item;
+    const areaId = item.value;
     setAreaId(areaId)
   }
 
@@ -65,7 +120,13 @@ const Signup = () => {
   const handleChange = ({ currentTarget: input }) => {
     if(input.name == "password") {
       setPassMaxLenthAlert("Password should be minimum 8 characters.")
+      const passrd = document.querySelector("#password").value;
+
+      if(passrd.length >= 8) {
+        setPassMaxLenthAlert("")
+      }
     }
+    
     setData({ ...data, [input.name]: input.value});
   };
 
@@ -73,7 +134,7 @@ const Signup = () => {
 
   const [otpSuccessStatus, setOtpSuccessStatus] = useState(false);
 
-  const newData = ({...data, district_id: districtId,  area_id: areaId})
+  const newData = ({...data, district_id: districtId, thana_id: thanaId,  area_id: areaId})
   // console.log(newData)
 
   const handleSubmit = async (e) => {
@@ -82,7 +143,7 @@ const Signup = () => {
       const url = baseURL + "/register";
 
       await axios.post(url, newData).then((res) => {
-        // console.log(res);
+        console.log(res);
         setRegisterAgent(res.data.data);
 
         if (res.data.status === "success") {
@@ -194,7 +255,7 @@ const Signup = () => {
     }
   };
 
-  const [varifyStatus, setVerifyStatus] = useState('')
+  // const [varifyStatus, setVerifyStatus] = useState('')
 
   const verifyData = {
     type: 1,
@@ -222,6 +283,11 @@ const Signup = () => {
       if (res.data.status == "failed") {
         // document.querySelector(".registerSuccess").innerHTML =
         //   "Your pin validation not successful. Please Try Again!.";
+        // document.querySelector(".resendTimer").style.display = "none";`
+        document.querySelector(".registerSuccess-msg").innerHTML =
+          "Your registration is not successful. Please try again!";
+        document.querySelector(".registerSuccess-msg").style.color = "red";
+        document.querySelector(".gotoSignIng").style.display = "none";
         document.querySelector(".registerSuccess").style.display = "block";
         document.querySelector(".registerSuccess").style.color = "red;";
         document.querySelector(".registerSuccess").style.textAlign = "center";
@@ -229,8 +295,6 @@ const Signup = () => {
       }
     });
   };
-
-
 
   const [passwordType, setPasswordType] = useState("password");
   
@@ -243,8 +307,6 @@ const Signup = () => {
     setPasswordType("password")
   }
 
-
- 
 
   return (
     <div className={styles.signup_container}>
@@ -302,6 +364,7 @@ const Signup = () => {
                 // type="password"
                 placeholder="Password"
                 name="password"
+                id="password"
                 onChange={handleChange}
                 value={data.password}
                 required
@@ -316,18 +379,26 @@ const Signup = () => {
             <span style={{fontSize: "14px", color: "red"}}>{passMaxLenthAlert}</span>
 
             <div className="area-container">
-            <Select 
-              defaultValue="Select your District"
-              onChange={(item) => AreaSelectHandler(item)}
-              
-              options={districtData} 
-              style={{color: "red"}}
+            <Select
+              placeholder={"Select District"}
+              onChange={(item) => ThanaSelectHandler(item)}
+              noOptionsMessage={() => "District not found"}
+              options={districtDataOptions} 
+              className= "border-bottom"
             />
-            <Select 
-              defaultValue="Select your area"
+            <Select
+              placeholder={"Select Thana"}
+              onChange={(item) => AreaSelectHandler(item)}
+              noOptionsMessage={() => "Thana not found"}
+              options={thanaDataOptions} 
+              className= "border-bottom"
+            />
+            <Select
+              placeholder={"Select Area"}
               onChange={(item) => AreaIdHandler(item)}
-              options={areaData} 
-              style={{color: "red"}}
+              noOptionsMessage={() => "Area not found"}
+              options={areaDataOptions} 
+              className= "border-bottom"
             />
 
               {/* <select name="district" onChange={(e) => AreaSelectHandler(e)} required>

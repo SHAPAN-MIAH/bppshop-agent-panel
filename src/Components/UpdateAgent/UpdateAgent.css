@@ -12,40 +12,46 @@
 }
 .update-agent-header {
   height: 200px;
-  background: rgb(224, 224, 224);
+  background: url('../../assets/image/coverBg\ \(1\).jpg');
+  background-size: cover;
   border-radius: 7px;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   margin-bottom: 40px;
 }
 .profile-picture {
   width: 150px;
   height: 150px;
-  background: rgb(248, 209, 209);
+  background: rgb(255, 255, 255);
   border-radius: 50%;
   overflow: hidden;
   margin: 0px 20px 0px 20px;
+  /* padding: 5px; */
+}
+.profile-picture img{
+  width: 100%;
+  
 }
 .update-agent-content-container form {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 0px 25px;
 }
 .update-agent-content-container form input,
 .update-agent-content-container form select {
   padding: 10px;
-  margin: 10px 0px;
+  margin: 0px 0px 10px 0px;
   border: 0.5px solid rgb(197, 197, 197);
   border-radius: 5px;
   outline: none;
   width: 100%;
+  color: gray;
 }
 .update-agent-content-container form button {
-  height: 48px;
+  height: 45px;
   width: 50%;
   padding: 10px 20px;
-  margin: 36px 0px 0px 0px;
+  margin: 25px 0px 0px 0px;
   border: none;
   border-radius: 5px;
   background: #16a0da;
@@ -61,6 +67,43 @@
 
 .update-agent-content-container form input[type="number"] {
   -moz-appearance: textfield;
+}
+
+
+
+/* .css-13cymwt-control {
+  border-width: 1px !important;
+  padding: 3px !important;
+}
+
+.css-t3ipsp-control {
+  border-width: 1px !important;
+  border-color: 0.5px solid rgb(197, 197, 197);
+  box-shadow: none !important;
+}
+.css-t3ipsp-control:hover {
+  border-width: 1px !important;
+  box-shadow: none !important;
+}
+.css-1fdsijx-ValueContainer{
+  padding: 0px 2px !important;
+}
+.css-1xc3v61-indicatorContainer {
+  padding: 8px !important;
+}
+
+.css-1u9des2-indicatorSeparator {
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  width: 1px !important;
+  background-color: none !important;
+} */
+
+
+.editAgentProfile-section{
+  font-family: "Montserrat", sans-serif;
+  margin: 120px 40px 0px 40px;
 }
 
 @media screen and (max-width: 768px) {

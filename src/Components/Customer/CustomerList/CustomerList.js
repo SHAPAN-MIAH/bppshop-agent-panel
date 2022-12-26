@@ -59,6 +59,7 @@ const CustomerList = () => {
       },
       headers: { 'Authorization': `Bearer ${token}` }
     }).then((res) => {
+      console.log(res)
       setTotalPage(Math.ceil(res.data.data.total / limit))
       setCustomerListData(res.data.data.data)
     });
@@ -123,7 +124,7 @@ const CustomerList = () => {
               <th>Action</th>
             </thead>
             <tbody>
-              {customerListData.map((listData) => (
+              {customerListData?.map((listData) => (
                 <tr>
                   <td data-label="Customer Id"># {listData?.id}</td>
                   <td data-label="Customer Name">{listData?.customer_name}</td>

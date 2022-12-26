@@ -16,6 +16,7 @@ import axios from "axios";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
 import { Link } from 'react-router-dom';
 import avatar from '../../assets/image/profileDefaultImg.jpg'
+import SeeOrderDetails from "../OrderHistory/SeeOrderDetails/SeeOrderDetails";
 
 ChartJS.register(
   CategoryScale,
@@ -80,7 +81,7 @@ const Dashboard = () => {
       .then((res) => setAgent(res.data.data));
   }, [token]);
  
-console.log(agent)
+// console.log(agent)
   return (
     <>
       <div className="dashboard-section">
@@ -90,8 +91,6 @@ console.log(agent)
             <div className="row">
               <div className="col-md-4">
                 <div className="profile-container">
-                  {/* <h2>Agent Profile</h2> */}
-
                   <div className="profile-content-container">
                     <div className="profile-content">
                      <div className="profile-avatar">
@@ -133,9 +132,16 @@ console.log(agent)
                         <i className="bi bi-house"></i>
                         <div className="mx-3">
                           <label for="">Address</label>
-                          {
-                            agent?.address == null || agent.address == "" ? <p>{agent.area_name}, {agent.district_name}</p> : <p>{agent.address}</p>
-                          }
+                            <p>
+                            {agent.address ? <span> {agent.address},</span> : ""}
+                            {agent.area_name ? <span> {agent.area_name},</span> : ""}
+                            {agent.area_name ? <span> {agent.thana_name},</span> : ""}
+                            {agent.district_name ? (
+                              <span> {agent.district_name}</span>
+                            ) : (
+                              ""
+                            )}
+                            </p>
                         </div>
                       </div>
                     </div>
@@ -144,10 +150,7 @@ console.log(agent)
               </div>
               <div className="col-md-8">
                 <div>
-                  {/* <h2>Dashboard</h2> */}
-
                   <div className="dashboard-info-card-container">
-                    {/* hello */}
                     {dashboardInfo?.map((info) => (
                       <InfoDetails key={info} info={info}></InfoDetails>
                     ))}

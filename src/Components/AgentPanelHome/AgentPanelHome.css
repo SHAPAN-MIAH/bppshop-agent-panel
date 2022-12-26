@@ -62,7 +62,7 @@
   border: 1px solid gainsboro;
 }
 .user-profile img{
-  width: 63px;
+  width: 100%;
 }
 .closeBar-icon, .bar-icon{
   display: none;
@@ -79,7 +79,8 @@
   border-radius: 50%;
 }
 .profile_dropdown h6{
-  margin: 10px;
+  margin: 6px 0px 0px 5px;
+  font-size: 14px;
 }
 
 .profile_dropdown li{
