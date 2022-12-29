@@ -238,7 +238,8 @@ const UpdateAgent = () => {
     }
     getThanasData()
 
-    
+    // setSelectedThanaName(null)
+    // setSelectedAreaName(null)
   };
 
 

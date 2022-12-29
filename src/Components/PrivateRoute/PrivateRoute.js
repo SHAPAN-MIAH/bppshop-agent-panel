@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import { UserContext } from "./../../App";
+import UseUser from "../../ContextApi/Hooks/useUser";
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const {agent} = UseUser();
+
+  // console.log(agent)
 
   const isLoggedIn = () => {
     const token = window.localStorage.getItem("token");

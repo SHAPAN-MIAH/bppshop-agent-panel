@@ -143,7 +143,7 @@ const Signup = () => {
       const url = baseURL + "/register";
 
       await axios.post(url, newData).then((res) => {
-        console.log(res);
+        // console.log(res);
         setRegisterAgent(res.data.data);
 
         if (res.data.status === "success") {
@@ -236,7 +236,7 @@ const Signup = () => {
     setSeconds(0);
 
     axios.post(baseURL + "/resend", resendOtpData).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   };
 
@@ -268,7 +268,7 @@ const Signup = () => {
 
     axios.post(baseURL + "/verify", verifyData)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
 
       if (res.data.status == "success") {
          document.querySelector(".registerSuccess-msg").innerHTML =

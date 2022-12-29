@@ -4,8 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/image/bpp_icon.png";
 import axios from "axios";
 import { baseURL } from './../../BaseUrl/BaseUrl';
+// import useUser from './../../ContextApi/Hooks/useUser';
 
 const Sidebar = () => {
+  // const {agent} = useUser()
   const token = localStorage.getItem("token");
   const [agent, setAgent] = useState([]);
 
@@ -15,7 +17,7 @@ const Sidebar = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setAgent(res.data.data));
-  }, []);
+  }, [token]);
 
 
   useEffect(() => {

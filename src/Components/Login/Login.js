@@ -100,7 +100,7 @@ const Login = () => {
     e.preventDefault();
 
     axios.post(baseURL + "/forgot", forgotData).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.data.status == "success") {
         document.querySelector(".forgot_pass_content").style.display = "none";
         document.querySelector(".forgot_otp-container").style.display = "block";
@@ -129,7 +129,7 @@ const Login = () => {
     e.preventDefault()
 
     axios.post(baseURL + "/resend", signUpVerifyPhoneData).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.data.status == "success") {
         document.querySelector(".forgot_pass_content").style.display = "none";
         document.querySelector(".forgot_otp-container").style.display = "none";
@@ -261,7 +261,7 @@ const Login = () => {
     setSeconds(0);
 
     axios.post(baseURL + "/resend", resendOtpData).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   };
 
@@ -275,7 +275,7 @@ const Login = () => {
     setSecondss(0);
 
     axios.post(baseURL + "/resend", resendSignupOtpData).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   };
   // OTP resend end..........
@@ -388,10 +388,10 @@ const Login = () => {
   const signupOtpSubmit = (e) => {
     e.preventDefault();
 
-    console.log("clicked");
+    // console.log("clicked");
 
     axios.post(baseURL + "/verify", signUpVerifyData).then((res) => {
-      console.log( res);
+      // console.log( res);
 
       if (res.data.status === "success") {
         // setOtpVerifyToken(res.data.data.token)
@@ -647,7 +647,7 @@ const Login = () => {
                     <form onSubmit={handleSubmitPasswordChange}>
                       <div>
                         <input
-                          type="passwordType"
+                          type={passwordType}
                           name="newPassword"
                           placeholder="Enter New Password"
                           value={changePassInput.password}
@@ -667,7 +667,7 @@ const Login = () => {
 
                       <div>
                         <input
-                          type="passwordType"
+                          type={passwordType}
                           name="confirmPassword"
                           placeholder="Enter Confirm Password"
                           value={changePassInput.confirmPassword}

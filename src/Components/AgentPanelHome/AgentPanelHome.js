@@ -6,6 +6,7 @@ import profileImg from "../../assets/image/images (1).jpg";
 import { UserContext } from "./../../App";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
 import axios from "axios";
+import useUser from './../../ContextApi/Hooks/useUser';
 
 const AgentPanelHome = () => {
   const menuToggle = () => {
@@ -34,6 +35,8 @@ const AgentPanelHome = () => {
 
   // user details get..
 
+  // const {agent} = useUser()
+
   const [agent, setAgent] = useState([]);
 
   // console.log(agent)
@@ -45,7 +48,7 @@ const AgentPanelHome = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setAgent(res.data.data));
-  }, []);
+  }, [token]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");

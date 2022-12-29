@@ -59,7 +59,7 @@ const CustomerList = () => {
       },
       headers: { 'Authorization': `Bearer ${token}` }
     }).then((res) => {
-      console.log(res)
+      // console.log(res)
       setTotalPage(Math.ceil(res.data.data.total / limit))
       setCustomerListData(res.data.data.data)
     });
@@ -76,7 +76,7 @@ const CustomerList = () => {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
 
       if(res.data.status == "success"){
         window.location.href = 'https://bppshop.com.bd/customer/auth/force-login-by-agent?token=' + res.data.data.token; 

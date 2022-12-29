@@ -78,7 +78,7 @@ const AddCustomer = () => {
       .get(baseURL + `/location/thanas/${distId}`)
       .then((res) =>{
 
-        console.log(res)
+        // console.log(res)
 
         let thanaDataList  = res.data.data;
 
@@ -149,7 +149,7 @@ const AddCustomer = () => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.status == "success") {
             setSuccessMessage(res.data.message);
             openModal();

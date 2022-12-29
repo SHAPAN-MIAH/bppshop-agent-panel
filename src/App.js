@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React from "react";
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./Components/Dashboard/Dashboard";
@@ -19,20 +19,16 @@ import PendingCommission from "./Components/MyCommission/PendingCommission/Pendi
 import CommissionHistory from "./Components/MyCommission/CommissionHistory/CommissionHistory";
 import ViewProfile from "./Components/ViewProfile/ViewProfile";
 import CustomerDetails from "./Components/Customer/CustomerDetails/CustomerDetails";
-import EditCustomer from "./Components/Customer/EditCustomer/EditCustomer";
+// import EditCustomer from "./Components/Customer/EditCustomer/EditCustomer";
 import Wallet from "./Components/Wallet/Wallet";
-import SignupForm from './Components/Signup/SignupForm/SignupForm';
-import EditAgentProfile from './Components/UpdateAgent/EditAgentProfile';
+// import SignupForm from './Components/Signup/SignupForm/SignupForm';
+// import EditAgentProfile from './Components/UpdateAgent/EditAgentProfile';
+import UserProvider from "./ContextApi/Context/UserProvider";
 
-export const UserContext = createContext();
 function App() {
-  const user = window.localStorage.getItem("token");
-  const isLoggedIn = window.localStorage.getItem("isLoggedIn");
-  const [loggedInUser, setLoggedInUser] = useState({});
-
   return (
     <div className="App">
-      <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      {/* <UserProvider> */}
         <Routes>
           {/* {user &&( */}
             <Route
@@ -84,7 +80,7 @@ function App() {
           </Route>
           <Route path="/" element={<Navigate replace to="/login" />} />
         </Routes>
-      </UserContext.Provider>
+      {/* </UserProvider> */}
     </div>
   );
 }

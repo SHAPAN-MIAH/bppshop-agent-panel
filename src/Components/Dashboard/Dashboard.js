@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import InfoDetails from "./InfoDetails/InfoDetails";
 import {
@@ -10,13 +10,13 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+// import { Bar } from "react-chartjs-2";
 import faker from "faker";
 import axios from "axios";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
 import { Link } from 'react-router-dom';
 import avatar from '../../assets/image/profileDefaultImg.jpg'
-import SeeOrderDetails from "../OrderHistory/SeeOrderDetails/SeeOrderDetails";
+import UseUser from '../../ContextApi/Hooks/useUser';
 
 ChartJS.register(
   CategoryScale,
@@ -59,10 +59,10 @@ export const data = {
 };
 
 const Dashboard = () => {
-  
   const [dashboardInfo, setDashboardInfo] = useState([]);
   const [agent, setAgent] = useState([]);
   const token = localStorage.getItem("token");
+  // const {agent} = UseUser();
 
   useEffect(() => {
     axios
@@ -81,7 +81,7 @@ const Dashboard = () => {
       .then((res) => setAgent(res.data.data));
   }, [token]);
  
-// console.log(agent)
+
   return (
     <>
       <div className="dashboard-section">
