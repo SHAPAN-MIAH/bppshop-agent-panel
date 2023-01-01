@@ -4,6 +4,7 @@ import { baseURL } from "./../../../BaseUrl/BaseUrl";
 import axios from "axios";
 import profileImg from "../../../assets/image/profileDefaultImg.jpg";
 import "./CustomerDetails.css";
+import "../EditCustomer/EditCustomer.css"
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
