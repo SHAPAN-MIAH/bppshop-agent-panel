@@ -16,7 +16,7 @@ const AgentPanelHome = () => {
     const closeBarIcon = document.querySelector(".closeBar-icon");
 
     sidebarMenu.classList.toggle("sidebarMenuToggle");
-    contentTitle.style.marginLeft = "210px";
+    contentTitle.style.marginLeft = "220px";
     contentTitle.style.transition = "250ms ease-in-out";
     barIcon.style.display = "none";
     closeBarIcon.style.display = "block";
@@ -58,7 +58,7 @@ const AgentPanelHome = () => {
 
   return (
     <>
-      <div className="agent-panel-home-section">
+      <div className="agent-panel-home-section" >
         <div className="dashboard-sidebar">
           <Sidebar />
         </div>
@@ -117,8 +117,8 @@ const AgentPanelHome = () => {
             </div>
           </div>
 
-          <div className="agent-panel-outlet-container">
-            <Outlet />
+          <div className="agent-panel-outlet-container" onClick={menuCloseToggle}>
+            <Outlet/>
           </div>
         </div>
       </div>

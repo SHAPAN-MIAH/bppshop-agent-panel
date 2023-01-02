@@ -24,6 +24,7 @@ import Wallet from "./Components/Wallet/Wallet";
 // import SignupForm from './Components/Signup/SignupForm/SignupForm';
 // import EditAgentProfile from './Components/UpdateAgent/EditAgentProfile';
 import UserProvider from "./ContextApi/Context/UserProvider";
+import PageNotFound from './Components/PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
             {/* <Route index element={<SignupForm/>}></Route> */}
           </Route>
           <Route path="/" element={<Navigate replace to="/login" />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       {/* </UserProvider> */}
     </div>

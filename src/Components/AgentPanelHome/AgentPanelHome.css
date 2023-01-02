@@ -190,6 +190,9 @@
     padding: 0px 20px;
     font-size: 25px;
   }
+  .user-tab small{
+    display: none;
+  }
   .agent-panel-home-section {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -229,6 +232,9 @@
     padding: 0px 20px;
     font-size: 25px;
   }
+  .user-tab small{
+    display: none;
+  }
   .agent-panel-home-section {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -261,6 +267,7 @@
     transition:  250ms ease-in-out;
     font-size: 30px;
   }
+
 }
 @media screen and (max-width: 360px) {
   .dashboard-navbar {
