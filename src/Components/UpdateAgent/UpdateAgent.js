@@ -400,7 +400,7 @@ const UpdateAgent = () => {
               <div>
                 <label for="">Profile Image</label>
                 <br />
-                <input style={{padding: "7px "}}
+                <input style={{padding: "5px "}}
                  type="file" name="image" 
                  {...register("image")}  
                  multiple="multiple"/>

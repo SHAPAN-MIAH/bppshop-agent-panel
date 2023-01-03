@@ -41,14 +41,17 @@
 .update-agent-content-container form select {
   padding: 10px;
   margin: 0px 0px 10px 0px;
-  border: 0.5px solid rgb(197, 197, 197);
+  border: 0.5px solid rgb(212, 212, 212);
   border-radius: 5px;
   outline: none;
   width: 100%;
   color: gray;
 }
+.update-agent-content-container form input{
+  padding: 8px;
+}
 .update-agent-content-container form button {
-  height: 45px;
+  height: 41px;
   width: 50%;
   padding: 10px 20px;
   margin: 25px 0px 0px 0px;

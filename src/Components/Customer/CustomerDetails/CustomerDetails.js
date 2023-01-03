@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { baseURL } from "./../../../BaseUrl/BaseUrl";
 import axios from "axios";
 import profileImg from "../../../assets/image/profileDefaultImg.jpg";
@@ -13,6 +13,7 @@ const CustomerDetails = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
   const [customerDetail, setCustomerDetail] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -20,10 +21,11 @@ const CustomerDetails = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setCustomerDetail(res.data.data));
-  }, [id]);
+  }, [id, token]);
+
+
 
   const { register, handleSubmit } = useForm();
-
   const onSubmit = (data) => {
     const formData = {
       customer_name: data.customer_name,
@@ -44,13 +46,13 @@ const CustomerDetails = () => {
 
     // console.log(newFormData)
 
-    axios
+     axios
       .post(baseURL + "/agent/customer/update", formData, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => {
-        if (res.data.status == "success") {
-          notify();
+       .then((res) => {
+        if(res.data.status == "success") {
+          notify()
         }
       })
       .catch((error) => {
@@ -60,7 +62,7 @@ const CustomerDetails = () => {
 
   const notify = () => toast("Customer update successfully");
 
-  const projectSubmenuHandler = () => {
+  const updateCustomerToggleHandler = () => {
     const updateCustomerContainer = document.querySelector(
       ".update-customer-container"
     );
@@ -82,8 +84,8 @@ const CustomerDetails = () => {
                   <h6><span>Customer Id:</span> {customerDetail.id}</h6>
                   <h6><span>Customer Email:</span> {customerDetail.customer_email}</h6>
 
-                  <button onClick={projectSubmenuHandler}>
-                    <i class="bi bi-pencil-square"></i> Update Customer
+                  <button onClick={updateCustomerToggleHandler}>
+                    <i className="bi bi-pencil-square"></i> Update Customer
                   </button>
                 </div>
                 <div>

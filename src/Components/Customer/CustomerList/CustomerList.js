@@ -12,7 +12,6 @@ const CustomerList = () => {
   const [customerListData, setCustomerListData] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
 
-
   let currentPage = 1;
   let limit = 10;
 

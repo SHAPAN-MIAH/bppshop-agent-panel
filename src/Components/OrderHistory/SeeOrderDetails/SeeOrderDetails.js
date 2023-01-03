@@ -67,14 +67,14 @@ const SeeOrderDetails = () => {
 
   const [orderHistoryDetailsData, setOrderHistoryDetailsData] = useState([]);
 
-  // console.log(orderHistoryDetailsData[0].data);
+  console.log(orderHistoryDetailsData);
 
   useEffect(() => {
     axios
       .get(baseURL + `/agent/order/details/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => setOrderHistoryDetailsData(res.data.data));
+      .then((res) => console.log(res));
   }, [id]);
 
   return (
