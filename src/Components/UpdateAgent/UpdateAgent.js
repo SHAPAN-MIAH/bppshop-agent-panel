@@ -6,7 +6,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Select from 'react-select'
+import Select from 'react-select';
+import avatar from "../../assets/image/profileDefaultImg.jpg";
+
 
 const UpdateAgent = () => {
   const navigate = useNavigate();
@@ -283,7 +285,7 @@ const UpdateAgent = () => {
           <div className="update-agent-content-container">
             <div className="update-agent-header">
               <div className="profile-picture">
-              <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" />
+              {agent.image? <img src={`https://agentapi.bppshop.com.bd/${agent.image}`} alt="profile" /> : <img src={avatar} alt="profile" />}
               </div>
               <div className="update-agent-name">
                 <h3>{agent.name}</h3>

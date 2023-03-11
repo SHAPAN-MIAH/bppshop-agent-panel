@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import "./ViewProfile.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import avatar from "../../assets/image/profileDefaultImg.jpg";
+
 
 const ViewProfile = () => {
   const [agent, setAgent] = useState([]);
@@ -89,10 +91,10 @@ const ViewProfile = () => {
               <div className="view-profile-content-container">
                 <div className="view-profile-header-content">
                   <div className="view-profile-img">
-                    <img
+                    {agent.image? <img
                       src={`https://agentapi.bppshop.com.bd/${agent.image}`}
                       alt="profile"
-                    />
+                    /> : <img src={avatar} alt="profile" />}
                   </div>
 
                   <div className="agentEditBtn">

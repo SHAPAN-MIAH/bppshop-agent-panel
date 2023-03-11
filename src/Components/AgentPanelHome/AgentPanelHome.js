@@ -6,7 +6,8 @@ import profileImg from "../../assets/image/images (1).jpg";
 import { UserContext } from "./../../App";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
 import axios from "axios";
-import useUser from './../../ContextApi/Hooks/useUser';
+import useUser from "./../../ContextApi/Hooks/useUser";
+import avatar from "../../assets/image/profileDefaultImg.jpg";
 
 const AgentPanelHome = () => {
   const menuToggle = () => {
@@ -58,7 +59,7 @@ const AgentPanelHome = () => {
 
   return (
     <>
-      <div className="agent-panel-home-section" >
+      <div className="agent-panel-home-section">
         <div className="dashboard-sidebar">
           <Sidebar />
         </div>
@@ -83,10 +84,14 @@ const AgentPanelHome = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img
-                  src={`https://agentapi.bppshop.com.bd/${agent.image}`}
-                  alt="profile"
-                />
+                {agent.image ? (
+                  <img
+                    src={`https://agentapi.bppshop.com.bd/${agent.image}`}
+                    alt="profile"
+                  />
+                ) : (
+                  <img src={avatar} alt="profile" />
+                )}
               </div>
 
               <div className="dropdown-menu profile_dropdown">
@@ -98,12 +103,16 @@ const AgentPanelHome = () => {
                     marginBottom: "10px",
                   }}
                 >
-                  <img
-                    width="30"
-                    height="100%"
-                    src={`https://agentapi.bppshop.com.bd/${agent.image}`}
-                    alt="profile"
-                  />
+                  {agent.image ? (
+                    <img
+                      width="30"
+                      height="100%"
+                      src={`https://agentapi.bppshop.com.bd/${agent.image}`}
+                      alt="profile"
+                    />
+                  ) : (
+                    <img width="30" height="100%" src={avatar} alt="profile" />
+                  )}
 
                   <h6>{agent?.name}</h6>
                 </div>
@@ -117,8 +126,11 @@ const AgentPanelHome = () => {
             </div>
           </div>
 
-          <div className="agent-panel-outlet-container" onClick={menuCloseToggle}>
-            <Outlet/>
+          <div
+            className="agent-panel-outlet-container"
+            onClick={menuCloseToggle}
+          >
+            <Outlet />
           </div>
         </div>
       </div>

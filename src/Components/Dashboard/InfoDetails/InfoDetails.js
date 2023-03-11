@@ -84,7 +84,7 @@ const InfoDetails = (props) => {
       </div>
       <div className="info-card-container">
         <div className="info-card-icon">
-        <i class="bi bi-cart-plus"></i>
+        <i className="bi bi-cart-plus"></i>
         </div>
         
 

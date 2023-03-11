@@ -25,11 +25,14 @@ const CustomerDetails = () => {
 
 
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+  // const { register, handleSubmit } = useForm();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // console.log(e.target.name)
     const formData = {
-      customer_name: data.customer_name,
-      customer_address: data.customer_address,
+      customer_name: e.target.customer_name.value,
+      customer_address: e.target.customer_address.value,
       customer_id: id,
     };
     // const formData = new FormData();
@@ -59,6 +62,39 @@ const CustomerDetails = () => {
         console.error("Error:", error);
       });
   };
+  // const onSubmit = (data) => {
+  //   const formData = {
+  //     customer_name: data.customer_name,
+  //     customer_address: data.customer_address,
+  //     customer_id: id,
+  //   };
+  //   // const formData = new FormData();
+
+  //   // Object.entries(data).forEach(([key, value]) => {
+  //   //   if (value instanceof FileList) {
+  //   //     formData.append(key, value.item(0));
+  //   //   } else {
+  //   //     formData.append(key, value);
+  //   //   }
+  //   // });
+
+  //   // const newFormData = {...formData, id}
+
+  //   // console.log(newFormData)
+
+  //    axios
+  //     .post(baseURL + "/agent/customer/update", formData, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //      .then((res) => {
+  //       if(res.data.status == "success") {
+  //         notify()
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  // };
 
   const notify = () => toast("Customer update successfully");
 
@@ -101,7 +137,8 @@ const CustomerDetails = () => {
               <div className="">
                 <h5 className="mt-5 mb-2">Update Customer</h5>
                 <div className="update-customer-content-container">
-                  <form onSubmit={handleSubmit(onSubmit)}>
+                  {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+                  <form onSubmit={handleSubmit}>
                     <div>
                       <label for="">Customer Name</label>
                       <br />
@@ -109,7 +146,7 @@ const CustomerDetails = () => {
                         type="text"
                         name="customer_name"
                         defaultValue={customerDetail.customer_name}
-                        {...register("customer_name")}
+                        // {...register("customer_name")}
                       />
                     </div>
 
@@ -120,7 +157,7 @@ const CustomerDetails = () => {
                         type="text"
                         name="customer_address"
                         defaultValue={customerDetail.customer_address}
-                        {...register("customer_address")}
+                        // {...register("customer_address")}
                       />
                     </div>
                     <button type="submit">Submit</button>

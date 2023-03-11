@@ -64,9 +64,12 @@ const CustomerList = () => {
     });
   };
 
+
   const handlePageClick = async (data) => {
     await fetchCustomerList(data.selected + 1);
   };
+
+  
 
  const  url2 = baseURL+`/agent/customer/loginAsCustomer/`
 
