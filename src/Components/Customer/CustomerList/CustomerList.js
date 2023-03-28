@@ -70,7 +70,6 @@ const CustomerList = () => {
   };
 
   
-
  const  url2 = baseURL+`/agent/customer/loginAsCustomer/`
 
   const handleLoginAsCustomer = (id) => {
