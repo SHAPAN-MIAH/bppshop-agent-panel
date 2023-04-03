@@ -97,7 +97,7 @@ const CustomerList = () => {
           <div className="customer-list-input-btn">
           <input type="" name="" placeholder="Search Customer Name/ID" />
           <Link to="/customer/add-customer"> <button type="">
-              Add New Customer <i className="bi bi-person-plus-fill"></i>
+              Add New Customersssssss <i className="bi bi-person-plus-fill"></i>
             </button>
             </Link>
             
