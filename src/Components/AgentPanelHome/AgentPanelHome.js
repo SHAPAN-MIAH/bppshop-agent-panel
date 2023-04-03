@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./../Sidebar/Sidebar";
 import { Link, Outlet } from "react-router-dom";
 import "./AgentPanelHome.css";
-import profileImg from "../../assets/image/images (1).jpg";
+import profileDefaultImg from "../../assets/image/profileDefaultImg.jpg";
 import { UserContext } from "./../../App";
 import { baseURL } from "./../../BaseUrl/BaseUrl";
 import axios from "axios";
@@ -83,10 +83,13 @@ const AgentPanelHome = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img
+               {agent.image? <img
                   src={`https://agentapi.bppshop.com.bd/${agent.image}`}
                   alt="profile"
-                />
+                />: <img
+                src={profileDefaultImg}
+                alt=""
+              />}
               </div>
 
               <div className="dropdown-menu profile_dropdown">
@@ -98,12 +101,17 @@ const AgentPanelHome = () => {
                     marginBottom: "10px",
                   }}
                 >
-                  <img
+                  {agent.image?<img
                     width="30"
                     height="100%"
                     src={`https://agentapi.bppshop.com.bd/${agent.image}`}
                     alt="profile"
-                  />
+                  />: <img
+                  width="30"
+                    height="100%"
+                  src={profileDefaultImg}
+                  alt=""
+                />}
 
                   <h6>{agent?.name}</h6>
                 </div>

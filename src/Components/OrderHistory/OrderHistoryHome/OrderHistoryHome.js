@@ -138,7 +138,7 @@ const OrderHistoryHome = () => {
                   <td data-label="Total Products">{listData.total_products}</td>
                   <td data-label="Total Amount">৳ {listData.total_amount}</td>
                   <td data-label="Action">
-                    <Link to={`/order-history/order-details/${listData?.customer_id}`}><button id='seeOrderBtn'>See Order Details</button></Link>
+                    <Link to={`/order-history/order-details/${listData?.order_id}`}><button id='seeOrderBtn'>See Order Details</button></Link>
                   </td>
                   <td data-label="Bill Folder" >
                   <Link to='/order-history/order-bills'><i className="bi bi-folder billFolderBtn" ></i></Link>

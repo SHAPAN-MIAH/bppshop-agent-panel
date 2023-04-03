@@ -78,7 +78,7 @@ const CustomerList = () => {
       // console.log(res.data)
 
       if(res.data.status == "success"){
-        window.location.href = 'https://bppshop.com.bd/customer/auth/force-login-by-agent?token=' + res.data.data.token; 
+        window.location.href = 'http://localhost:3000/customer/force-login-by-agent/' + res.data.data.token; 
         return null
       }
     })

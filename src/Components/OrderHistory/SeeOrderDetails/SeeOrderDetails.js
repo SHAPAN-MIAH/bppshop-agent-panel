@@ -65,17 +65,16 @@ const SeeOrderDetails = () => {
     setIsOpen(false);
   }
 
-  const [orderHistoryDetailsData, setOrderHistoryDetailsData] = useState([]);
+  const [orderHistoryDetailsData, setOrderHistoryDetailsData] = useState('');
 
-  console.log(orderHistoryDetailsData);
 
   useEffect(() => {
     axios
       .get(baseURL + `/agent/order/details/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => console.log(res));
-  }, [id]);
+      .then((res) => setOrderHistoryDetailsData(res.data.data));
+  }, [id, token]);
 
   return (
     <div className="order-history-details-section">
@@ -84,52 +83,47 @@ const SeeOrderDetails = () => {
           <h2 onClick={openModal}>Order Details</h2>
         </div>
 
-        {orderHistoryDetailsData?.map(singleOrderHistoryData => (
+        {/* {orderHistoryDetailsData?.map(singleOrderHistoryData => ( */}
           <div className="order-history-details-content-container">
             <div>
-              <h4>Customer Name: {singleOrderHistoryData.customer_name}</h4>
+              <h4>Customer Name: {orderHistoryDetailsData.customer_name}</h4>
               <div className="order-details-all">
                 <p>
-                  <span>Order Id:</span> {singleOrderHistoryData.order_id}
+                  <span>Order Id:</span> {orderHistoryDetailsData.order_id}
                 </p>
                 <p>
-                  <span>Order Date:</span> {singleOrderHistoryData.order_date}
+                  <span>Order Date:</span> {orderHistoryDetailsData.order_date}
                 </p>
                 <p>
                   <span>Order Amount:</span>{" "}
-                  {singleOrderHistoryData.order_amount}
+                  {orderHistoryDetailsData.order_amount}
                 </p>
                 <p>
                   <span>Discount Amount:</span>{" "}
-                  {singleOrderHistoryData.discount_amount}
+                  {orderHistoryDetailsData.discount_amount}
                 </p>
                 <p>
                   <span>Order Status:</span>{" "}
-                  {singleOrderHistoryData.order_status}
+                  {orderHistoryDetailsData.order_status}
                 </p>
                 <p>
                   <span>Payment Method:</span>{" "}
-                  {singleOrderHistoryData.payment_method}
+                  {orderHistoryDetailsData.payment_method}
                 </p>
                 <p>
                   <span>Payment Status:</span>{" "}
-                  {singleOrderHistoryData.payment_status}
+                  {orderHistoryDetailsData.payment_status}
                 </p>
                 <p>
                   <span>Shipping Address:</span>{" "}
-                  {singleOrderHistoryData.shipping_address}
+                  {orderHistoryDetailsData.shipping_address}
                 </p>
               </div>
             </div>
 
             <div>
               <h4>Products: </h4>
-              {/* {orderHistoryDetailsData[0].data.products.map(productItem => <ul>
-            <li>Product Name: {productItem.product_name}</li>
-            <li>Quantity: {productItem.quantity}</li>
-            <li>Price: {productItem.price}</li>
-            <li>Discount: {productItem.discount}</li>
-          </ul>)} */}
+           
 
               <table>
                 <thead>
@@ -139,25 +133,20 @@ const SeeOrderDetails = () => {
                   <th>Discount</th>
                 </thead>
                 <tbody>
-                  {orderHistoryDetailsData[0].data.products.map(
-                    (productItem) => (
-                      <tr>
-                        <td>{productItem.product_name}</td>
-                        <td>{productItem.quantity}</td>
-                        <td>{productItem.price}</td>
-                        <td>{productItem.discount}</td>
-                        {/* <td className="d-flex justify-content-around">
-                    <button onClick={() => handleLoginAsCustomer(listData?.id)}>Login </button>{" "}
-                    <Link to={`/customer/customer-details/${listData?.id}`}><i className="bi bi-eye customerEdit-Btn"></i></Link>
-                  </td> */}
-                      </tr>
-                    )
-                  )}
+                  
+                      {orderHistoryDetailsData.products?.map(orderProduct => <tr>
+                        <td>{orderProduct.product_name}</td>
+                        <td>{orderProduct.quantity}</td>
+                        <td>{orderProduct.price}</td>
+                        <td>{orderProduct.discount}</td>
+                        
+                      </tr>)}
+                    
                 </tbody>
               </table>
             </div>
           </div>
-        ))}
+        
 
         <Modal
           isOpen={modalIsOpen}
