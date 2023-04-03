@@ -64,10 +64,12 @@ const CustomerList = () => {
     });
   };
 
+
   const handlePageClick = async (data) => {
     await fetchCustomerList(data.selected + 1);
   };
 
+  
  const  url2 = baseURL+`/agent/customer/loginAsCustomer/`
 
   const handleLoginAsCustomer = (id) => {
@@ -75,10 +77,8 @@ const CustomerList = () => {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => {
-      // console.log(res.data)
-
-      if(res.data.status == "success"){
-        window.location.href = 'http://localhost:3000/customer/force-login-by-agent/' + res.data.data.token; 
+      if(res.data.status === "success"){
+        window.location.href = `http://localhost:3000/customer/force-login-by-agent/${res.data.data.token}`; 
         return null
       }
     })
