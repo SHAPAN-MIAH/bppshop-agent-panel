@@ -1,4 +1,3 @@
-
 .wallet-content-container {
   margin: 120px 40px 0px 40px;
 }
@@ -7,25 +6,64 @@
 }
 
 .wallet-balance-container,
-.wallet-information-container,
+.wallet-withdrawal-container,
 .wallet-security-container {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; 
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
   background: #ffff;
   padding: 25px;
   margin-bottom: 20px;
   border-radius: 10px;
- color: #444444;
+  color: #444444;
   font-weight: 600;
 }
 .wallet-balance-container h6,
-.wallet-information-container h6,
+.wallet-withdrawal-container h6,
 .wallet-security-container h6 {
   font-weight: 700;
   /* color: #444444; */
   font-size: 18px;
   margin-bottom: 15px;
 }
+.withdraw-request-input-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px 20px;
+}
+
+.wallet-withdrawal-container input,
+.wallet-withdrawal-container select {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+.wallet-withdrawal-container input::-webkit-outer-spin-button,
+.wallet-withdrawal-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.wallet-withdrawal-container input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#withdrawRequestSubmitBtn{
+  padding: 10px 20px;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  background: #16a0da;
+  color: #ffff;
+  transition: all .2s ease-in;
+}
+#withdrawRequestSubmitBtn:hover{
+  background: #011627f1;
+  color: #ffff;
+}
+
 .balance-up-down {
   display: flex;
   margin-top: 20px;
@@ -47,11 +85,11 @@
   color: #444444;
 }
 
-.wallet-security-container p i{
+.wallet-security-container p i {
   /* font-size: 20px; */
   color: rgb(75, 75, 75);
 }
-.wallet-security-container button{
+.wallet-security-container button {
   border: 1px solid rgb(180, 180, 180);
   border-radius: 30px;
   outline: none;
@@ -65,38 +103,37 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
   background: #ffff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
+  font-size: 15px;
 }
 
-.cashOut-send-deposit-container{
+.withdraw-request-history-container {
   margin: 10px 0px 20px 0px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 20px;
 }
-.cash-out,
-.send,
-.deposit {
+.withdraw-request,
+.withdraw-history {
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   background: #ffff;
   padding: 30px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
   cursor: pointer;
 }
-.cash-out h5,
-.send h5,
-.deposit h5 {
+.withdraw-request h5,
+.withdraw-history h5 {
   margin-bottom: -5px;
   margin-top: 10px;
   color: #444444;
 }
-.cash-out i,
-.send i,
-.deposit i {
+.withdraw-request i,
+.withdraw-history i {
   font-size: 20px;
   background: #16a0da;
   color: #ffff;
@@ -104,30 +141,32 @@
   border-radius: 50px;
 }
 
+/* .transaction-history-table-container{
+  margin: 10px;
+} */
 .transaction-history-table-container th {
-    font-weight: 500;
-    font-size: 15px;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 768px) {
   .wallet-content-container {
     margin: 100px 10px 0px 10px;
   }
-  .cashOut-send-deposit-container{
+  .cashOut-send-deposit-container {
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
   }
   .transaction-history-table-container td {
-    padding: 15px 0px;
-}
+    padding: 15px;
+  }
 }
 @media screen and (max-width: 400px) {
   .wallet-content-container {
     margin: 100px 10px 0px 10px;
   }
-  .cashOut-send-deposit-container{
+  .cashOut-send-deposit-container {
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
