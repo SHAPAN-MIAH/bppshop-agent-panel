@@ -5,6 +5,7 @@ import { baseURL } from "./../../BaseUrl/BaseUrl";
 import ReactPaginate from "react-paginate";
 import Select from "react-select";
 import WalletWithdraw from "./WalletWithdraw";
+import { Link } from "react-router-dom";
 
 const Wallet = () => {
   const token = localStorage.getItem("token");
@@ -74,14 +75,19 @@ const Wallet = () => {
                   </div>
                 </div>
                 <div className="withdraw-request-history-container">
+                    <Link to="/withdraw-request">
                     <div className="withdraw-request">
                       <i className="bi bi-arrow-90deg-down"></i>
-                      <h5>Withdrawal Request</h5>
+                      <h5>Balance Withdraw Request</h5>
                     </div>
+                    </Link>
+                    <Link to="/withdrawal-history">
                     <div className="withdraw-history">
                     <i class="bi bi-card-list"></i>
                       <h5>Withdrawal History</h5>
                     </div>
+                    </Link>
+                    
                     
                   </div>
 
@@ -159,25 +165,9 @@ const Wallet = () => {
                     </div>
                   </div>
                 </div>
-                {/* <WalletWithdraw /> */}
-                
+                            
               </div>
-              {/* <div className="col-md-2">
-                <div className="cashOut-send-deposit-container">
-                  <div className="cash-out">
-                    <i className="bi bi-arrow-90deg-down"></i>
-                    <h5>Cash Out</h5>
-                  </div>
-                  <div className="send">
-                    <i className="bi bi-arrow-90deg-right"></i>
-                    <h5>Send</h5>
-                  </div>
-                  <div className="deposit">
-                    <i className="bi bi-arrow-90deg-up"></i>
-                    <h5>Deposit</h5>
-                  </div>
-                </div>
-              </div> */}
+              
             </div>
           </div>
         </div>

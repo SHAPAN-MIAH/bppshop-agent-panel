@@ -15,6 +15,7 @@ const CustomerDetails = () => {
   const [customerDetail, setCustomerDetail] = useState([]);
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     axios
       .get(baseURL + `/agent/customer/details/${id}`, {

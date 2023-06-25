@@ -26,6 +26,7 @@ import Wallet from "./Components/Wallet/Wallet";
 import UserProvider from "./ContextApi/Context/UserProvider";
 import PageNotFound from './Components/PageNotFound/PageNotFound';
 import WalletWithdraw from "./Components/Wallet/WalletWithdraw";
+import WithdrawalHistory from "./Components/Wallet/WithdrawalHistory/WithdrawalHistory";
 
 function App() {
   return (
@@ -73,9 +74,9 @@ function App() {
                   element={<CommissionHistory />}
                 />
               </Route>
-              <Route path="wallet" element={<Wallet />}>
+              <Route path="wallet" element={<Wallet />}></Route>
               <Route path="withdraw-request" element={<WalletWithdraw />} />
-              </Route>
+              <Route path="withdrawal-history" element={<WithdrawalHistory />} />
             </Route>
           {/* )} */}
           <Route path="/login" element={<Login />}></Route>
