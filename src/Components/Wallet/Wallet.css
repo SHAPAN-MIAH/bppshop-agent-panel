@@ -40,6 +40,7 @@
   border-radius: 5px;
   padding: 0px 10px;
 }
+
 .wallet-withdrawal-container input::-webkit-outer-spin-button,
 .wallet-withdrawal-container input::-webkit-inner-spin-button {
   -webkit-appearance: none;

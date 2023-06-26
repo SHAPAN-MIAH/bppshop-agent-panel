@@ -56,8 +56,6 @@ const WithdrawalHistory = () => {
             <thead>
               <th>Request Date</th>
               <th>Request Id</th>
-              
-              
               <th>Payment Method</th>
               <th>Bank</th>
               <th>Branch Name</th>
@@ -70,8 +68,6 @@ const WithdrawalHistory = () => {
                 <tr>
                   <td data-label="Date Time">{listData.request_date}</td>
                   <td data-label="Transaction Id">{listData.request_id}</td>
-                 
-                 
                   <td data-label="Reference no">{listData.payment_method}</td>
                   <td data-label="Balance">{listData.bank}</td>
                   <td data-label="Balance">{listData.branch_name? listData.branch_name : " - "}</td>

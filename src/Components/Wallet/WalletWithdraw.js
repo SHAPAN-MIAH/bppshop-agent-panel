@@ -4,10 +4,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { baseURL } from "../../BaseUrl/BaseUrl";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const WalletWithdraw = () => {
   const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
   const [banks, setBanks] = useState([]);
+  const [selectedBank, setSelectedBank] = useState("");
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     axios
@@ -18,73 +23,92 @@ const WalletWithdraw = () => {
   }, [token]);
 
   const WithDrawRequestHandleChange = (e) => {
-    console.log(e.target.value);
+    setSelectedBank(e.target.value);
+  };
+
+  const onSubmit = (data) => {
+    const requestData = {
+      bank: `${selectedBank}`,
+      branch_name: `${data.branch_name}`,
+      account_no: `${data.account_number}`,
+      request_amount: parseInt(data.request_amount),
+    };
+
+    console.log(requestData)
+
+    axios
+      .post(baseURL + "/agent/withdrawal/request", requestData, config)
+      .then((res) => console.log(res));
   };
 
   return (
     <>
       <div className="wallet-withdrawal-container">
         <Link className="walletBackBtn" to="/wallet">
-          <p  type=""><i class="bi bi-arrow-left-circle"></i> back</p>
+          <p type="">
+            <i class="bi bi-arrow-left-circle"></i> back
+          </p>
         </Link>
         <h6>Cash Withdraw</h6>
 
-        <div className="withdraw-request-input-container">
-          <div>
-            <label for="">Choose Bank</label>
-            <br />
-            <select
-              name="chooseBank"
-              id="chooseBank"
-              onChange={WithDrawRequestHandleChange}
-            >
-              <option value="none" selected disabled hidden>
-                Choose
-              </option>
-              {banks?.data?.map((bank) => (
-                <option value={bank?.name}>{bank?.name}</option>
-              ))}
-            </select>
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="withdraw-request-input-container">
+            <div>
+              <label for="">Choose Bank</label>
+              <br />
+              <select
+                name="chooseBank"
+                id="chooseBank"
+                onChange={WithDrawRequestHandleChange}
+              >
+                <option value="none" selected disabled hidden>
+                  Choose
+                </option>
+                {banks?.data?.map((bank) => (
+                  <option value={bank?.name}>{bank?.name}</option>
+                ))}
+              </select>
+            </div>
 
-          <div>
-            <label for="">Branch Name</label>
-            <br />
-            <input
-              type="string"
-              name="branch_name"
-              placeholder="Enter branch name"
-              onChange={WithDrawRequestHandleChange}
-              required
-            />
+            <div>
+              <label for="">Branch Name</label>
+              <br />
+              <input
+                type="string"
+                name="branch_name"
+                placeholder="Enter branch name"
+                {...register("branch_name", { required: true })}
+                required
+              />
+            </div>
+            <div>
+              <label for="">Account Number</label>
+              <br />
+              <input
+                type="number"
+                name="account_number"
+                placeholder="Enter account Number"
+                {...register("account_number", { required: true })}
+                required
+              />
+            </div>
+            <div>
+              <label for="">Request Amount</label>
+              <br />
+              <input
+                type="number"
+                name="request_amount"
+                placeholder="Enter request withdraw amount"
+                {...register("request_amount", { required: true })}
+                required
+              />
+            </div>
           </div>
-          <div>
-            <label for="">Account Number</label>
-            <br />
-            <input
-              type="number"
-              name="account_number"
-              placeholder="Enter account Number"
-              onChange={WithDrawRequestHandleChange}
-              required
-            />
-          </div>
-          <div>
-            <label for="">Request Amount</label>
-            <br />
-            <input
-              type="number"
-              name="request_amount"
-              placeholder="Enter request withdraw amount"
-              onChange={WithDrawRequestHandleChange}
-              required
-            />
-          </div>
-        </div>
-        <br />
-        <button id="withdrawRequestSubmitBtn" type="submit">
-          Request Submit
-        </button>
+          <br />
+          <button id="withdrawRequestSubmitBtn" type="submit">
+            Request Submit
+          </button>
+        </form>
       </div>
     </>
   );
