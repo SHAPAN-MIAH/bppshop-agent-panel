@@ -155,6 +155,15 @@
   color: #16a0da;
 }
 
+#withdrawRequestCancelBtn{
+  background: #16a0da;
+  color: #ffff;
+}
+#withdrawRequestCanceledBtn{
+  background: #555555;
+  color: #ffff;
+}
+
 @media screen and (max-width: 768px) {
   .wallet-content-container {
     margin: 100px 10px 0px 10px;

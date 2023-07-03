@@ -3,7 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { baseURL } from "../../BaseUrl/BaseUrl";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const WalletWithdraw = () => {
@@ -13,6 +13,7 @@ const WalletWithdraw = () => {
   const [banks, setBanks] = useState([]);
   const [selectedBank, setSelectedBank] = useState("");
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -34,11 +35,13 @@ const WalletWithdraw = () => {
       request_amount: parseInt(data.request_amount),
     };
 
-    console.log(requestData)
-
     axios
       .post(baseURL + "/agent/withdrawal/request", requestData, config)
-      .then((res) => console.log(res));
+      .then((res) => {
+        if(res.data.status === "success"){
+          navigate("/wallet")
+        }
+      });
   };
 
   return (

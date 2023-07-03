@@ -10,6 +10,7 @@ const WithdrawalHistory = () => {
   const token = localStorage.getItem("token");
   const [totalPage, setTotalPage] = useState(0);
   const [withdrawalHistory, setWithdrawalHistory] = useState([]);
+  const config = { headers: { Authorization: `Bearer ${token}` } };
 
   let currentPage = 1;
   let limit = 10;
@@ -32,8 +33,6 @@ const WithdrawalHistory = () => {
     }).then((res) => {
       setTotalPage(Math.ceil(res.data.data.total / limit));
       setWithdrawalHistory(res.data.data.data);
-
-      console.log()
     });
   };
 
@@ -41,6 +40,21 @@ const WithdrawalHistory = () => {
     await fetchWithdrawalHistory(data.selected + 1);
   };
 
+  const withdrawRequestCancel = (request_id) => {
+    axios
+      .post(
+        baseURL + "/agent/withdrawal/cancel",
+        {
+          "request_id": `${request_id}`,
+        },
+        config
+      )
+      .then((res) => {
+        if(res.data.status === "success"){
+          fetchWithdrawalHistory(currentPage);
+        }
+      });
+  };
   return (
     <>
       <div className="withdrawal-history-container">
@@ -62,6 +76,7 @@ const WithdrawalHistory = () => {
               <th>Account Number</th>
               <th>Request Amount</th>
               <th>Status</th>
+              <th>Action</th>
             </thead>
             <tbody>
               {withdrawalHistory.map((listData) => (
@@ -70,10 +85,28 @@ const WithdrawalHistory = () => {
                   <td data-label="Transaction Id">{listData.request_id}</td>
                   <td data-label="Reference no">{listData.payment_method}</td>
                   <td data-label="Balance">{listData.bank}</td>
-                  <td data-label="Balance">{listData.branch_name? listData.branch_name : " - "}</td>
+                  <td data-label="Balance">
+                    {listData.branch_name ? listData.branch_name : " - "}
+                  </td>
                   <td data-label="Balance">{listData.account_no}</td>
                   <td data-label="Credit">{listData.request_amount}</td>
                   <td data-label="Debit">{listData.status}</td>
+                  <td data-label="">
+                    {listData.status == "pending" ? <button
+                      onClick={(e) =>
+                        withdrawRequestCancel(listData.request_id)
+                      }
+                      id="withdrawRequestCancelBtn"
+                      type=""
+                    >
+                      Cancel
+                    </button> :
+                    <button
+                      id="withdrawRequestCanceledBtn"
+                    >
+                      Canceled
+                    </button>}
+                  </td>
                 </tr>
               ))}
             </tbody>
