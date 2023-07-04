@@ -156,8 +156,10 @@
 }
 
 #withdrawRequestCancelBtn{
-  background: #16a0da;
+  background: #e6130c;
   color: #ffff;
+  padding-left: 28px;
+  padding-right: 28px;
 }
 #withdrawRequestCanceledBtn{
   background: #555555;
@@ -176,6 +178,11 @@
   }
   .transaction-history-table-container td {
     padding: 15px;
+  }
+  .withdraw-request-input-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 15px 20px;
   }
 }
 @media screen and (max-width: 400px) {

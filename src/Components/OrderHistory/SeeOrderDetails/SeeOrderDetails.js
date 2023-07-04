@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import "./SeeOrderDetails.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { baseURL } from "./../../../BaseUrl/BaseUrl";
+import { baseURL, imgThumbnailBaseUrl } from "./../../../BaseUrl/BaseUrl";
 
 const customStyles = {
   content: {
@@ -66,6 +66,7 @@ const SeeOrderDetails = () => {
   }
 
   const [orderHistoryDetailsData, setOrderHistoryDetailsData] = useState('');
+  console.log(orderHistoryDetailsData.products)
 
 
   useEffect(() => {
@@ -75,6 +76,8 @@ const SeeOrderDetails = () => {
       })
       .then((res) => setOrderHistoryDetailsData(res.data.data));
   }, [id, token]);
+
+
 
   return (
     <div className="order-history-details-section">
@@ -123,22 +126,35 @@ const SeeOrderDetails = () => {
 
             <div>
               <h4>Products: </h4>
-           
-
               <table>
                 <thead>
-                  <th>Product Name</th>
+                  <th>Product</th>
+                  <th>Variant</th>
                   <th>Quantity</th>
+                  <th>Unit Price</th>
                   <th>Price</th>
                   <th>Discount</th>
+                  <th>Total Price</th>
                 </thead>
                 <tbody>
                   
                       {orderHistoryDetailsData.products?.map(orderProduct => <tr>
-                        <td>{orderProduct.product_name}</td>
-                        <td>{orderProduct.quantity}</td>
-                        <td>{orderProduct.price}</td>
+                        <td className="productNameThumbnail">
+                        <img
+                          src={
+                            imgThumbnailBaseUrl +
+                            `/${orderProduct?.product_details?.thumbnail}`
+                          }
+                          alt=""
+                          width="70"
+                        />
+                          { orderProduct.product_details.name}</td>
+                        <td>{orderProduct.variant}</td>
+                        <td>{orderProduct.qty}</td>
+                        <td>{orderProduct.product_details.unit_price}</td>
+                        <td>{orderProduct.price * orderProduct.qty}</td>
                         <td>{orderProduct.discount}</td>
+                        <td>{orderProduct.price * orderProduct.qty - orderProduct.discount}</td>
                         
                       </tr>)}
                     

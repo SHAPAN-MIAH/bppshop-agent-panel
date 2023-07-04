@@ -107,7 +107,7 @@ const OrderHistoryHome = () => {
               {/* <button type="">
                 Add New Customer <i class="bi bi-person-plus-fill"></i>
               </button> */}
-              <input type="" name="" placeholder="Search Customer Name/ID" />
+              <input type="" name="" placeholder="Search Customer Id" />
             </div>
           </div>
           <div className="customer-list-print">

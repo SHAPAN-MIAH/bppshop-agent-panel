@@ -57,7 +57,7 @@ const WalletWithdraw = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="withdraw-request-input-container">
             <div>
-              <label for="">Choose Bank</label>
+              <label for="">Choose Mobile Banking</label>
               <br />
               <select
                 name="chooseBank"

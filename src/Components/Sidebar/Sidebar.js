@@ -159,11 +159,10 @@ const Sidebar = () => {
             <div className="balance-content">
               <div>
                 <p>Balance</p>
-                <span>৳ {agent.wallet_balance}</span>
+                <h4>৳ {agent.wallet_balance}</h4>
               </div>
             </div>
-            <br />
-            <p>Your Remaining Balance</p>
+            <p className="pt-3">Your Remaining Balance</p>
           </div>
         </div>
         </div>

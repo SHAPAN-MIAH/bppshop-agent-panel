@@ -28,10 +28,10 @@ const Wallet = () => {
   const url = baseURL + `/agent/transactions`;
 
   useEffect(() => {
-    fetchCustomerList(currentPage);
+    fetchTransactionHistoryList(currentPage);
   }, []);
 
-  const fetchCustomerList = (currentPage) => {
+  const fetchTransactionHistoryList = (currentPage) => {
     axios({
       method: "post",
       url: url,
@@ -47,7 +47,7 @@ const Wallet = () => {
   };
 
   const handlePageClick = async (data) => {
-    await fetchCustomerList(data.selected + 1);
+    await fetchTransactionHistoryList(data.selected + 1);
   };
 
   return (

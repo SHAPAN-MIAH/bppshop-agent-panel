@@ -145,3 +145,9 @@
     text-align: center;
     margin-top: 10px;
 }
+.productNameThumbnail{
+  text-align: left;
+}
+.productNameThumbnail img{
+  margin-right: 10px;
+}
