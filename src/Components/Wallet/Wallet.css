@@ -1,4 +1,6 @@
-.wallet-content-container, .wallet-withdrawal-container, .withdrawal-history-container {
+.wallet-content-container,
+.wallet-withdrawal-container,
+.withdrawal-history-container {
   margin: 120px 40px 0px 40px;
 }
 .wallet-content-container h2 {
@@ -25,7 +27,7 @@
   font-size: 18px;
   margin-bottom: 15px;
 }
-.withdraw-request-input-container{
+.withdraw-request-input-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 15px 20px;
@@ -48,19 +50,19 @@
 }
 
 /* Firefox */
-.wallet-withdrawal-container input[type=number] {
+.wallet-withdrawal-container input[type="number"] {
   -moz-appearance: textfield;
 }
 
-#withdrawRequestSubmitBtn{
+#withdrawRequestSubmitBtn {
   padding: 10px 20px;
   border: 1px solid gainsboro;
   border-radius: 5px;
   background: #16a0da;
   color: #ffff;
-  transition: all .2s ease-in;
+  transition: all 0.2s ease-in;
 }
-#withdrawRequestSubmitBtn:hover{
+#withdrawRequestSubmitBtn:hover {
   background: #011627f1;
   color: #ffff;
 }
@@ -151,17 +153,17 @@
   font-weight: 600;
 }
 
-.walletBackBtn{
+.walletBackBtn {
   color: #16a0da;
 }
 
-#withdrawRequestCancelBtn{
+#withdrawRequestCancelBtn {
   background: #e6130c;
   color: #ffff;
   padding-left: 28px;
   padding-right: 28px;
 }
-#withdrawRequestCanceledBtn{
+#withdrawRequestCanceledBtn {
   background: #555555;
   color: #ffff;
 }
@@ -179,7 +181,7 @@
   .transaction-history-table-container td {
     padding: 15px;
   }
-  .withdraw-request-input-container{
+  .withdraw-request-input-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 15px 20px;
@@ -195,4 +197,13 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 20px;
   }
+}
+
+.mobile_payment input,
+.bank_payment input {
+  width: 20px;
+}
+.mobile-payment-option-way,
+.bank-payment-option-way {
+  display: none;
 }
