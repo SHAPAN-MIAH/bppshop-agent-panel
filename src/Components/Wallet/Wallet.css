@@ -158,14 +158,20 @@
 }
 
 #withdrawRequestCancelBtn {
-  background: #e6130c;
+  background: #525252;
   color: #ffff;
   padding-left: 28px;
   padding-right: 28px;
 }
-#withdrawRequestCanceledBtn {
-  background: #555555;
+#withdrawRequestApprovedBtn {
+  background: green;
   color: #ffff;
+  cursor: default;
+}
+#withdrawRequestCanceledBtn {
+  background: #e6130c;
+  color: #ffff;
+  cursor: default;
 }
 
 @media screen and (max-width: 768px) {
@@ -205,5 +211,8 @@
 }
 .mobile-payment-option-way,
 .bank-payment-option-way {
+  display: none;
+}
+.submitForm{
   display: none;
 }

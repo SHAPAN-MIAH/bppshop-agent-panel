@@ -6,39 +6,142 @@ import { baseURL } from "../../BaseUrl/BaseUrl";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-
 const WalletWithdraw = () => {
   const token = localStorage.getItem("token");
   const config = { headers: { Authorization: `Bearer ${token}` } };
 
-  const [banks, setBanks] = useState([]);
+  const [allPaymentOption, setAllPaymentOption] = useState([]);
+
+  // const [mobileBanks, setMobileBanks] = useState("");
+  // const [banks, setBanks] = useState("");
+
+  // console.log(mobileBanks)
+  // console.log(banks)
+
   const [selectedBank, setSelectedBank] = useState("");
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+
+  const [paymentType, setPaymentType] = useState("");
+  const isRadioSelected = (value) => paymentType === value;
+  const handleRadioClick = (event) => setPaymentType(event.target.value);
+
+  const MobilePaymentOptionHandler = () => {
+    const mobilePaymentOptionWay = document.querySelector(
+      ".mobile-payment-option-way"
+    );
+    const bankPaymentOptionWay = document.querySelector(
+      ".bank-payment-option-way"
+    );
+    mobilePaymentOptionWay.style.display = "block";
+    bankPaymentOptionWay.style.display = "none";
+
+    // const submitForm = document.querySelector(
+    //   ".submitForm"
+    // );
+    // const branchNameInputContainer = document.querySelector(
+    //   ".branch_name_input_container"
+    // );
+    // submitForm.style.display = "block";
+    // branchNameInputContainer.style.display = "none";
+
+    // setMobileBanks(
+    //   allPaymentOption?.data?.filter(
+    //     (item) =>
+    //       item?.name === "bKash" ||
+    //       item?.name === "Nagad" ||
+    //       item?.name === "Rocket"
+    //   )
+    // );
+  };
+
+  const BankPaymentOptionHandler = () => {
+    const bankPaymentOptionWay = document.querySelector(
+      ".bank-payment-option-way"
+    );
+    const mobilePaymentOptionWay = document.querySelector(
+      ".mobile-payment-option-way"
+    );
+    bankPaymentOptionWay.style.display = "block";
+    mobilePaymentOptionWay.style.display = "none";
+
+    // const submitForm = document.querySelector(
+    //   ".submitForm"
+    // );
+    // const branchNameInputContainer = document.querySelector(
+    //   ".branch_name_input_container"
+    // );
+    // submitForm.style.display = "block";
+    // branchNameInputContainer.style.display = "block";
+
+    // setBanks(
+    //   allPaymentOption?.data?.filter(
+    //     (item) =>
+    //       item?.name === "City Bank" ||
+    //       item?.name === "BRAC Bank Limited" ||
+    //       item?.name === "Agrani Bank Limited" ||
+    //       item?.name === "Janata Bank Limited" ||
+    //       item?.name === "Sonali Bank PLC"
+    //   )
+    // );
+  };
 
   useEffect(() => {
     axios
       .get(baseURL + "/agent/withdrawal/banks", {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => setBanks(res.data));
+      .then((res) => setAllPaymentOption(res.data));
   }, [token]);
+
+  const mobileBanks = allPaymentOption?.data?.filter(
+    (item) =>
+      item?.name === "bKash" ||
+      item?.name === "Nagad" ||
+      item?.name === "Rocket"
+  );
+
+  const banks = allPaymentOption?.data?.filter(
+    (item) =>
+      item?.name === "City Bank" ||
+      item?.name === "BRAC Bank Limited" ||
+      item?.name === "Agrani Bank Limited" ||
+      item?.name === "Janata Bank Limited" ||
+      item?.name === "Sonali Bank PLC"
+  );
 
   const WithDrawRequestHandleChange = (e) => {
     setSelectedBank(e.target.value);
-    // if (e.target.value === "bKash" || "Nagad" || "Rocket") {
-    //   document.querySelector(".branch_name_input_container").style.display =
-    //     "none";
-    // } else {
-    //   document.querySelector(".branch_name_input_container").style.display =
-    //     "block";
-    // }
+  };
+
+  const mobileBankOptionForm = document.getElementById("mobile-payment-option-form");
+
+  const mobileBankOptionFormSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(mobileBankOptionForm);
+    const formDataObject = Object.fromEntries(formData.entries());
+
+    const requestData = {
+      bank: `${formDataObject.chooseBank}`,
+      account_no: `${formDataObject.account_number}`,
+      request_amount: parseInt(formDataObject.request_amount),
+    };
+
+    axios
+      .post(baseURL + "/agent/withdrawal/request", requestData, config)
+      .then((res) => {
+        if (res.data.status === "success") {
+          navigate("/wallet");
+          window.location.reload()
+        }
+      });
+
   };
 
   const onSubmit = (data) => {
     const requestData = {
       bank: `${selectedBank}`,
-      branch_name: `${data.branch_name}`,
       account_no: `${data.account_number}`,
       request_amount: parseInt(data.request_amount),
     };
@@ -52,31 +155,22 @@ const WalletWithdraw = () => {
       });
   };
 
-  const [paymentType, setPaymentType] = useState("");
-  const isRadioSelected = (value) => paymentType === value;
-  const handleRadioClick = (event) => setPaymentType(event.target.value);
+  const onBankSubmit = (data) => {
+    const requestData = {
+      bank: `${selectedBank}`,
+      branch_name: `${data.branch_name}`,
+      account_no: `${data.account_number}`,
+      request_amount: parseInt(data.request_amount),
+    };
 
-  const MobilePaymentOptionHandler = () => {
-    const mobilePaymentOptionWay = document.querySelector(
-      ".mobile-payment-option-way"
-    );
-    const bankPaymentOptionWay = document.querySelector(
-      ".bank-payment-option-way"
-    );
-
-    mobilePaymentOptionWay.style.display = "block";
-    bankPaymentOptionWay.style.display = "none";
-  };
-
-  const BankPaymentOptionHandler = () => {
-    const bankPaymentOptionWay = document.querySelector(
-      ".bank-payment-option-way"
-    );
-    const mobilePaymentOptionWay = document.querySelector(
-      ".mobile-payment-option-way"
-    );
-    bankPaymentOptionWay.style.display = "block";
-    mobilePaymentOptionWay.style.display = "none";
+    axios
+      .post(baseURL + "/agent/withdrawal/request", requestData, config)
+      .then((res) => {
+        if (res.data.status === "success") {
+          navigate("/wallet");
+          window.location.reload()
+        }
+      });
   };
 
   return (
@@ -131,8 +225,10 @@ const WalletWithdraw = () => {
             </div>
           </div>
         </div>
+
         <div className="mobile-payment-option-way">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+          <form onClick={(e) => mobileBankOptionFormSubmit(e)} id="mobile-payment-option-form">
             <div className="withdraw-request-input-container">
               <div>
                 <label htmlFor="">Choose Mobile Banking</label>
@@ -145,7 +241,7 @@ const WalletWithdraw = () => {
                   <option value="none" selected disabled hidden>
                     Choose
                   </option>
-                  {banks?.data?.map((bank) => (
+                  {mobileBanks?.map((bank) => (
                     <option key={bank?.name} value={bank?.name}>
                       {bank?.name}
                     </option>
@@ -159,7 +255,8 @@ const WalletWithdraw = () => {
                   type="number"
                   name="account_number"
                   placeholder="Enter account Number"
-                  {...register("account_number", { required: true })}
+                  onChange={WithDrawRequestHandleChange}
+                  // {...register("account_number", { required: true })}
                   required
                 />
               </div>
@@ -170,7 +267,8 @@ const WalletWithdraw = () => {
                   type="number"
                   name="request_amount"
                   placeholder="Enter request withdraw amount"
-                  {...register("request_amount", { required: true })}
+                  onChange={WithDrawRequestHandleChange}
+                  // {...register("request_amount", { required: true })}
                   required
                 />
               </div>
@@ -183,7 +281,7 @@ const WalletWithdraw = () => {
         </div>
 
         <div className="bank-payment-option-way">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onBankSubmit)}>
             <div className="withdraw-request-input-container">
               <div>
                 <label htmlFor="">Choose Bank</label>
@@ -196,7 +294,7 @@ const WalletWithdraw = () => {
                   <option value="none" selected disabled hidden>
                     Choose
                   </option>
-                  {banks?.data?.map((bank) => (
+                  {banks?.map((bank) => (
                     <option key={bank?.name} value={bank?.name}>
                       {bank?.name}
                     </option>
@@ -244,7 +342,7 @@ const WalletWithdraw = () => {
           </form>
         </div>
 
-        {/* <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <form onSubmit={handleSubmit(onSubmit)} className="submitForm">
           <div className="withdraw-request-input-container">
             <div>
               <label htmlFor="">Choose Mobile Banking</label>
@@ -257,7 +355,26 @@ const WalletWithdraw = () => {
                 <option value="none" selected disabled hidden>
                   Choose
                 </option>
-                {banks?.data?.map((bank) => (
+
+                {mobileBanks
+                  ? mobileBanks?.map((bank) => (
+                      <option key={bank?.name} value={bank?.name}>
+                        {bank?.name}
+                      </option>
+                    ))
+                  : "" || banks
+                  ? banks?.map((bank) => (
+                      <option key={bank?.name} value={bank?.name}>
+                        {bank?.name}
+                      </option>
+                    ))
+                  : ""}
+
+                {mobileBanks.length? mobileBanks?.map((bank) => (
+                    <option key={bank?.name} value={bank?.name}>
+                      {bank?.name}
+                    </option>
+                  )) : banks?.data?.map((bank) => (
                   <option key={bank?.name} value={bank?.name}>
                     {bank?.name}
                   </option>
@@ -273,7 +390,6 @@ const WalletWithdraw = () => {
                 name="branch_name"
                 placeholder="Enter branch name"
                 {...register("branch_name", { required: true })}
-                
               />
             </div>
             <div>

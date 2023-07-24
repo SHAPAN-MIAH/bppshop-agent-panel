@@ -45,12 +45,12 @@ const WithdrawalHistory = () => {
       .post(
         baseURL + "/agent/withdrawal/cancel",
         {
-          "request_id": `${request_id}`,
+          request_id: `${request_id}`,
         },
         config
       )
       .then((res) => {
-        if(res.data.status === "success"){
+        if (res.data.status === "success") {
           fetchWithdrawalHistory(currentPage);
         }
       });
@@ -92,20 +92,21 @@ const WithdrawalHistory = () => {
                   <td data-label="Credit">{listData.request_amount}</td>
                   <td data-label="Debit">{listData.status}</td>
                   <td data-label="">
-                    {listData.status == "pending" ? <button
-                      onClick={(e) =>
-                        withdrawRequestCancel(listData.request_id)
-                      }
-                      id="withdrawRequestCancelBtn"
-                      type=""
-                    >
-                      Cancel
-                    </button> :
-                    <button
-                      id="withdrawRequestCanceledBtn"
-                    >
-                      Canceled
-                    </button>}
+                    {listData.status == "pending" ? (
+                      <button
+                        onClick={(e) =>
+                          withdrawRequestCancel(listData.request_id)
+                        }
+                        id="withdrawRequestCancelBtn"
+                        type=""
+                      >
+                        Cancel
+                      </button>
+                    ) : listData.status == "approved" ? (
+                      <button id="withdrawRequestApprovedBtn">approved</button>
+                    ) : (
+                      <button id="withdrawRequestCanceledBtn">Canceled</button>
+                    )}
                   </td>
                 </tr>
               ))}

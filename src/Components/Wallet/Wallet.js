@@ -64,32 +64,30 @@ const Wallet = () => {
                   <h4>Tk. {agent.wallet_balance}</h4>
                   {/* <h4>৳ 234787</h4> */}
                   <div className="balance-up-down">
-                    <span>
+                    {/* <span>
                       <i className="bi bi-arrow-up-right"></i>{" "}
                       <small>+ 0.00</small>
                     </span>
                     <span>
                       <i className="bi bi-arrow-down-left"></i>{" "}
                       <small>- 0.00</small>
-                    </span>
+                    </span> */}
                   </div>
                 </div>
                 <div className="withdraw-request-history-container">
-                    <Link to="/withdraw-request">
+                  <Link to="/withdrawal-history">
+                    <div className="withdraw-history">
+                      <i class="bi bi-card-list"></i>
+                      <h5>Withdrawal History</h5>
+                    </div>
+                  </Link>
+                  <Link to="/withdraw-request">
                     <div className="withdraw-request">
                       <i className="bi bi-arrow-90deg-down"></i>
                       <h5>Balance Withdraw Request</h5>
                     </div>
-                    </Link>
-                    <Link to="/withdrawal-history">
-                    <div className="withdraw-history">
-                    <i class="bi bi-card-list"></i>
-                      <h5>Withdrawal History</h5>
-                    </div>
-                    </Link>
-                    
-                    
-                  </div>
+                  </Link>
+                </div>
 
                 {/* <div className="wallet-security-container">
                   <h6>Security</h6>
@@ -131,8 +129,28 @@ const Wallet = () => {
                             <td data-label="Order Group Id">
                               {listData.order_group_id}
                             </td>
-                            <td data-label="Credit">{listData.credit}</td>
-                            <td data-label="Debit">{listData.debit}</td>
+                            <td
+                              data-label="Credit"
+                              style={
+                                listData.credit && {
+                                  background: "green",
+                                  color: "#fff",
+                                }
+                              }
+                            >
+                              {listData.credit}
+                            </td>
+                            <td
+                              data-label="Debit"
+                              style={
+                                listData.debit && {
+                                  background: "red",
+                                  color: "#fff",
+                                }
+                              }
+                            >
+                              {listData.debit}
+                            </td>
                             <td data-label="Reference no">
                               {listData.reference}
                             </td>
@@ -165,9 +183,7 @@ const Wallet = () => {
                     </div>
                   </div>
                 </div>
-                            
               </div>
-              
             </div>
           </div>
         </div>
