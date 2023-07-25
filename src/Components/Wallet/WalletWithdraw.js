@@ -139,26 +139,27 @@ const WalletWithdraw = () => {
 
   };
 
-  const onSubmit = (data) => {
-    const requestData = {
-      bank: `${selectedBank}`,
-      account_no: `${data.account_number}`,
-      request_amount: parseInt(data.request_amount),
-    };
+  // const onSubmit = (data) => {
+  //   const requestData = {
+  //     bank: `${selectedBank}`,
+  //     account_no: `${data.account_number}`,
+  //     request_amount: parseInt(data.request_amount),
+  //   };
 
-    axios
-      .post(baseURL + "/agent/withdrawal/request", requestData, config)
-      .then((res) => {
-        if (res.data.status === "success") {
-          navigate("/wallet");
-        }
-      });
-  };
+  //   axios
+  //     .post(baseURL + "/agent/withdrawal/request", requestData, config)
+  //     .then((res) => {
+  //       if (res.data.status === "success") {
+  //         navigate("/wallet");
+  //       }
+  //     });
+  // };
 
   const onBankSubmit = (data) => {
     const requestData = {
       bank: `${selectedBank}`,
       branch_name: `${data.branch_name}`,
+      account_title: `${data.account_title}`,
       account_no: `${data.account_number}`,
       request_amount: parseInt(data.request_amount),
     };
@@ -313,6 +314,17 @@ const WalletWithdraw = () => {
                 />
               </div>
               <div>
+                <label htmlFor="">Account Title</label>
+                <br />
+                <input
+                  type="string"
+                  name="account_title"
+                  placeholder="Enter account Title"
+                  {...register("account_title", { required: true })}
+                  required
+                />
+              </div>
+              <div>
                 <label htmlFor="">Account Number</label>
                 <br />
                 <input
@@ -323,6 +335,7 @@ const WalletWithdraw = () => {
                   required
                 />
               </div>
+              
               <div>
                 <label htmlFor="">Request Amount</label>
                 <br />
