@@ -84,10 +84,6 @@ const CustomerList = () => {
     })
   }
 
-  // const handleCustomerDetails = id => {
-  //   navigate(`/customer-details/${id}`)
-  // }
-
 
   return (
     <div className="customer-list-section">
