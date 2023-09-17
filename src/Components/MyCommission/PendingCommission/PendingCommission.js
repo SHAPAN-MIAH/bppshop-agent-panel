@@ -44,7 +44,7 @@ const PendingCommission = () => {
         <div className="commission-history-header">
           <h2>Pending Commission</h2>
           <div>
-            <input type="" name="" placeholder="Search Customer Name/ID" />
+            <input type="" name="" placeholder="Search" />
           </div>
         </div>
         <div className="customer-list-print">

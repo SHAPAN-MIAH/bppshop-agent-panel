@@ -124,26 +124,34 @@ a {
   /* position: absolute; */
   color: #ffffff;
   text-align: center;
-  margin-top: 5vh;
+  margin-top: 10vh;
   z-index: 999;
   /* margin-left: 18%; */
 }
+.balance-container p{
+  font-size: 14px;
+}
 .balance-content {
   margin: auto;
-  width: 150px;
-  height: 150px;
-  border: 1px solid #ffffff;
-  border-radius: 50%;
+  width: 200px;
+  height: 110px;
+  /* border: 1px solid #ffffff; */
+  /* border-radius: 50%; */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #ffffff;
+  /* box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px; */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
+.balance-content h4{
+  margin: -10px 0px;
+}
 .balance-content p{
   font-size: 20px;
+  margin-top: -10px;
 }
 @media screen and (max-width: 1600px) {
   .sidebarMenu {

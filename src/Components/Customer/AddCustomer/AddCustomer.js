@@ -25,6 +25,7 @@ const customStyles = {
   },
 };
 
+
 const AddCustomer = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
